@@ -1,0 +1,26 @@
+{
+  "name": "revind",
+  "version": "0.0.1",
+  "description": "Open source Tailwind UI components to bootstrap your new apps, projects or landing websites!",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FotieMConstant/revind.git"
+  },
+  "keywords": [
+    "react",
+    "veujs",
+    "tailwind",
+    "ui-framework",
+    "framework-agnostic"
+  ],
+  "author": "FotieMConstant",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/FotieMConstant/revind/issues"
+  },
+  "homepage": "https://github.com/FotieMConstant/revind#readme"
+}
