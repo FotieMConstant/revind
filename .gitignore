@@ -4,3 +4,6 @@ build
 dist
 *.log
 *.env
+.DS_Store
+dist-ssr
+*.local
