@@ -2,30 +2,35 @@
  * @type {import("eslint").Linter.Config}
  */
 const config = {
-    "env": {
-        "browser": true,
-        "es2021": true
+    env: {
+        browser: true,
+        es2021: true
     },
-    "extends": [
+    extends: [
         "eslint:recommended",
         "plugin:react/recommended",
         "plugin:vue/vue3-recommended"
     ],
-    "parserOptions": {
-        "ecmaFeatures": {
-            "jsx": true
+    parserOptions: {
+        ecmaFeatures: {
+            jsx: true
         },
-        "ecmaVersion": 12,
-        "sourceType": "module"
+        ecmaVersion: 12,
+        sourceType: "module"
     },
-    "plugins": [
+    plugins: [
         "react",
         "vue"
     ],
-    "rules": {
+    settings: {
+        react: {
+            version: "17.0.0"
+        }
+    },
+    rules: {
         "no-unused-vars": ["warn"],
         "react/no-unescaped-entities": ["off"],
-        "indent": [
+        indent: [
             "error",
             4
         ],
@@ -33,11 +38,11 @@ const config = {
             "error",
             "unix"
         ],
-        "quotes": [
+        quotes: [
             "error",
             "double"
         ],
-        "semi": [
+        semi: [
             "error",
             "always"
         ]
