@@ -2,37 +2,33 @@
  * @type {import("eslint").Linter.Config}
  */
 const config = {
-  env: {
-    browser: true,
-    es2021: true,
-  },
-  extends: [
-    "plugin:react/recommended",
-    "plugin:vue/vue3-recommended",
-    "plugin:prettier/recommended",
-    "eslint:recommended",
-  ],
-  parserOptions: {
-    ecmaFeatures: {
-      jsx: true,
+    env: {
+        browser: true,
+        es2021: true,
     },
-    ecmaVersion: 12,
-    sourceType: "module",
-  },
-  plugins: ["react", "vue", "prettier"],
-  settings: {
-    react: {
-      version: "17.0.0",
+    extends: [
+        "plugin:react/recommended",
+        "plugin:vue/vue3-recommended",
+        "eslint:recommended",
+        "plugin:prettier/recommended",
+    ],
+    parserOptions: {
+        ecmaFeatures: {
+            jsx: true,
+        },
+        ecmaVersion: 12,
+        sourceType: "module",
     },
-  },
-  rules: {
-    "prettier/prettier": "warn",
-    "no-unused-vars": ["warn"],
-    "react/no-unescaped-entities": ["off"],
-    indent: ["error", 4],
-    "linebreak-style": ["error", "unix"],
-    quotes: ["error", "double"],
-    semi: ["error", "always"],
-  },
+    plugins: ["react", "vue", "prettier"],
+    settings: {
+        react: {
+            version: "17.0.0",
+        },
+    },
+    rules: {
+        "prettier/prettier": "warn",
+        "no-unused-vars": ["warn"],
+        "react/no-unescaped-entities": ["off"],
+    },
 };
 module.exports = config;

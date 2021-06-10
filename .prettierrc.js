@@ -2,7 +2,10 @@
  * @type {import("prettier").Options}
  */
 const config = {
-  printWidth: 90,
-  semi: true,
+    tabWidth: 4,
+    printWidth: 90,
+    semi: true,
+    endOfLine: "auto",
+    trailingComma: "all",
 };
 module.exports = config;
