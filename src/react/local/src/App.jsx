@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import _Flex from "./internals/_Flex";
 import _Hidden from "./internals/_Hidden";
 import _Button from "./internals/_Button";
+import _ButtonGroup from "./internals/_ButtonGroup";
 
 function App() {
     const [count, setCount] = useState(0);
@@ -38,6 +39,9 @@ function App() {
                             <li>
                                 <Link to="/buttons">buttons</Link>
                             </li>
+                            <li>
+                                <Link to="/button-group">button group</Link>
+                            </li>
                         </ul>
                     </section>
                 </div>
@@ -51,6 +55,9 @@ function App() {
             </Route>
             <Route path="/buttons">
                 <_Button />
+            </Route>
+            <Route path="/button-group">
+                <_ButtonGroup />
             </Route>
         </Router>
     );

@@ -9,6 +9,7 @@ function Button({
     "start-icon": startIcon,
     "end-icon": endIcon,
     "full-width": fullWidth = false,
+    className,
     children,
     ...props
 }) {
@@ -58,9 +59,9 @@ function Button({
                 variantsCommon[variant]
             } ${variants[variant][scheme]} ${
                 sizes[size]
-            } disabled:bg-gray-200 disabled:cursor-not-allowed disabled:text-gray-400 outline-white dark:outline-black  ${
+            } disabled:bg-gray-200 disabled:cursor-not-allowed disabled:text-gray-400 focus:outline-none  ${
                 margin ? "m-1" : ""
-            } ${fullWidth ? "w-full block" : ""}`}
+            } ${fullWidth ? "w-full block" : ""} ${className}`}
             {...props}
         >
             <span className="mr-1 inline-block align-middle">{startIcon}</span>

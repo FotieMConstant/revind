@@ -7,6 +7,7 @@ export default function Flex({
     alignItems = "items-starts",
     justifyContent = "justify-start",
     alignContent = "content-start",
+    inline = false,
     children,
     className,
     ...props
@@ -49,7 +50,11 @@ export default function Flex({
 
     return (
         <div
-            className={`flex ${dirRaw[direction]} ${wrapRaw[wrap]} ${alignItemsRaw[alignItems]} ${justifyContentRaw[justifyContent]} ${alignContentRaw[alignContent]} ${className}`}
+            className={`${inline ? "inline-flex" : "flex"} ${dirRaw[direction]} ${
+                wrapRaw[wrap]
+            } ${alignItemsRaw[alignItems]} ${justifyContentRaw[justifyContent]} ${
+                alignContentRaw[alignContent]
+            } ${className}`}
             {...props}
         >
             {children}
@@ -78,4 +83,5 @@ Flex.propTypes = {
         "evenly",
     ]),
     alignItems: PropTypes.oneOf(["center", "start", "end", "stretch", "baseline"]),
+    inline: PropTypes.bool,
 };
