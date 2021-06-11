@@ -1,6 +1,7 @@
 {
   "name": "revind",
   "version": "0.0.1",
+  "type": "module",
   "description": "Open source Tailwind UI components to bootstrap your new apps, projects or landing websites!",
   "main": "lib/index.js",
   "scripts": {
@@ -12,7 +13,8 @@
     "build:react": "vite build -c vite.config.react.js",
     "serve:react": "vite preview -c vite.config.react.js",
     "build": "npm run build:react && npm run build:vue && npm run build:css",
-    "lint": "npx eslint src/**/*.{jsx,vue,js}"
+    "lint": "npx eslint src/**/*.{jsx,vue,js}",
+    "new:component": "node scripts/component-gen.js"
   },
   "repository": {
     "type": "git",
@@ -55,6 +57,7 @@
     "react-router-dom": "^5.2.0",
     "tailwindcss": "^2.1.4",
     "vite": "^2.3.5",
-    "vue": "^3.0.5"
+    "vue": "^3.0.5",
+    "vue-router": "^3.5.1"
   }
 }
