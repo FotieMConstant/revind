@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-a{
-  @apply text-blue-400 hover:underline;
+* {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+a {
+    @apply text-blue-400 hover:underline;
 }

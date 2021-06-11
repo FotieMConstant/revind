@@ -4,6 +4,7 @@ import _Flex from "./internals/_Flex";
 import _Hidden from "./internals/_Hidden";
 import _Button from "./internals/_Button";
 import _ButtonGroup from "./internals/_ButtonGroup";
+import _Text from "./internals/_Text";
 
 function App() {
     const [count, setCount] = useState(0);
@@ -42,6 +43,9 @@ function App() {
                             <li>
                                 <Link to="/button-group">button group</Link>
                             </li>
+                            <li>
+                                <Link to="/text">text</Link>
+                            </li>
                         </ul>
                     </section>
                 </div>
@@ -58,6 +62,9 @@ function App() {
             </Route>
             <Route path="/button-group">
                 <_ButtonGroup />
+            </Route>
+            <Route path="/text">
+                <_Text />
             </Route>
         </Router>
     );
