@@ -4,7 +4,7 @@ import Hidden from "../../../components/Hidden/Hidden";
 function _Hidden() {
     return (
         <>
-            <b>Below paragraph is hidden</b>
+            <b>Below paragraph is hidden, scale down view port to see it</b>
             <Hidden>
                 <p>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam libero
@@ -16,7 +16,7 @@ function _Hidden() {
                 </p>
             </Hidden>
             <Hidden hover md all={false}>
-                <button>This should be invisible above md</button>
+                <button>This should be invisible above md & on hover</button>
             </Hidden>
         </>
     );

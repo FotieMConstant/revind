@@ -1,18 +1,21 @@
-import React from "react";
 import PropTypes from "prop-types";
+import React, { forwardRef } from "react";
 
-function Button({
-    scheme = "primary",
-    size = "md",
-    margin = true,
-    variant = "filled",
-    "start-icon": startIcon,
-    "end-icon": endIcon,
-    "full-width": fullWidth = false,
-    className,
-    children,
-    ...props
-}) {
+function Button(
+    {
+        scheme = "primary",
+        size = "md",
+        margin = true,
+        variant = "filled",
+        "start-icon": startIcon,
+        "end-icon": endIcon,
+        "full-width": fullWidth = false,
+        className,
+        children,
+        ...props
+    },
+    ref,
+) {
     const variantsCommon = {
         filled: "text-white hover:brightness-90 hover:filter active:brightness-105 active:filter",
         outlined:
@@ -55,6 +58,7 @@ function Button({
     };
     return (
         <button
+            ref={ref}
             className={`rounded cursor-pointer transition-all ${
                 variantsCommon[variant]
             } ${variants[variant][scheme]} ${
@@ -82,4 +86,4 @@ Button.propTypes = {
     "full-width": PropTypes.bool,
 };
 
-export default Button;
+export default forwardRef(Button);

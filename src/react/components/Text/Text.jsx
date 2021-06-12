@@ -1,17 +1,20 @@
-import React from "react";
-import PropTypes, { bool } from "prop-types";
+import PropTypes from "prop-types";
+import React, { forwardRef } from "react";
 
-function Text({
-    scheme = "regular",
-    variant = "body1",
-    inline = false,
-    align = "left",
-    wrap = true,
-    "bottom-margin": bottomMargin = true,
-    className = "",
-    children,
-    ...props
-}) {
+function Text(
+    {
+        scheme = "regular",
+        variant = "body1",
+        inline = false,
+        align = "left",
+        wrap = true,
+        "bottom-margin": bottomMargin = true,
+        className = "",
+        children,
+        ...props
+    },
+    ref,
+) {
     const Component = {
         h1: "h1",
         h2: "h2",
@@ -61,6 +64,7 @@ function Text({
 
     return (
         <Component
+            ref={ref}
             className={`${schemes[scheme]} ${variants[variant]} ${className} ${
                 inline ? "inline" : "block"
             } ${
@@ -103,7 +107,7 @@ Text.propTypes = {
     ]),
     inline: PropTypes.bool,
     wrap: PropTypes.bool,
-    "bottom-margin": bool,
+    "bottom-margin": PropTypes.bool,
 };
 
-export default Text;
+export default forwardRef(Text);

@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import _Flex from "./internals/_Flex";
-import _Hidden from "./internals/_Hidden";
+import { BrowserRouter as Router, Link, Route } from "react-router-dom";
 import _Button from "./internals/_Button";
 import _ButtonGroup from "./internals/_ButtonGroup";
+import _Container from "./internals/_Container";
+import _Flex from "./internals/_Flex";
+import _Hidden from "./internals/_Hidden";
 import _Text from "./internals/_Text";
 
 function App() {
@@ -32,6 +33,9 @@ function App() {
                         <h3>Link to all component previews & looks</h3>
                         <ul className="list-disc">
                             <li>
+                                <Link to="/container">container</Link>
+                            </li>
+                            <li>
                                 <Link to="/flex">flex</Link>
                             </li>
                             <li>
@@ -53,6 +57,9 @@ function App() {
             {/* Routes for each component testing */}
             <Route path="/flex">
                 <_Flex />
+            </Route>
+            <Route path="/container">
+                <_Container />
             </Route>
             <Route path="/hidden">
                 <_Hidden />

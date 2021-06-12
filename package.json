@@ -1,7 +1,6 @@
 {
   "name": "revind",
   "version": "0.0.1",
-  "type": "module",
   "description": "Open source Tailwind UI components to bootstrap your new apps, projects or landing websites!",
   "main": "lib/index.js",
   "scripts": {

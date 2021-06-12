@@ -1,18 +1,21 @@
-import React from "react";
 import PropTypes from "prop-types";
+import React, { forwardRef } from "react";
 import { isFragment } from "react-is";
 import Flex from "../../components/Flex/Flex";
 
-function ButtonGroup({
-    scheme = "primary",
-    size = "md",
-    variant = "filled",
-    "full-width": fullWidth = false,
-    direction = "row",
-    className,
-    children,
-    ...props
-}) {
+function ButtonGroup(
+    {
+        scheme = "primary",
+        size = "md",
+        variant = "filled",
+        "full-width": fullWidth = false,
+        direction = "row",
+        className,
+        children,
+        ...props
+    },
+    ref,
+) {
     const variants = {
         filled: {
             row: "mx-[0.5px] first:ml-0 last:mr-0",
@@ -43,6 +46,7 @@ function ButtonGroup({
 
     return (
         <Flex
+            ref={ref}
             role="group"
             inline={!fullWidth}
             alignItems="stretch"
@@ -83,4 +87,4 @@ ButtonGroup.propTypes = {
     scheme: PropTypes.oneOf(["primary", "secondary", "red", "green", "yellow"]),
 };
 
-export default ButtonGroup;
+export default forwardRef(ButtonGroup);

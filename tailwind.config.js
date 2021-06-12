@@ -1,4 +1,5 @@
 const colors = require("tailwindcss/colors");
+// accents
 const brandColors = {
     primary: {
         DEFAULT: colors.blue[500],
@@ -7,6 +8,17 @@ const brandColors = {
     secondary: {
         DEFAULT: colors.gray[600],
         dark: colors.gray[400],
+    },
+};
+// bg
+const brandBgColors = {
+    "container-primary": {
+        DEFAULT: colors.white,
+        dark: colors.gray[900],
+    },
+    "container-secondary": {
+        DEFAULT: colors.gray[200],
+        dark: colors.gray[700],
     },
 };
 /**
@@ -23,9 +35,8 @@ const config = {
     darkMode: "media",
     theme: {
         extend: {
-            colors: {
-                ...brandColors,
-            },
+            colors: brandColors,
+            backgroundColor: brandBgColors,
         },
     },
     variants: {

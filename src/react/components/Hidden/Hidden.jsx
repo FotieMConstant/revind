@@ -1,19 +1,10 @@
-import React from "react";
 import PropTypes from "prop-types";
+import React, { forwardRef } from "react";
 
-export default function Hidden({
-    sm,
-    md,
-    lg,
-    xl,
-    xxl,
-    hover,
-    active,
-    focus,
-    all = true,
-    children,
-    ...props
-}) {
+function Hidden(
+    { sm, md, lg, xl, xxl, hover, active, focus, all = true, children, ...props },
+    ref,
+) {
     const states = Object.entries({ all, sm, md, lg, xl, xxl, hover, active, focus })
         .map(([key, value]) => {
             return { [key]: value ? key : "nothing" };
@@ -33,6 +24,7 @@ export default function Hidden({
     };
     return (
         <div
+            ref={ref}
             className={`${statesRaw[states.sm]} ${statesRaw[states.md]} ${
                 statesRaw[states.lg]
             } ${statesRaw[states.xl]} ${statesRaw[states.xxl]} ${
@@ -59,3 +51,5 @@ Hidden.propTypes = {
     active: PropTypes.bool,
     focus: PropTypes.bool,
 };
+
+export default forwardRef(Hidden);

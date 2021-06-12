@@ -1,17 +1,20 @@
-import React from "react";
 import PropTypes from "prop-types";
+import React, { forwardRef } from "react";
 
-export default function Flex({
-    direction = "row",
-    wrap = "no-wrap",
-    alignItems = "items-starts",
-    justifyContent = "justify-start",
-    alignContent = "content-start",
-    inline = false,
-    children,
-    className,
-    ...props
-}) {
+function Flex(
+    {
+        direction = "row",
+        wrap = "no-wrap",
+        alignItems = "items-starts",
+        justifyContent = "justify-start",
+        alignContent = "content-start",
+        inline = false,
+        children,
+        className,
+        ...props
+    },
+    ref,
+) {
     let dirRaw = {
         row: "flex-row",
         column: "flex-col",
@@ -50,6 +53,7 @@ export default function Flex({
 
     return (
         <div
+            ref={ref}
             className={`${inline ? "inline-flex" : "flex"} ${dirRaw[direction]} ${
                 wrapRaw[wrap]
             } ${alignItemsRaw[alignItems]} ${justifyContentRaw[justifyContent]} ${
@@ -85,3 +89,5 @@ Flex.propTypes = {
     alignItems: PropTypes.oneOf(["center", "start", "end", "stretch", "baseline"]),
     inline: PropTypes.bool,
 };
+
+export default forwardRef(Flex);
