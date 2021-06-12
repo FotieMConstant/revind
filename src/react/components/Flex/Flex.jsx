@@ -5,9 +5,9 @@ function Flex(
     {
         direction = "row",
         wrap = "no-wrap",
-        alignItems = "items-starts",
-        justifyContent = "justify-start",
-        alignContent = "content-start",
+        alignItems = "starts",
+        justifyContent = "start",
+        alignContent = "start",
         inline = false,
         children,
         className,
@@ -68,8 +68,11 @@ function Flex(
 
 Flex.propTypes = {
     ...Flex.propTypes,
+
     direction: PropTypes.oneOf(["column", "row", "row-reverse", "column-reverse"]),
+
     wrap: PropTypes.oneOf(["wrap", "no-wrap", "wrap-reverse"]),
+
     justifyContent: PropTypes.oneOf([
         "center",
         "start",
@@ -78,6 +81,7 @@ Flex.propTypes = {
         "around",
         "evenly",
     ]),
+
     alignContent: PropTypes.oneOf([
         "center",
         "start",
@@ -86,7 +90,9 @@ Flex.propTypes = {
         "around",
         "evenly",
     ]),
+
     alignItems: PropTypes.oneOf(["center", "start", "end", "stretch", "baseline"]),
+
     inline: PropTypes.bool,
 };
 
