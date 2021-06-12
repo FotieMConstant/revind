@@ -1,17 +1,17 @@
 <template>
     <div v-bind="props">
-      <slot/>
+        <slot />
     </div>
 </template>
 
 <script>
 export default {
-  name: "Container",
-  data() {
-    const {...props} = this.$props;
-    return {
-      props
-    };
-  }
+    name: "Container",
+    data() {
+        const { ...props } = this.$props;
+        return {
+            props,
+        };
+    },
 };
 </script>

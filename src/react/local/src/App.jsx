@@ -1,11 +1,21 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Link, Route } from "react-router-dom";
+import { v4 as uuid } from "uuid";
 import _Button from "./internals/_Button";
 import _ButtonGroup from "./internals/_ButtonGroup";
 import _Container from "./internals/_Container";
 import _Flex from "./internals/_Flex";
 import _Hidden from "./internals/_Hidden";
 import _Text from "./internals/_Text";
+
+const staticRoutes = [
+    { path: "/flex", component: _Flex },
+    { path: "/container", component: _Container },
+    { path: "/hidden", component: _Hidden },
+    { path: "/buttons", component: _Button },
+    { path: "/button-group", component: _ButtonGroup },
+    { path: "/text", component: _Text },
+];
 
 function App() {
     const [count, setCount] = useState(0);
@@ -32,47 +42,23 @@ function App() {
                     <section>
                         <h3>Link to all component previews & looks</h3>
                         <ul className="list-disc">
-                            <li>
-                                <Link to="/container">container</Link>
-                            </li>
-                            <li>
-                                <Link to="/flex">flex</Link>
-                            </li>
-                            <li>
-                                <Link to="/hidden">hidden</Link>
-                            </li>
-                            <li>
-                                <Link to="/buttons">buttons</Link>
-                            </li>
-                            <li>
-                                <Link to="/button-group">button group</Link>
-                            </li>
-                            <li>
-                                <Link to="/text">text</Link>
-                            </li>
+                            {staticRoutes.map(({ path, component }) => (
+                                <li key={uuid()}>
+                                    <Link to={path}>
+                                        {component.name.replace("_", "").toLowerCase()}
+                                    </Link>
+                                </li>
+                            ))}
                         </ul>
                     </section>
                 </div>
             </Route>
             {/* Routes for each component testing */}
-            <Route path="/flex">
-                <_Flex />
-            </Route>
-            <Route path="/container">
-                <_Container />
-            </Route>
-            <Route path="/hidden">
-                <_Hidden />
-            </Route>
-            <Route path="/buttons">
-                <_Button />
-            </Route>
-            <Route path="/button-group">
-                <_ButtonGroup />
-            </Route>
-            <Route path="/text">
-                <_Text />
-            </Route>
+            {staticRoutes.map(({ path, component: Component }) => (
+                <Route key={uuid()} path={path}>
+                    <Component />
+                </Route>
+            ))}
         </Router>
     );
 }

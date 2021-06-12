@@ -1,17 +1,16 @@
 <template>
-  <div>
-    <Container></Container>
-  </div>
+    <div>
+        <Container></Container>
+    </div>
 </template>
 
 <script>
-  import Container from "../../../components/Container/Container";
+import Container from "../../../components/Container/Container.vue";
 
-  export default {
-    name: "_Container",
+export default {
+    name: "ContainerComp",
     components: {
-      Container,
-    }
-  };
+        Container,
+    },
+};
 </script>
-  

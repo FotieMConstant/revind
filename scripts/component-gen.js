@@ -76,10 +76,10 @@ const vueLocalFileContent = `<template>
 </template>
 
 <script>
-  import ${componentName} from "../../../components/${componentName}/${componentName}";
+  import ${componentName} from "../../../components/${componentName}/${componentName}.vue";
 
   export default {
-    name: "_${componentName}",
+    name: "${componentName}Comp",
     components: {
       ${componentName},
     }
