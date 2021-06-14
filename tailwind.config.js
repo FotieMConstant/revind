@@ -9,6 +9,18 @@ const brandColors = {
         DEFAULT: colors.gray[600],
         dark: colors.gray[400],
     },
+    red: {
+        DEFAULT: colors.red[600],
+        dark: colors.red[500],
+    },
+    green: {
+        DEFAULT: colors.green[600],
+        dark: colors.green[500],
+    },
+    yellow: {
+        DEFAULT: colors.yellow[400],
+        dark: colors.yellow[300],
+    },
 };
 // bg
 const brandBgColors = {
@@ -32,7 +44,7 @@ const config = {
             keyframes: true,
         },
     },
-    darkMode: "media",
+    darkMode: "class",
     theme: {
         extend: {
             colors: brandColors,

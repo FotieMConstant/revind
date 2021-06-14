@@ -48,9 +48,9 @@ function Text(
     const schemes = {
         primary: "text-primary dark:text-primary-dark",
         secondary: "text-secondary dark:text-secondary-dark",
-        red: "text-red-600 dark:text-red-500",
-        green: "text-green-600 dark:text-green-500",
-        yellow: "text-yellow-400 dark:text-yellow-300",
+        red: "text-red dark:text-red-dark",
+        green: "text-green dark:text-green-dark",
+        yellow: "text-yellow dark:text-yellow-dark",
         inverted: "text-gray-100 dark:text-gray-800",
         regular: "text-gray-800 dark:text-gray-100",
     };

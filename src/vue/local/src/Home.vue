@@ -6,9 +6,9 @@
         >
         <p>
             But anyway you clicked
-            <code class="text-green-500">{{ count }}</code> times
+            <code class="text-green-dark">{{ count }}</code> times
         </p>
-        <button class="bg-green-500 p-2 rounded text-white" @click="countUp">
+        <button class="bg-green-dark p-2 rounded text-white" @click="countUp">
             Count
         </button>
         <ul>

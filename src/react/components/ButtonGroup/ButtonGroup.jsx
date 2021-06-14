@@ -34,9 +34,9 @@ function ButtonGroup(
     const borderColors = {
         primary: "border-primary dark:border-primary-dark",
         secondary: "border-secondary dark:border-secondary-dark",
-        red: "border-red-600 dark:border-red-500",
-        green: "border-green-600 dark:border-green-500",
-        yellow: "border-yellow-400 dark:border-yellow-300",
+        red: "border-red dark:border-red-dark",
+        green: "border-green dark:border-green-dark",
+        yellow: "border-yellow dark:border-yellow-dark",
     };
 
     const directions = {

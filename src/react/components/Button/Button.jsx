@@ -19,34 +19,34 @@ function Button(
     const variantsCommon = {
         filled: "text-white hover:brightness-90 hover:filter active:brightness-105 active:filter",
         outlined:
-            "border border-solid bg-opacity-0 dark:bg-opacity-0 hover:bg-opacity-20 active:bg-opacity-10",
-        text: "bg-opacity-0 dark:bg-opacity-0 hover:bg-opacity-20 active:bg-opacity-10",
+            "border border-solid bg-opacity-0 dark:bg-opacity-0 hover:bg-opacity-20 active:bg-opacity-10 dark:hover:bg-opacity-20 dark:active:bg-opacity-10",
+        text: "bg-opacity-0 dark:bg-opacity-0 hover:bg-opacity-20 dark:hover:bg-opacity-20 active:bg-opacity-10 dark:active:bg-opacity-10",
     };
     const variants = {
         filled: {
             primary: "bg-primary dark:bg-primary-dark",
             secondary: "bg-secondary dark:bg-secondary-dark",
-            red: "bg-red-600 dark:bg-red-500",
-            green: "bg-green-600 dark:bg-green-500",
-            yellow: "bg-yellow-400 dark:bg-yellow-300",
+            red: "bg-red dark:bg-red-dark",
+            green: "bg-green dark:bg-green-dark",
+            yellow: "bg-yellow dark:bg-yellow-dark",
         },
         outlined: {
             primary:
                 "border-primary dark:border-primary-dark text-primary dark:text-primary-dark bg-primary dark:bg-primary-dark",
             secondary:
                 "border-secondary dark:border-secondary-dark text-secondary dark:text-secondary-dark bg-secondary dark:bg-secondary-dark",
-            red: "border-red-600 dark:border-red-600 text-red-600 dark:text-red-500 bg-red-600 dark:bg-red-500",
-            green: "border-green-600 dark:border-green-600 text-green-600 dark:text-green-500 bg-green-600 dark:bg-green-500",
-            yellow: "border-yellow-400 dark:border-yellow-400 text-yellow-400 dark:text-yellow-300 bg-yellow-400 dark:bg-yellow-300",
+            red: "border-red dark:border-red text-red dark:text-red-dark bg-red dark:bg-red-dark",
+            green: "border-green dark:border-green text-green dark:text-green-dark bg-green dark:bg-green-dark",
+            yellow: "border-yellow dark:border-yellow text-yellow dark:text-yellow-dark bg-yellow dark:bg-yellow-dark",
         },
         text: {
             primary:
                 "text-primary dark:text-primary-dark bg-primary dark:bg-primary-dark",
             secondary:
                 "text-secondary dark:text-secondary-dark bg-secondary dark:bg-secondary-dark",
-            red: "text-red-600 dark:text-red-500 bg-red-600 dark:bg-red-500",
-            green: "text-green-600 dark:text-green-500 bg-green-600 dark:bg-green-500",
-            yellow: "text-yellow-400 dark:text-yellow-300 bg-yellow-400 dark:bg-yellow-300",
+            red: "text-red dark:text-red-dark bg-red dark:bg-red-dark",
+            green: "text-green dark:text-green-dark bg-green dark:bg-green-dark",
+            yellow: "text-yellow dark:text-yellow-dark bg-yellow dark:bg-yellow-dark",
         },
     };
     const sizes = {
@@ -63,7 +63,7 @@ function Button(
                 variantsCommon[variant]
             } ${variants[variant][scheme]} ${
                 sizes[size]
-            } disabled:bg-gray-200 disabled:cursor-not-allowed disabled:text-gray-400 focus:outline-none  ${
+            } disabled:bg-gray-200 dark:disabled:bg-gray-500 disabled:cursor-not-allowed disabled:text-gray-400 focus:outline-none  ${
                 margin ? "m-1" : ""
             } ${fullWidth ? "w-full block" : ""} ${className}`}
             {...props}
