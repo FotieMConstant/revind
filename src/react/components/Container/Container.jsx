@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import React, { forwardRef } from "react";
 
-function Container(
+const Container = forwardRef(function Container(
     {
         center = false,
         gutters = false,
@@ -72,7 +72,7 @@ function Container(
             {children}
         </div>
     );
-}
+});
 
 Container.propTypes = {
     ...Container.propTypes,
@@ -87,4 +87,4 @@ Container.propTypes = {
     rounded: PropTypes.bool,
 };
 
-export default forwardRef(Container);
+export default Container;

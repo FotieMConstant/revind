@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import React, { forwardRef } from "react";
 
-function Button(
+const Button = forwardRef(function Button(
     {
         scheme = "primary",
         size = "md",
@@ -73,7 +73,7 @@ function Button(
             <span className="ml-1 inline-block align-middle">{endIcon}</span>
         </button>
     );
-}
+});
 
 Button.propTypes = {
     ...Button.propTypes,
@@ -86,4 +86,4 @@ Button.propTypes = {
     "full-width": PropTypes.bool,
 };
 
-export default forwardRef(Button);
+export default Button;

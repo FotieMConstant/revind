@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 import { isFragment } from "react-is";
 import Flex from "../../components/Flex/Flex";
 
-function ButtonGroup(
+const ButtonGroup = forwardRef(function ButtonGroup(
     {
         scheme = "primary",
         size = "md",
@@ -76,7 +76,7 @@ function ButtonGroup(
             })}
         </Flex>
     );
-}
+});
 
 ButtonGroup.propTypes = {
     ...ButtonGroup.propTypes,
@@ -87,4 +87,4 @@ ButtonGroup.propTypes = {
     scheme: PropTypes.oneOf(["primary", "secondary", "red", "green", "yellow"]),
 };
 
-export default forwardRef(ButtonGroup);
+export default ButtonGroup;

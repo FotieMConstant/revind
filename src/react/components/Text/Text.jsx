@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import React, { forwardRef } from "react";
 
-function Text(
+const Text = forwardRef(function Text(
     {
         scheme = "regular",
         variant = "body1",
@@ -77,7 +77,7 @@ function Text(
             {children}
         </Component>
     );
-}
+});
 
 Text.propTypes = {
     ...Text.propTypes,
@@ -110,4 +110,4 @@ Text.propTypes = {
     "bottom-margin": PropTypes.bool,
 };
 
-export default forwardRef(Text);
+export default Text;

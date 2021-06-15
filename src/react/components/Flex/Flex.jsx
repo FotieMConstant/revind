@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import React, { forwardRef } from "react";
 
-function Flex(
+const Flex = forwardRef(function Flex(
     {
         direction = "row",
         wrap = "no-wrap",
@@ -64,7 +64,7 @@ function Flex(
             {children}
         </div>
     );
-}
+});
 
 Flex.propTypes = {
     ...Flex.propTypes,
@@ -96,4 +96,4 @@ Flex.propTypes = {
     inline: PropTypes.bool,
 };
 
-export default forwardRef(Flex);
+export default Flex;

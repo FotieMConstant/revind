@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import React, { forwardRef } from "react";
 
-function Hidden(
+const Hidden = forwardRef(function Hidden(
     { sm, md, lg, xl, xxl, hover, active, focus, all = true, children, ...props },
     ref,
 ) {
@@ -37,7 +37,7 @@ function Hidden(
             {children}
         </div>
     );
-}
+});
 
 Hidden.propTypes = {
     ...Hidden.propTypes,
@@ -52,4 +52,4 @@ Hidden.propTypes = {
     focus: PropTypes.bool,
 };
 
-export default forwardRef(Hidden);
+export default Hidden;

@@ -29,16 +29,14 @@ export default ${componentName};
 `;
 const vueFileContent = `<template>
     <div v-bind="$props">
-      <slot/>
+        <slot />
     </div>
 </template>
 
 <script>
 export default {
-  name: "${componentName}",
-  data() {
-
-  }
+    name: "${componentName}",
+    data() {},
 };
 </script>
 `;
@@ -67,22 +65,22 @@ export default _${componentName};
 `;
 
 const vueLocalFileContent = `<template>
-  <div>
-    <${componentName}></${componentName}>
-  </div>
+    <div>
+        <${componentName}></${componentName}>
+    </div>
 </template>
 
 <script>
-  import ${componentName} from "../../../components/${componentName}/${componentName}.vue";
+import ${componentName} from "../../../components/${componentName}/${componentName}.vue";
 
-  export default {
+export default {
     name: "${componentName}Comp",
     components: {
-      ${componentName},
-    }
-  };
+        ${componentName},
+    },
+};
 </script>
-  `;
+`;
 
 const pathsToCreate = [
     // react component,local folders

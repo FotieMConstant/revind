@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Link, Route } from "react-router-dom";
 import { v4 as uuid } from "uuid";
 import _Button from "./internals/_Button";
 import _ButtonGroup from "./internals/_ButtonGroup";
+import _Checkbox from "./internals/_Checkbox";
 import _Container from "./internals/_Container";
 import _Flex from "./internals/_Flex";
 import _Hidden from "./internals/_Hidden";
@@ -15,6 +16,7 @@ const staticRoutes = [
     { path: "/buttons", component: _Button },
     { path: "/button-group", component: _ButtonGroup },
     { path: "/text", component: _Text },
+    { path: "/checkbox", component: _Checkbox },
 ];
 
 function App() {
