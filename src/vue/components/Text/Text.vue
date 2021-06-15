@@ -7,11 +7,6 @@
 <script>
 export default {
     name: "Text",
-    data() {
-        const { ...props } = this.$props;
-        return {
-            props,
-        };
-    },
+    data() {},
 };
 </script>

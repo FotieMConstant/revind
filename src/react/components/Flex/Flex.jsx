@@ -23,7 +23,7 @@ function Flex(
     };
     let wrapRaw = {
         wrap: "flex-wrap",
-        "no-wrap": "",
+        "no-wrap": "flex-nowrap",
         "wrap-reverse": "wrap-reverse",
     };
     let alignItemsRaw = {

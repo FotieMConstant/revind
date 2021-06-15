@@ -28,7 +28,7 @@ ${componentName}.propTypes = {
 export default ${componentName};
 `;
 const vueFileContent = `<template>
-    <div v-bind="props">
+    <div v-bind="$props">
       <slot/>
     </div>
 </template>
@@ -37,10 +37,7 @@ const vueFileContent = `<template>
 export default {
   name: "${componentName}",
   data() {
-    const {...props} = this.$props;
-    return {
-      props
-    };
+
   }
 };
 </script>

@@ -1,5 +1,13 @@
 <template>
-    <div :class="classes" v-bind="props">
+    <div
+        class=""
+        :class="`${inline ? 'inline-flex' : 'flex'} ${dirRaw[direction]} ${
+            wrapRaw[wrap]
+        } ${alignItemsRaw[alignItems]} ${justifyContentRaw[justifyContent]} ${
+            alignContentRaw[alignContent]
+        } ${$props.className}`"
+        v-bind="$props"
+    >
         <slot />
     </div>
 </template>
@@ -13,7 +21,7 @@ let dirRaw = {
 };
 let wrapRaw = {
     wrap: "flex-wrap",
-    "no-wrap": "",
+    "no-wrap": "flex-nowrap",
     "wrap-reverse": "wrap-reverse",
 };
 let alignItemsRaw = {
@@ -78,24 +86,12 @@ export default {
         },
     },
     data() {
-        const {
-            inline,
-            direction,
-            wrap,
-            justifyContent,
-            alignContent,
-            alignItems,
-            className,
-            ...props
-        } = this.$props;
-        const classes = `${inline ? "inline-flex" : "flex"} ${dirRaw[direction]} ${
-            wrapRaw[wrap]
-        } ${alignItemsRaw[alignItems]} ${justifyContentRaw[justifyContent]} ${
-            alignContentRaw[alignContent]
-        } ${className}`;
         return {
-            props,
-            classes,
+            dirRaw,
+            wrapRaw,
+            alignItemsRaw,
+            justifyContentRaw,
+            alignContentRaw,
         };
     },
 };
