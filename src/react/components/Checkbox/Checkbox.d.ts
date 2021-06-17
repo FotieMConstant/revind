@@ -10,9 +10,7 @@ declare interface CheckboxProps
         HTMLInputElement
     > {
     checked: boolean;
-    checkedIcon: ReactElement;
     scheme: "primary" | "secondary" | "red" | "green" | "yellow";
-    icon: ReactElement;
     "wrapper-props": React.DetailedHTMLProps<
         React.InputHTMLAttributes<HTMLLabelElement>,
         HTMLLabelElement

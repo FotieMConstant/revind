@@ -3,9 +3,7 @@ import React, { forwardRef } from "react";
 const Checkbox = forwardRef(function Checkbox(
     {
         checked = false,
-        checkedIcon,
         scheme = "primary",
-        icon,
         "wrapper-ref": wrapperProps,
         size = "md",
         label,
@@ -95,18 +93,12 @@ const Checkbox = forwardRef(function Checkbox(
                 value={value}
                 {...props}
             />
-            {!icon || !checkedIcon ? (
-                <CheckIcon
-                    className={`transition ${sizes[size]} rounded ${
-                        checked ? "border-0" : "border-2 border-solid"
-                    } ${schemes[scheme][scheme2dKeys]}`}
-                />
-            ) : checked ? (
-                checkedIcon
-            ) : (
-                icon
-            )}
-            <span>{label}</span>
+            <CheckIcon
+                className={`transition ${sizes[size]} rounded ${
+                    checked ? "border-0" : "border-2 border-solid"
+                } ${schemes[scheme][scheme2dKeys]}`}
+            />
+            {label && <span>{label}</span>}
         </label>
     );
 });
@@ -133,9 +125,7 @@ function CheckIcon({ ...props }) {
 Checkbox.propTypes = {
     ...Checkbox.propTypes,
     checked: PropTypes.bool,
-    checkedIcon: PropTypes.node,
     scheme: PropTypes.oneOf(["primary", "secondary", "red", "green", "yellow"]),
-    icon: PropTypes.node,
     "wrapper-props": PropTypes.object,
     "wrapper-ref": PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     size: PropTypes.oneOf(["sm", "md", "lg", "xl", "xxl"]),
