@@ -11,6 +11,7 @@ const Checkbox = forwardRef(function Checkbox(
         "label-spacing": labelSpacing = true,
         value,
         "wrapper-ref": wrapperRef,
+        className = "",
         ...props
     },
     ref,
@@ -81,7 +82,7 @@ const Checkbox = forwardRef(function Checkbox(
 
     return (
         <label
-            className={`inline-flex items-center ${labelDirections[labelDirection]} ${labelSpacings[labelDirection][labelSpacingKey]}`}
+            className={`inline-flex items-center ${labelDirections[labelDirection]} ${labelSpacings[labelDirection][labelSpacingKey]} ${className}`}
             ref={wrapperRef}
             {...wrapperProps}
         >
@@ -94,6 +95,7 @@ const Checkbox = forwardRef(function Checkbox(
                 {...props}
             />
             <CheckIcon
+                checked={checked}
                 className={`transition ${sizes[size]} rounded ${
                     checked ? "border-0" : "border-2 border-solid"
                 } ${schemes[scheme][scheme2dKeys]}`}
@@ -103,7 +105,7 @@ const Checkbox = forwardRef(function Checkbox(
     );
 });
 
-function CheckIcon({ ...props }) {
+function CheckIcon({ checked, ...props }) {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -115,12 +117,17 @@ function CheckIcon({ ...props }) {
             <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                strokeWidth={2}
+                strokeWidth={checked ? 2 : 0}
                 d="M5 13l4 4L19 7"
             />
         </svg>
     );
 }
+
+CheckIcon.propTypes = {
+    ...CheckIcon.propTypes,
+    checked: PropTypes.bool.isRequired,
+};
 
 Checkbox.propTypes = {
     ...Checkbox.propTypes,

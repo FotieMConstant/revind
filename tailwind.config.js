@@ -47,7 +47,10 @@ const config = {
     darkMode: "class",
     theme: {
         extend: {
-            colors: brandColors,
+            colors: {
+                inherit: "inherit",
+                ...brandColors,
+            },
             backgroundColor: brandBgColors,
         },
     },

@@ -8,6 +8,7 @@ import _Container from "./internals/_Container";
 import _Flex from "./internals/_Flex";
 import _Hidden from "./internals/_Hidden";
 import _Text from "./internals/_Text";
+import _TextField from "./internals/_TextField";
 
 const staticRoutes = [
     { path: "/flex", component: _Flex },
@@ -17,6 +18,7 @@ const staticRoutes = [
     { path: "/button-group", component: _ButtonGroup },
     { path: "/text", component: _Text },
     { path: "/checkbox", component: _Checkbox },
+    { path: "/text-field", component: _TextField },
 ];
 
 function App() {
