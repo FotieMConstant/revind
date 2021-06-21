@@ -1,5 +1,5 @@
-import { DetailedHTMLProps, InputHTMLAttributes, ReactElement } from "react";
-declare interface TextFieldProps
+import React, { DetailedHTMLProps, InputHTMLAttributes, ReactElement, Ref } from "react";
+export declare interface TextFieldProps
     extends DetailedHTMLProps<
         Omit<InputHTMLAttributes<HTMLInputElement>, "size" | "type">,
         HTMLInputElement
@@ -20,6 +20,8 @@ declare interface TextFieldProps
     "full-width": boolean;
     label?: string;
     "label-variant"?: "static" | "floating";
+    "wrapper-ref"?: Ref<HTMLLabelElement>;
+    "label-ref"?: Ref<HTMLSpanElement>;
     component?: ReactElement;
 }
 
