@@ -1,21 +1,27 @@
 import PropTypes from "prop-types";
-import React, { useState } from "react";
+import React, { forwardRef, useState } from "react";
 
-function TextField({
-    variant = "regular",
-    scheme = "primary",
-    size = "md",
-    margin = true,
-    "full-width": fullWidth = false,
-    label,
-    "label-variant": labelVariant = "floating",
-    type = "text",
-    className = "",
-    onFocus,
-    onChange,
-    onBlur,
-    ...props
-}) {
+const TextField = forwardRef(function TextField(
+    {
+        variant = "regular",
+        scheme = "primary",
+        size = "md",
+        margin = true,
+        "full-width": fullWidth = false,
+        label,
+        "label-ref": labelRef,
+        "wrapper-ref": wrapperRef,
+        "label-variant": labelVariant = "floating",
+        type = "text",
+        className = "",
+        onFocus,
+        onChange,
+        onBlur,
+        component,
+        ...props
+    },
+    ref,
+) {
     const [inputFocused, setInputFocused] = useState(false);
     const [containsText, setContainsText] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
@@ -85,6 +91,8 @@ function TextField({
             ? "focused"
             : "default";
 
+    const Input = component ?? "input";
+
     return (
         <label
             className={`${
@@ -92,6 +100,7 @@ function TextField({
             } transition-colors relative text-gray-500 ${textSchemes[scheme]} ${
                 margin ? "mx-1 mb-2" : ""
             }`}
+            ref={wrapperRef}
         >
             {label && (
                 <span
@@ -100,15 +109,16 @@ function TextField({
                     } ${
                         labelVariant === "static" && !inputFocused ? "text-gray-500" : ""
                     }`}
+                    ref={labelRef}
                 >
                     {label}
                 </span>
             )}
 
-            <input
+            <Input
                 className={`${
                     fullWidth ? "w-full" : ""
-                } outline-none text-black dark:text-white  placeholder-gray-500 border-gray-300 ${
+                } dark:border-gray-600 outline-none text-black dark:text-white  placeholder-gray-500 border-gray-300 ${
                     sizes[size]
                 } ${inputSchemes[scheme]} ${variants[variant]} ${
                     labelVariant === "floating"
@@ -118,6 +128,7 @@ function TextField({
                 {...props}
                 onFocus={handleInputFocus}
                 onBlur={handleBlur}
+                ref={ref}
                 onChange={handleChange}
                 type={!showPassword ? type : "text"}
             />
@@ -129,7 +140,7 @@ function TextField({
             )}
         </label>
     );
-}
+});
 
 function ShowHidePasswordButton({ toggle, active }) {
     const eyeIcon = (
@@ -204,7 +215,10 @@ TextField.propTypes = {
     margin: PropTypes.bool,
     "full-width": PropTypes.bool,
     label: PropTypes.string,
+    "wrapper-ref": PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    "label-ref": PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     "label-variant": PropTypes.oneOf(["static", "floating"]),
+    component: PropTypes.elementType,
 };
 
 export default TextField;

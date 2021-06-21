@@ -9,6 +9,7 @@ import _Flex from "./internals/_Flex";
 import _Hidden from "./internals/_Hidden";
 import _Text from "./internals/_Text";
 import _TextField from "./internals/_TextField";
+import _Textarea from "./internals/_Textarea";
 
 const staticRoutes = [
     { path: "/flex", component: _Flex },
@@ -19,6 +20,7 @@ const staticRoutes = [
     { path: "/text", component: _Text },
     { path: "/checkbox", component: _Checkbox },
     { path: "/text-field", component: _TextField },
+    { path: "/textarea", component: _Textarea },
 ];
 
 function App() {

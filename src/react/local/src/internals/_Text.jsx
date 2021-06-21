@@ -1,9 +1,10 @@
 import React from "react";
 import Text from "../../../components/Text/Text";
+import Container from "../../../components/Container/Container";
 
 function _Text() {
     return (
-        <div className="bg-white dark:bg-gray-900">
+        <Container rounded={false}>
             <Text variant="h1" scheme="primary">
                 Heading1 with Primary Color
             </Text>
@@ -67,7 +68,7 @@ function _Text() {
             <div className="bg-gray-900 dark:bg-white">
                 <Text scheme="inverted">Inverted scheme body1</Text>
             </div>
-        </div>
+        </Container>
     );
 }
 

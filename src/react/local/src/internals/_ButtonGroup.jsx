@@ -1,10 +1,11 @@
 import React from "react";
 import ButtonGroup from "../../../components/ButtonGroup/ButtonGroup";
 import Button from "../../../components/Button/Button";
+import Container from "../../../components/Container/Container";
 
 function _ButtonGroup() {
     return (
-        <div>
+        <Container>
             <ButtonGroup>
                 <Button>Regular group</Button>
                 <Button>One</Button>
@@ -66,7 +67,7 @@ function _ButtonGroup() {
                 <Button>text</Button>
                 <Button>group</Button>
             </ButtonGroup>
-        </div>
+        </Container>
     );
 }
 

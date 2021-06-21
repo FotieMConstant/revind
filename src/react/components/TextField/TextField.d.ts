@@ -20,6 +20,7 @@ declare interface TextFieldProps
     "full-width": boolean;
     label?: string;
     "label-variant"?: "static" | "floating";
+    component?: ReactElement;
 }
 
 declare function TextField(props: TextFieldProps): ReactElement;

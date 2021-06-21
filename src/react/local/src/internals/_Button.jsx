@@ -1,5 +1,6 @@
 import React from "react";
 import Button from "../../../components/Button/Button";
+import Container from "../../../components/Container/Container";
 
 function _Button() {
     const sunIcon = (
@@ -17,7 +18,7 @@ function _Button() {
         </svg>
     );
     return (
-        <div>
+        <Container>
             <Button>A regular button</Button>
             <Button scheme="secondary">A secondary button</Button>
             <Button scheme="red">A red/danger button</Button>
@@ -59,7 +60,8 @@ function _Button() {
             <Button margin={false} full-width>
                 Full width (remember to set `margin=false`)
             </Button>
-        </div>
+            <br />
+        </Container>
     );
 }
 

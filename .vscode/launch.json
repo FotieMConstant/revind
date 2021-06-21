@@ -5,11 +5,38 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "name": "React Attach",
+      "port": 9222,
+      "request": "attach",
+      "type": "pwa-chrome",
+      "url": "http://localhost:3000",
+      "webRoot": "${workspaceFolder}/src/react/local/src"
+    },
+    {
       "name": "React Launch",
       "request": "launch",
       "type": "pwa-chrome",
       "url": "http://localhost:3000",
       "webRoot": "${workspaceFolder}/src/react/local/src",
+      "runtimeArgs": [
+        "--remote-debugging-port=9222"
+      ],
+      "runtimeExecutable": "/usr/lib/brave/brave"
+    },
+    {
+      "name": "Vue Attach",
+      "port": 9222,
+      "request": "attach",
+      "url": "http://localhost:3000",
+      "type": "pwa-chrome",
+      "webRoot": "${workspaceFolder}/src/vue/local/src"
+    },
+    {
+      "name": "Vue Launch",
+      "request": "launch",
+      "type": "pwa-chrome",
+      "url": "http://localhost:3000",
+      "webRoot": "${workspaceFolder}/src/vue/local/src",
       "runtimeArgs": [
         "--remote-debugging-port=9222"
       ],
