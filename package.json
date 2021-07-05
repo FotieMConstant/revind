@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "Open source Tailwind UI components to bootstrap your new apps, projects or landing websites!",
   "main": "lib/index.js",
+  "workspaces":["packages/*"],
   "scripts": {
     "build:css": "tailwind build",
     "dev:vue": "vite -c vite.config.vue.js",
@@ -15,10 +16,7 @@
     "lint": "npx eslint src/**/*.{jsx,vue,js}",
     "new:component": "node scripts/component-gen.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/FotieMConstant/revind.git"
-  },
+  "repository": "git+https://github.com/FotieMConstant/revind.git",
   "engines": {
     "node": ">=12.0.0"
   },
@@ -59,5 +57,6 @@
     "vite": "^2.3.5",
     "vue": "^3.0.5",
     "vue-router": "^4.0.8"
-  }
+  },
+  "private": true
 }

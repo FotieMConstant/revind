@@ -1,0 +1,13 @@
+{
+    "name": "@revind/vue",
+    "version": "0.0.1",
+    "scripts": {},
+    "dependencies": {
+        "vue": "^3.0.5"
+    },
+    "devDependencies": {
+        "@vue/compiler-sfc": "^3.0.5",
+        "typescript": "^4.3.2",
+        "vue-tsc": "^0.0.24"
+    }
+}
