@@ -66,9 +66,7 @@ const Flex = forwardRef(function Flex(
     );
 });
 
-Flex.propTypes = {
-    ...Flex.propTypes,
-
+export const flexProps = {
     direction: PropTypes.oneOf(["column", "row", "row-reverse", "column-reverse"]),
 
     wrap: PropTypes.oneOf(["wrap", "no-wrap", "wrap-reverse"]),
@@ -94,6 +92,11 @@ Flex.propTypes = {
     alignItems: PropTypes.oneOf(["center", "start", "end", "stretch", "baseline"]),
 
     inline: PropTypes.bool,
+};
+
+Flex.propTypes = {
+    ...Flex.propTypes,
+    ...flexProps,
 };
 
 export default Flex;
