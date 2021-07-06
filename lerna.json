@@ -1,0 +1,9 @@
+{
+    "packages": ["packages/*"],
+    "commands": {
+        "bootstrap": {
+            "hoist": true
+        }
+    },
+    "version": "0.0.1"
+}
