@@ -1,7 +1,37 @@
 import PropTypes from "prop-types";
-import React, { forwardRef } from "react";
+import React, { forwardRef, HTMLProps, ReactHTML } from "react";
 
-const Text = forwardRef(function Text(
+export type TextElement = HTMLParagraphElement | HTMLSpanElement | HTMLHeadingElement;
+
+export interface TextProps extends Omit<HTMLProps<TextElement>, "wrap"> {
+    variant?:
+        | "h1"
+        | "h2"
+        | "h3"
+        | "h4"
+        | "h5"
+        | "h6"
+        | "body1"
+        | "body2"
+        | "sub1"
+        | "sub2"
+        | "caption"
+        | "overline";
+    align?: "left" | "center" | "right" | "justify";
+    scheme?:
+        | "primary"
+        | "secondary"
+        | "red"
+        | "green"
+        | "yellow"
+        | "regular"
+        | "inverted";
+    inline?: boolean;
+    wrap?: boolean;
+    "bottom-margin"?: boolean;
+}
+
+export const Text = forwardRef<TextElement, TextProps>(function Text(
     {
         scheme = "regular",
         variant = "body1",
@@ -28,7 +58,7 @@ const Text = forwardRef(function Text(
         body2: "p",
         caption: "span",
         overline: "span",
-    }[variant];
+    }[variant] as any;
 
     const variants = {
         h1: "font-light text-8xl leading-tight",
@@ -109,5 +139,3 @@ Text.propTypes = {
     wrap: PropTypes.bool,
     "bottom-margin": PropTypes.bool,
 };
-
-export default Text;

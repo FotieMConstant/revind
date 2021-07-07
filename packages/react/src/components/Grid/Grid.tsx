@@ -1,13 +1,19 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import PropTypes from "prop-types";
-import Flex, { flexProps } from "../Flex/Flex";
+import { Flex, FlexProps, flexProps } from "../Flex/Flex";
 
-function Grid({
-    spacing: { x: spacingX = 1, y: spacingY = 1 },
+type RowColumnKey = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+
+export interface GridProps extends FlexProps {
+    spacing?: { x: RowColumnKey; y: RowColumnKey };
+}
+
+export function Grid({
+    spacing = { x: 1, y: 1 },
     children,
     className,
     ...props
-}) {
+}: GridProps): ReactElement {
     const rowSpacing = {
         0: "",
         1: "space-y-1",
@@ -38,10 +44,13 @@ function Grid({
         11: "space-x-11",
         12: "space-x-12",
     };
+    const { x: spacingX, y: spacingY } = spacing;
+
     return (
         <Flex
             className={`${rowSpacing[spacingY]} ${colSpacing[spacingX]} ${className}`}
             {...props}
+            ref={undefined}
         >
             {children}
         </Flex>
@@ -49,7 +58,6 @@ function Grid({
 }
 
 Grid.propTypes = {
-    ...Grid.propTypes,
     ...flexProps,
 
     component: PropTypes.elementType,
@@ -75,5 +83,3 @@ Grid.propTypes = {
 
     zeroMinWidth: PropTypes.bool,
 };
-
-export default Grid;

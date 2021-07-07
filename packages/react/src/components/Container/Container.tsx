@@ -1,7 +1,20 @@
 import PropTypes from "prop-types";
-import React, { forwardRef } from "react";
+import React, { DetailedHTMLProps, forwardRef, HTMLAttributes } from "react";
 
-const Container = forwardRef(function Container(
+export interface ContainerProps
+    extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
+    fixed?: boolean;
+    scheme?: "primary" | "secondary";
+    variant?: "elevated" | "regular" | "bordered";
+    gutters?: boolean;
+    center?: boolean;
+    "max-width"?: "sm" | "md" | "lg" | "xl" | false;
+    elevation?: "xs" | "sm" | "md" | "lg" | "xl" | "xxl";
+    border?: "sm" | "md" | "lg" | "xl";
+    rounded?: boolean;
+}
+
+export const Container = forwardRef<HTMLDivElement, ContainerProps>(function Container(
     {
         center = false,
         gutters = false,
@@ -26,7 +39,6 @@ const Container = forwardRef(function Container(
         md: "md:container",
         lg: "lg:container",
         xl: "xl:container",
-        false: "",
     };
 
     const variantsMap = {
@@ -58,11 +70,11 @@ const Container = forwardRef(function Container(
     return (
         <div
             ref={ref}
-            className={`${fixed ? "container" : ""} ${containerBreakpoints[maxWidth]} ${
-                center ? "mx-auto" : ""
-            } ${gutters ? "px-2" : ""} ${schemes[scheme]} ${variantsMap[variantKey]} ${
-                rounded ? "rounded" : ""
-            } ${
+            className={`${fixed ? "container" : ""} ${
+                maxWidth && containerBreakpoints[maxWidth]
+            } ${center ? "mx-auto" : ""} ${gutters ? "px-2" : ""} ${schemes[scheme]} ${
+                variantsMap[variantKey as keyof typeof variantsMap]
+            } ${rounded ? "rounded" : ""} ${
                 variant === "bordered"
                     ? "border-gray-600 dark:border-gray-300 border-solid"
                     : ""
@@ -86,5 +98,3 @@ Container.propTypes = {
     border: PropTypes.oneOf(["sm", "md", "lg", "xl"]),
     rounded: PropTypes.bool,
 };
-
-export default Container;

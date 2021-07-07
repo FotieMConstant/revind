@@ -1,6 +1,33 @@
 import PropTypes from "prop-types";
-import React, { forwardRef } from "react";
-const Checkbox = forwardRef(function Checkbox(
+import React, {
+    DetailedHTMLProps,
+    ForwardedRef,
+    forwardRef,
+    InputHTMLAttributes,
+    ReactElement,
+    SVGProps,
+} from "react";
+
+export interface CheckboxProps
+    extends DetailedHTMLProps<
+        Omit<InputHTMLAttributes<HTMLInputElement>, "size">,
+        HTMLInputElement
+    > {
+    checked?: boolean;
+    scheme?: "primary" | "secondary" | "red" | "green" | "yellow";
+    "wrapper-props"?: React.DetailedHTMLProps<
+        React.InputHTMLAttributes<HTMLLabelElement>,
+        HTMLLabelElement
+    >;
+    "wrapper-ref"?: ForwardedRef<HTMLLabelElement>;
+    size?: "sm" | "md" | "lg" | "xl" | "xxl";
+    value?: "on" | "off" | string;
+    label?: string | ReactElement;
+    "label-direction"?: "top" | "left" | "right" | "bottom";
+    "label-spacing"?: boolean;
+}
+
+export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(function Checkbox(
     {
         checked = false,
         scheme = "primary",
@@ -78,7 +105,7 @@ const Checkbox = forwardRef(function Checkbox(
     };
 
     const scheme2dKeys = checked ? "checked" : "notChecked";
-    const labelSpacingKey = labelSpacing ? "spacing" : "non-Spacing";
+    const labelSpacingKey = labelSpacing ? "spacing" : "nonSpacing";
 
     return (
         <label
@@ -105,7 +132,11 @@ const Checkbox = forwardRef(function Checkbox(
     );
 });
 
-function CheckIcon({ checked, ...props }) {
+interface CheckedIconProps extends SVGProps<SVGSVGElement> {
+    checked: boolean;
+}
+
+function CheckIcon({ checked, ...props }: CheckedIconProps): ReactElement {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -124,22 +155,15 @@ function CheckIcon({ checked, ...props }) {
     );
 }
 
-CheckIcon.propTypes = {
-    ...CheckIcon.propTypes,
-    checked: PropTypes.bool.isRequired,
-};
-
 Checkbox.propTypes = {
     ...Checkbox.propTypes,
     checked: PropTypes.bool,
     scheme: PropTypes.oneOf(["primary", "secondary", "red", "green", "yellow"]),
     "wrapper-props": PropTypes.object,
-    "wrapper-ref": PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    "wrapper-ref": PropTypes.oneOfType<any>([PropTypes.func, PropTypes.object]),
     size: PropTypes.oneOf(["sm", "md", "lg", "xl", "xxl"]),
     value: PropTypes.any,
     label: PropTypes.string,
     "label-direction": PropTypes.oneOf(["top", "left", "right", "bottom"]),
     "label-spacing": PropTypes.bool,
 };
-
-export default Checkbox;

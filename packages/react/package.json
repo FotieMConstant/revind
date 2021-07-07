@@ -6,6 +6,8 @@
         "build": "build-storybook"
     },
     "dependencies": {
+        "@revind/styles": "*",
+        "clsx": "^1.1.1",
         "prop-types": "^15.7.2",
         "react": "^17.0.0",
         "react-dom": "^17.0.0",
@@ -19,6 +21,7 @@
         "@storybook/react": "^6.3.2",
         "@types/react": "^17.0.2",
         "@types/react-dom": "^17.0.2",
+        "@types/react-is": "^17.0.1",
         "autoprefixer": "^10.2.6",
         "html-webpack-plugin": "^5.0.0",
         "postcss": "^8.3.5",

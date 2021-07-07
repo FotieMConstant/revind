@@ -1,0 +1,13 @@
+{
+    "name": "@revind/styles",
+    "version": "0.0.1",
+    "main": "dist/index",
+    "scripts": {
+      "start": "tsc -w",
+      "build": "tsc"
+    },
+    "license": "MIT",
+    "devDependencies": {
+        "typescript": "^4.3.2"
+    }
+}

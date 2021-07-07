@@ -1,7 +1,52 @@
 import PropTypes from "prop-types";
-import React, { forwardRef } from "react";
+import React, { forwardRef, HTMLProps } from "react";
 
-const Hidden = forwardRef(function Hidden(
+export interface HiddenProps extends HTMLProps<HTMLDivElement> {
+    /**
+     * hides from sm & above
+     */
+    sm?: boolean;
+    /**
+     * hides from md & above
+     */
+    md?: boolean;
+    /**
+     * hides from lg & above
+     */
+    lg?: boolean;
+    /**
+     * hides from xl & above
+     */
+    xl?: boolean;
+    /**
+     * hides from 2xl & above
+     */
+    xxl?: boolean;
+    /**
+     * hides while hovering over the component or its children
+     */
+    hover?: boolean;
+    /**
+     * hides while clicking over the component or its children
+     */
+    active?: boolean;
+    /**
+     * hides while focusing over the component or its children
+     */
+    focus?: boolean;
+    all?: boolean;
+}
+
+/**
+ * Hides any component passed as children inside of it.
+ * It can hide them based on responsiveness & different user input states.
+ * Responsiveness is mobile-first thus hides the components on breakpoint
+ * size & above
+ *
+ * Using multiple breakpoints isn't supported
+ */
+
+export const Hidden = forwardRef<HTMLDivElement, HiddenProps>(function Hidden(
     { sm, md, lg, xl, xxl, hover, active, focus, all = true, children, ...props },
     ref,
 ) {
@@ -9,7 +54,9 @@ const Hidden = forwardRef(function Hidden(
         .map(([key, value]) => {
             return { [key]: value ? key : "nothing" };
         })
-        .reduce((acc, back) => ({ ...acc, ...back }));
+        .reduce((acc, back) => ({ ...acc, ...back })) as {
+        [key: string]: keyof typeof statesRaw;
+    };
     const statesRaw = {
         nothing: "",
         all: "hidden invisible opacity-0",
@@ -51,5 +98,3 @@ Hidden.propTypes = {
     active: PropTypes.bool,
     focus: PropTypes.bool,
 };
-
-export default Hidden;

@@ -1,11 +1,56 @@
 import PropTypes from "prop-types";
-import React, { forwardRef } from "react";
+import React, { DetailedHTMLProps, forwardRef, HTMLAttributes } from "react";
 
-const Flex = forwardRef(function Flex(
+export interface FlexProps
+    extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
+    /**
+     * set the direction of the `Flex` container
+     * @default row
+     */
+    direction?: "column" | "row" | "row-reverse" | "column-reverse";
+    /**
+     * wraps the content to new line if set to wrap='wrap' or vice versa
+     * if not. wrap-reverse will wrap the content from the opposite site
+     * @default no-wrap
+     */
+    wrap?: "wrap" | "no-wrap" | "wrap-reverse";
+    /**
+     * css `justify-content`
+     */
+    justifyContent?: "center" | "start" | "end" | "between" | "around" | "evenly";
+    /**
+     * css `align-content`
+     */
+    alignContent?: "center" | "start" | "end" | "between" | "around" | "evenly";
+    /**
+     * css `align-items`
+     */
+    alignItems?: "center" | "start" | "end" | "stretch" | "baseline";
+    /**
+     * uses `inline-flex` instead of `flex` as display for `Flex`
+     * @default false
+     */
+    inline?: boolean;
+}
+
+/**
+ * Flex is a css flexbox wrapper. Its a core level component & shared
+ * across multiple components. It supports both block & inline
+ * implementation
+ * @example
+ * ```jsx
+ * <Flex inline direction="column" justifyContent="center" alignItems="center">
+ *    <button>Button 1</button>
+ *    <button>Button 2</button>
+ *    <button>Button 3</button>
+ * </Flex>
+ * ```
+ */
+export const Flex = forwardRef<HTMLDivElement, FlexProps>(function Flex(
     {
         direction = "row",
         wrap = "no-wrap",
-        alignItems = "starts",
+        alignItems = "start",
         justifyContent = "start",
         alignContent = "start",
         inline = false,
@@ -67,11 +112,16 @@ const Flex = forwardRef(function Flex(
 });
 
 export const flexProps = {
-    direction: PropTypes.oneOf(["column", "row", "row-reverse", "column-reverse"]),
+    direction: PropTypes.oneOf<FlexProps["direction"]>([
+        "column",
+        "row",
+        "row-reverse",
+        "column-reverse",
+    ]),
 
-    wrap: PropTypes.oneOf(["wrap", "no-wrap", "wrap-reverse"]),
+    wrap: PropTypes.oneOf<FlexProps["wrap"]>(["wrap", "no-wrap", "wrap-reverse"]),
 
-    justifyContent: PropTypes.oneOf([
+    justifyContent: PropTypes.oneOf<FlexProps["justifyContent"]>([
         "center",
         "start",
         "end",
@@ -80,7 +130,7 @@ export const flexProps = {
         "evenly",
     ]),
 
-    alignContent: PropTypes.oneOf([
+    alignContent: PropTypes.oneOf<FlexProps["alignContent"]>([
         "center",
         "start",
         "end",
@@ -89,14 +139,15 @@ export const flexProps = {
         "evenly",
     ]),
 
-    alignItems: PropTypes.oneOf(["center", "start", "end", "stretch", "baseline"]),
+    alignItems: PropTypes.oneOf<FlexProps["alignItems"]>([
+        "center",
+        "start",
+        "end",
+        "stretch",
+        "baseline",
+    ]),
 
     inline: PropTypes.bool,
 };
 
-Flex.propTypes = {
-    ...Flex.propTypes,
-    ...flexProps,
-};
-
-export default Flex;
+Flex.propTypes = flexProps;

@@ -1,7 +1,40 @@
 import PropTypes from "prop-types";
-import React, { forwardRef, useState } from "react";
+import React, {
+    ChangeEvent,
+    FocusEvent,
+    ElementType,
+    forwardRef,
+    HTMLProps,
+    ReactHTML,
+    Ref,
+    useState,
+} from "react";
 
-const TextField = forwardRef(function TextField(
+export interface TextFieldProps
+    extends Omit<HTMLProps<HTMLInputElement>, "size" | "type">,
+        Record<string, any> {
+    type?:
+        | "text"
+        | "email"
+        | "password"
+        | "hidden"
+        | "number"
+        | "tel"
+        | "url"
+        | "datetime";
+    variant?: "filled" | "regular" | "underlined";
+    scheme?: "primary" | "secondary" | "red" | "green" | "yellow";
+    size?: "sm" | "md" | "lg" | "xl";
+    margin?: boolean;
+    "full-width"?: boolean;
+    label?: string;
+    "label-variant"?: "static" | "floating";
+    "wrapper-ref"?: Ref<HTMLLabelElement>;
+    "label-ref"?: Ref<HTMLSpanElement>;
+    component?: ElementType | keyof ReactHTML;
+}
+
+export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(function TextField(
     {
         variant = "regular",
         scheme = "primary",
@@ -17,7 +50,7 @@ const TextField = forwardRef(function TextField(
         onFocus,
         onChange,
         onBlur,
-        component,
+        component: Component = "input",
         ...props
     },
     ref,
@@ -26,21 +59,20 @@ const TextField = forwardRef(function TextField(
     const [containsText, setContainsText] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
 
-    function handleInputFocus(e) {
+    function handleInputFocus(e: FocusEvent<HTMLInputElement>) {
         setInputFocused(true);
         onFocus && onFocus(e);
     }
 
-    function handleBlur(e) {
+    function handleBlur(e: FocusEvent<HTMLInputElement>) {
         setInputFocused(false);
         onBlur && onBlur(e);
     }
 
-    function handleChange(e) {
+    function handleChange(e: ChangeEvent<HTMLInputElement>) {
         onChange && onChange(e);
         setContainsText(!!e.target.value);
     }
-
     const inputSchemes = {
         primary: "focus:border-primary dark:focus:border-primary-dark",
         secondary: "focus:border-secondary dark:focus:border-secondary-dark",
@@ -91,8 +123,6 @@ const TextField = forwardRef(function TextField(
             ? "focused"
             : "default";
 
-    const Input = component ?? "input";
-
     return (
         <label
             className={`${
@@ -115,7 +145,7 @@ const TextField = forwardRef(function TextField(
                 </span>
             )}
 
-            <Input
+            <Component
                 className={`${
                     fullWidth ? "w-full" : ""
                 } dark:border-gray-600 outline-none text-black dark:text-white  placeholder-gray-500 border-gray-300 ${
@@ -142,7 +172,12 @@ const TextField = forwardRef(function TextField(
     );
 });
 
-function ShowHidePasswordButton({ toggle, active }) {
+interface ShowHidePasswordButtonProps {
+    toggle: VoidFunction;
+    active: boolean;
+}
+
+function ShowHidePasswordButton({ toggle, active }: ShowHidePasswordButtonProps) {
     const eyeIcon = (
         <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -215,10 +250,8 @@ TextField.propTypes = {
     margin: PropTypes.bool,
     "full-width": PropTypes.bool,
     label: PropTypes.string,
-    "wrapper-ref": PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    "label-ref": PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    "wrapper-ref": PropTypes.oneOfType<any>([PropTypes.func, PropTypes.object]),
+    "label-ref": PropTypes.oneOfType<any>([PropTypes.func, PropTypes.object]),
     "label-variant": PropTypes.oneOf(["static", "floating"]),
-    component: PropTypes.elementType,
+    component: PropTypes.elementType as any,
 };
-
-export default TextField;
