@@ -1,12 +1,7 @@
 import * as PropTypes from "prop-types";
-import React, {
-    ComponentPropsWithoutRef,
-    DetailedHTMLProps,
-    forwardRef,
-    ReactNode,
-} from "react";
-import { buttonStyleObj } from "@revind/styles";
+import React, { ComponentPropsWithoutRef, forwardRef, ReactNode } from "react";
 import clsx from "clsx";
+import { useTheme } from "../../hooks/useTheme";
 
 export interface ButtonProps extends ComponentPropsWithoutRef<"button"> {
     /**
@@ -64,14 +59,19 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
     ref,
 ) {
     const {
-        sizes,
-        variantSchemes,
-        variants,
-        defaultEnd,
-        defaultStart,
-        startIcon: startIconStyle,
-        endIcon: endIconStyle,
-    } = buttonStyleObj;
+        styleObjects: {
+            Button: {
+                sizes,
+                variantSchemes,
+                variants,
+                defaultEnd,
+                defaultStart,
+                startIcon: startIconStyle,
+                endIcon: endIconStyle,
+                ...styleObj
+            },
+        },
+    } = useTheme();
 
     return (
         <button
@@ -82,8 +82,8 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
                 sizes[size],
                 variantSchemes[variant][scheme],
                 {
-                    [buttonStyleObj.margin]: margin,
-                    [buttonStyleObj.fullWidth]: fullWidth,
+                    [styleObj.margin]: margin,
+                    [styleObj.fullWidth]: fullWidth,
                 },
                 defaultEnd,
                 className,

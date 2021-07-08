@@ -8,6 +8,7 @@ module.exports = {
     addons: [
         "@storybook/addon-links",
         "@storybook/addon-essentials",
+        'storybook-dark-mode/register',
         {
             name: "@storybook/addon-postcss",
             options: {

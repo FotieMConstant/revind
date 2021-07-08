@@ -59,4 +59,5 @@ export const Default = Template.bind({});
     "full-width": false,
     "start-icon": false,
     "end-icon": false,
+    disabled: false,
 } as ButtonProps;

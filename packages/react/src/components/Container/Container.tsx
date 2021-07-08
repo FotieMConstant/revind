@@ -1,8 +1,9 @@
+import clsx from "clsx";
 import PropTypes from "prop-types";
-import React, { DetailedHTMLProps, forwardRef, HTMLAttributes } from "react";
+import React, { ComponentPropsWithoutRef, forwardRef } from "react";
+import { useTheme } from "../../hooks/useTheme";
 
-export interface ContainerProps
-    extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
+export interface ContainerProps extends ComponentPropsWithoutRef<"div"> {
     fixed?: boolean;
     scheme?: "primary" | "secondary";
     variant?: "elevated" | "regular" | "bordered";
@@ -34,51 +35,35 @@ export const Container = forwardRef<HTMLDivElement, ContainerProps>(function Con
     if (scheme === "secondary" && rounded === undefined) {
         rounded = true;
     }
-    const containerBreakpoints = {
-        sm: "sm:container",
-        md: "md:container",
-        lg: "lg:container",
-        xl: "xl:container",
-    };
 
-    const variantsMap = {
-        "elevated-xs": "shadow",
-        "elevated-sm": "shadow-sm",
-        "elevated-md": "shadow-md",
-        "elevated-lg": "shadow-lg",
-        "elevated-xl": "shadow-xl",
-        "elevated-xxl": "shadow-2xl",
-        "bordered-sm": "border",
-        "bordered-md": "border-2",
-        "bordered-lg": "border-4",
-        "bordered-xl": "border-8",
-        regular: "",
-    };
+    const {
+        styleObjects: { Container: styleObj },
+    } = useTheme();
 
-    const variantKey =
+    const variantKey = (
         variant === "elevated"
             ? `elevated-${elevation}`
             : variant === "bordered"
             ? `bordered-${border}`
-            : "regular";
-
-    const schemes = {
-        primary: "bg-container-primary dark:bg-container-primary-dark",
-        secondary: "bg-container-secondary dark:bg-container-secondary-dark",
-    };
+            : "regular"
+    ) as keyof typeof styleObj.variants;
 
     return (
         <div
             ref={ref}
-            className={`${fixed ? "container" : ""} ${
-                maxWidth && containerBreakpoints[maxWidth]
-            } ${center ? "mx-auto" : ""} ${gutters ? "px-2" : ""} ${schemes[scheme]} ${
-                variantsMap[variantKey as keyof typeof variantsMap]
-            } ${rounded ? "rounded" : ""} ${
-                variant === "bordered"
-                    ? "border-gray-600 dark:border-gray-300 border-solid"
-                    : ""
-            } ${className}`}
+            className={clsx(
+                styleObj.defaultStart,
+                maxWidth && styleObj.breakpoints[maxWidth],
+                {
+                    [styleObj.center]: center,
+                    [styleObj.gutters]: gutters,
+                    [styleObj.rounded]: rounded,
+                },
+                styleObj.variants[variant],
+                styleObj.variants[variantKey],
+                styleObj.schemes[scheme],
+                className,
+            )}
             {...props}
         >
             {children}

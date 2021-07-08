@@ -31,7 +31,6 @@ export interface ButtonStyleObject {
     startIcon: string;
     endIcon: string;
 }
-
 export const buttonStyleObj: ButtonStyleObject = {
     defaultStart: "rounded cursor-pointer transition-all",
     defaultEnd:
@@ -39,7 +38,7 @@ export const buttonStyleObj: ButtonStyleObject = {
     margin: "m-1",
     fullWidth: "w-full block",
     variants: {
-        filled: "text-white filter hover:brightness-50",
+        filled: "text-white filter hover:brightness-95 active:brightness-105",
         outlined:
             "border border-solid bg-opacity-0 dark:bg-opacity-0 hover:bg-opacity-20 active:bg-opacity-10 dark:hover:bg-opacity-20 dark:active:bg-opacity-10",
         text: "bg-opacity-0 dark:bg-opacity-0 hover:bg-opacity-20 dark:hover:bg-opacity-20 active:bg-opacity-10 dark:active:bg-opacity-10",

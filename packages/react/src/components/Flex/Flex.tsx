@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import React, { ComponentPropsWithoutRef, forwardRef } from "react";
-import { flexStyleObj } from "@revind/styles";
 import clsx from "clsx";
+import { useTheme } from "../../hooks/useTheme";
 
 export interface FlexProps extends ComponentPropsWithoutRef<"div"> {
     /**
@@ -61,6 +61,10 @@ export const Flex = forwardRef<HTMLDivElement, FlexProps>(function Flex(
     },
     ref,
 ) {
+    const {
+        styleObjects: { Flex: flexStyleObj },
+    } = useTheme();
+
     return (
         <div
             ref={ref}

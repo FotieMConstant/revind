@@ -53,7 +53,8 @@ const config = {
             opacity: ["responsive", "active", "focus", "hover"],
             display: ["responsive", "active", "focus", "hover"],
             transitionProperty: ["hover"],
-            backgroundOpacity: ["dark"],
+            backgroundOpacity: ["dark", "active"],
+            brightness: ["hover", "active"],
         },
     },
 };
