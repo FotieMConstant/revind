@@ -28,6 +28,8 @@ export interface ButtonStyleObject {
         xl: string;
         xxl: string;
     };
+    startIcon: string;
+    endIcon: string;
 }
 
 export const buttonStyleObj: ButtonStyleObject = {
@@ -37,7 +39,7 @@ export const buttonStyleObj: ButtonStyleObject = {
     margin: "m-1",
     fullWidth: "w-full block",
     variants: {
-        filled: "text-white hover:brightness-90 hover:filter active:brightness-105 active:filter",
+        filled: "text-white filter hover:brightness-50",
         outlined:
             "border border-solid bg-opacity-0 dark:bg-opacity-0 hover:bg-opacity-20 active:bg-opacity-10 dark:hover:bg-opacity-20 dark:active:bg-opacity-10",
         text: "bg-opacity-0 dark:bg-opacity-0 hover:bg-opacity-20 dark:hover:bg-opacity-20 active:bg-opacity-10 dark:active:bg-opacity-10",
@@ -76,4 +78,6 @@ export const buttonStyleObj: ButtonStyleObject = {
         xl: "p-6",
         xxl: "p-8",
     },
+    startIcon: "mr-1 inline-block align-middle",
+    endIcon: "ml-1 inline-block align-middle",
 };

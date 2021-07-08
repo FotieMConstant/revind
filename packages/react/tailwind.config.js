@@ -6,6 +6,12 @@ module.exports = {
     presets: [require("../../tailwind.base.config")],
     purge: {
         content: ["./src/**/*.{ts,tsx,js,jsx}"],
-        safelist: [],
+        options: {
+            safelist: [
+                ...(process.env.NODE_ENV === "production"
+                    ? require("@revind/styles").default
+                    : []),
+            ],
+        },
     },
 };

@@ -37,7 +37,6 @@ const brandBgColors = {
  * @type {import("@types/tailwindcss/tailwind-config").TailwindConfig}
  */
 const config = {
-    mode: "jit",
     darkMode: "class",
     theme: {
         extend: {

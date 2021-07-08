@@ -1,13 +1,14 @@
 import * as PropTypes from "prop-types";
-import React, { DetailedHTMLProps, forwardRef, ReactNode } from "react";
+import React, {
+    ComponentPropsWithoutRef,
+    DetailedHTMLProps,
+    forwardRef,
+    ReactNode,
+} from "react";
 import { buttonStyleObj } from "@revind/styles";
 import clsx from "clsx";
 
-export interface ButtonProps
-    extends DetailedHTMLProps<
-        React.ButtonHTMLAttributes<HTMLButtonElement>,
-        HTMLButtonElement
-    > {
+export interface ButtonProps extends ComponentPropsWithoutRef<"button"> {
     /**
      * the variant/category of button to use
      * @default filled
@@ -62,8 +63,15 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
     },
     ref,
 ) {
-    const { sizes, variantSchemes, variants, defaultEnd, defaultStart } =
-        buttonStyleObj;
+    const {
+        sizes,
+        variantSchemes,
+        variants,
+        defaultEnd,
+        defaultStart,
+        startIcon: startIconStyle,
+        endIcon: endIconStyle,
+    } = buttonStyleObj;
 
     return (
         <button
@@ -71,8 +79,8 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
             className={clsx(
                 defaultStart,
                 variants[variant],
-                variantSchemes[variant][scheme],
                 sizes[size],
+                variantSchemes[variant][scheme],
                 {
                     [buttonStyleObj.margin]: margin,
                     [buttonStyleObj.fullWidth]: fullWidth,
@@ -82,9 +90,9 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
             )}
             {...props}
         >
-            <span className="mr-1 inline-block align-middle">{startIcon}</span>
+            <span className={startIconStyle}>{startIcon}</span>
             {children}
-            <span className="ml-1 inline-block align-middle">{endIcon}</span>
+            <span className={endIconStyle}>{endIcon}</span>
         </button>
     );
 });
