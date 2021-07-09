@@ -1,7 +1,9 @@
+import clsx from "clsx";
 import PropTypes from "prop-types";
-import React, { forwardRef, HTMLProps } from "react";
+import React, { ComponentPropsWithoutRef, forwardRef, HTMLProps } from "react";
+import { useTheme } from "../../hooks/useTheme";
 
-export interface HiddenProps extends HTMLProps<HTMLDivElement> {
+export interface HiddenProps extends ComponentPropsWithoutRef<"div"> {
     /**
      * hides from sm & above
      */
@@ -47,9 +49,28 @@ export interface HiddenProps extends HTMLProps<HTMLDivElement> {
  */
 
 export const Hidden = forwardRef<HTMLDivElement, HiddenProps>(function Hidden(
-    { sm, md, lg, xl, xxl, hover, active, focus, all = true, children, ...props },
+    {
+        sm,
+        md,
+        lg,
+        xl,
+        xxl,
+        hover,
+        active,
+        focus,
+        all = true,
+        className,
+        children,
+        ...props
+    },
     ref,
 ) {
+    const {
+        styleObjects: {
+            Hidden: { states: statesRaw },
+        },
+    } = useTheme();
+
     const states = Object.entries({ all, sm, md, lg, xl, xxl, hover, active, focus })
         .map(([key, value]) => {
             return { [key]: value ? key : "nothing" };
@@ -57,28 +78,22 @@ export const Hidden = forwardRef<HTMLDivElement, HiddenProps>(function Hidden(
         .reduce((acc, back) => ({ ...acc, ...back })) as {
         [key: string]: keyof typeof statesRaw;
     };
-    const statesRaw = {
-        nothing: "",
-        all: "hidden invisible opacity-0",
-        sm: "sm:hidden sm:invisible sm:opacity-0",
-        md: "md:hidden md:invisible md:opacity-0",
-        lg: "lg:hidden lg:invisible lg:opacity-0",
-        xl: "xl:hidden xl:invisible xl:opacity-0",
-        xxl: "2xl:hidden 2xl:invisible 2xl:opacity-0",
-        hover: "hover:hidden hover:invisible hover:opacity-0",
-        active: "active:hidden active:invisible active:opacity-0",
-        focus: "focus:hidden focus:invisible focus:opacity-0",
-    };
+
     return (
         <div
             ref={ref}
-            className={`${statesRaw[states.sm]} ${statesRaw[states.md]} ${
-                statesRaw[states.lg]
-            } ${statesRaw[states.xl]} ${statesRaw[states.xxl]} ${
-                statesRaw[states.hover]
-            } ${statesRaw[states.active]} ${statesRaw[states.focus]} ${
-                statesRaw[states.all]
-            }`}
+            className={clsx(
+                statesRaw[states.sm],
+                statesRaw[states.md],
+                statesRaw[states.lg],
+                statesRaw[states.xl],
+                statesRaw[states.xxl],
+                statesRaw[states.hover],
+                statesRaw[states.active],
+                statesRaw[states.focus],
+                statesRaw[states.all],
+                className,
+            )}
             {...props}
         >
             {children}

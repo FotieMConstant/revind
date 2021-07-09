@@ -6,6 +6,10 @@ import {
     FlexStyleObj,
     ContainerStyleObj,
     containerStyleObj,
+    HiddenStyleObj,
+    hiddenStyleObj,
+    textStyleObj,
+    TextStyleObj,
 } from "@revind/styles";
 
 export interface ThemeContext {
@@ -13,6 +17,8 @@ export interface ThemeContext {
         Button: ButtonStyleObject;
         Flex: FlexStyleObj;
         Container: ContainerStyleObj;
+        Hidden: HiddenStyleObj;
+        Text: TextStyleObj;
     };
 }
 
@@ -21,6 +27,8 @@ export const defaultTheme = {
         Button: buttonStyleObj,
         Flex: flexStyleObj,
         Container: containerStyleObj,
+        Hidden: hiddenStyleObj,
+        Text: textStyleObj,
     },
 };
 export const themeCtx = createContext<ThemeContext>(defaultTheme);
