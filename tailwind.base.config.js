@@ -55,6 +55,8 @@ const config = {
             transitionProperty: ["hover"],
             backgroundOpacity: ["dark", "active"],
             brightness: ["hover", "active"],
+            borderStyle: ["first", "last"],
+            borderRadius: ["first", "last"],
         },
     },
 };

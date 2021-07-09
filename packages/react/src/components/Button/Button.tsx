@@ -38,6 +38,11 @@ export interface ButtonProps extends ComponentPropsWithoutRef<"button"> {
      * @default false
      */
     "full-width"?: boolean;
+    /**
+     * round edged button
+     * @default true
+     */
+    rounded?: boolean;
 }
 
 /**
@@ -52,6 +57,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
         "start-icon": startIcon,
         "end-icon": endIcon,
         "full-width": fullWidth = false,
+        rounded = true,
         className,
         children,
         ...props
@@ -84,6 +90,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
                 {
                     [styleObj.margin]: margin,
                     [styleObj.fullWidth]: fullWidth,
+                    [styleObj.rounded]: rounded,
                 },
                 defaultEnd,
                 className,
@@ -106,4 +113,5 @@ Button.propTypes = {
     "start-icon": PropTypes.node,
     "end-icon": PropTypes.node,
     "full-width": PropTypes.bool,
+    rounded: PropTypes.bool,
 };

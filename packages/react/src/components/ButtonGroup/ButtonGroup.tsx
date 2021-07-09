@@ -1,10 +1,11 @@
+import clsx from "clsx";
 import PropTypes from "prop-types";
-import React, { DetailedHTMLProps, forwardRef, HTMLAttributes } from "react";
+import React, { ComponentPropsWithoutRef, forwardRef } from "react";
 import { isFragment } from "react-is";
 import { Flex } from "../../components/Flex/Flex";
+import { useTheme } from "../../hooks/useTheme";
 
-export interface ButtonGroupProps
-    extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
+export interface ButtonGroupProps extends ComponentPropsWithoutRef<"div"> {
     direction?: "column" | "row";
     variant?: "filled" | "outlined" | "text";
     scheme?: "primary" | "secondary" | "red" | "green" | "yellow";
@@ -26,41 +27,24 @@ export const ButtonGroup = forwardRef<HTMLDivElement, ButtonGroupProps>(
         },
         ref,
     ) {
-        const variants = {
-            filled: {
-                row: "mx-[0.5px] first:ml-0 last:mr-0",
-                column: "my-[0.5px] first:mt-0 last:mb-0",
+        const {
+            styleObjects: {
+                ButtonGroup: {
+                    borderColors,
+                    directions,
+                    variantDirections,
+                    defaultEnd,
+                    defaultStart,
+                },
             },
-            outlined: {
-                row: "first:border-r-0 last:border-l-0",
-                column: "first:border-b-0 last:border-t-0",
-            },
-            text: {
-                row: "border-l border-r first:border-none last:border-none",
-                column: "border-t border-b first:border-none last:border-none",
-            },
-        };
-
-        const borderColors = {
-            primary: "border-primary dark:border-primary-dark",
-            secondary: "border-secondary dark:border-secondary-dark",
-            red: "border-red dark:border-red-dark",
-            green: "border-green dark:border-green-dark",
-            yellow: "border-yellow dark:border-yellow-dark",
-        };
-
-        const directions = {
-            row: "first:rounded-l last:rounded-r",
-            column: "first:rounded-t last:rounded-b",
-        };
-
+        } = useTheme();
         return (
             <Flex
                 ref={ref as any}
                 role="group"
                 inline={!fullWidth}
                 alignItems="stretch"
-                className={`${className}`}
+                className={className}
                 direction={direction}
                 {...props}
             >
@@ -77,10 +61,17 @@ export const ButtonGroup = forwardRef<HTMLDivElement, ButtonGroupProps>(
                         }
                     }
                     return React.cloneElement(child, {
-                        className: `${directions[direction]} rounded-none ${variants[variant][direction]} ${borderColors[scheme]} `,
+                        className: clsx(
+                            defaultStart,
+                            directions[direction],
+                            variantDirections[variant][direction],
+                            borderColors[scheme],
+                            defaultEnd,
+                        ),
                         scheme,
                         size,
                         variant,
+                        rounded: false,
                         margin: false,
                     });
                 })}

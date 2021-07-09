@@ -30,9 +30,11 @@ export interface ButtonStyleObject {
     };
     startIcon: string;
     endIcon: string;
+    rounded: string;
 }
 export const buttonStyleObj: ButtonStyleObject = {
-    defaultStart: "rounded cursor-pointer transition-all",
+    defaultStart: "cursor-pointer transition-all",
+    rounded: "rounded",
     defaultEnd:
         "disabled:bg-gray-200 dark:disabled:bg-gray-500 disabled:cursor-not-allowed disabled:text-gray-400 focus:outline-none",
     margin: "m-1",
