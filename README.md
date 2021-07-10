@@ -15,7 +15,7 @@ Revind is [tailwindcss](https://tailwindcss.com/) based. It gives the full power
 
 ## Installation
 
-Make sure you've [Nodejs](https://nodejs.org/) v12+, [tailwindcss](https://tailwindcss.com/docs/installation) is installed & configured
+Make sure [Nodejs](https://nodejs.org/) v12+, [tailwindcss](https://tailwindcss.com/docs/installation) is installed & configured
 **React:**
 
 ```bash
