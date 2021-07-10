@@ -1,0 +1,22 @@
+{
+    "name": "@revind/tailwindcss-preset-revind",
+    "version": "0.0.1",
+    "description": "revind's default tailwindcss config",
+    "keywords": [
+        "tailwindcss",
+        "revind"
+    ],
+    "homepage": "https://github.com/FotieMConstant/revind/tree/main/packages/tailwindcss-preset-revind#readme",
+    "license": "MIT",
+    "main": "index.js",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/FotieMConstant/revind.git"
+    },
+    "bugs": {
+        "url": "https://github.com/FotieMConstant/revind/issues"
+    },
+    "peerDependencies": {
+        "tailwindcss": "^2.2.4"
+    }
+}

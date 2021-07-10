@@ -3,6 +3,20 @@
     "version": "0.0.1",
     "main": "dist/cjs/index",
     "module": "dist/index",
+    "description": "revind's default style-objects (default theme like)",
+    "keywords": [
+        "tailwindcss",
+        "revind",
+        "style-objects"
+    ],
+    "homepage": "https://github.com/FotieMConstant/revind/tree/main/packages/styles#readme",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/FotieMConstant/revind.git"
+    },
+    "bugs": {
+        "url": "https://github.com/FotieMConstant/revind/issues"
+    },
     "exports": {
         ".": {
             "require": "./dist/cjs/index.js",

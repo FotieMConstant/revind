@@ -21,7 +21,10 @@
         "ui-framework",
         "framework-agnostic"
     ],
-    "author": "FotieMConstant",
+    "authors": [
+        "FotieMConstant",
+        "KRTirtho <krtirtho@gmail.com>"
+    ],
     "license": "MIT",
     "bugs": {
         "url": "https://github.com/FotieMConstant/revind/issues"

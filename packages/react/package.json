@@ -5,16 +5,26 @@
         "start": "BROWSER=none start-storybook -p 6006",
         "build": "build-storybook"
     },
-    "dependencies": {
-        "@revind/styles": "*",
-        "clsx": "^1.1.1",
+    "peerDependencies": {
+        "@revind/styles": "^0.0.1",
+        "@revind/tailwindcss-preset-revind": "^0.0.1",
         "prop-types": "^15.7.2",
         "react": "^17.0.0",
         "react-dom": "^17.0.0",
+        "tailwindcss": "^2.2.4"
+    },
+    "peerDependenciesMeta": {
+        "@revind/styles": {
+            "optional": true
+        }
+    },
+    "dependencies": {
+        "clsx": "^1.1.1",
         "react-is": "^16.13.1",
         "uuid": "^8.3.2"
     },
     "devDependencies": {
+        "autoprefixer": "^10.2.6",
         "@babel/core": "^7.14.6",
         "@storybook/addon-essentials": "^6.3.2",
         "@storybook/addon-links": "^6.3.2",
@@ -23,15 +33,26 @@
         "@types/react": "^17.0.2",
         "@types/react-dom": "^17.0.2",
         "@types/react-is": "^17.0.1",
-        "autoprefixer": "^10.2.6",
         "babel-loader": "^8.2.2",
         "html-webpack-plugin": "^5.0.0",
-        "postcss": "^8.3.5",
         "storybook-builder-vite": "^0.0.10",
         "storybook-dark-mode": "^1.0.8",
-        "tailwindcss": "^2.2.4",
         "typescript": "^4.3.2",
+        "postcss": "^8.3.5",
         "vite-plugin-ts-checker": "^0.1.3"
+    },
+    "description": "highly configurable tailwindcss based component library for react",
+    "keywords": [
+        "tailwindcss",
+        "revind"
+    ],
+    "homepage": "https://github.com/FotieMConstant/revind/tree/main/packages/react#readme",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/FotieMConstant/revind.git"
+    },
+    "bugs": {
+        "url": "https://github.com/FotieMConstant/revind/issues"
     },
     "license": "MIT"
 }

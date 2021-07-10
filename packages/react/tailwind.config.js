@@ -3,7 +3,7 @@
  * @type {import("@types/tailwindcss/tailwind-config").TailwindConfig}
  */
 module.exports = {
-    presets: [require("../../tailwind.base.config")],
+    presets: [require("@revind/tailwindcss-preset-revind")],
     purge: {
         content: ["./src/**/*.{ts,tsx,js,jsx}"],
         options: {

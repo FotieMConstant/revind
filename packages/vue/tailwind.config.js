@@ -3,5 +3,5 @@
  */
 module.exports = {
     purge: { content: ["./src/**/*.vue"] },
-    presets: [require("../../tailwind.base.config")],
+    presets: [require("@revind/tailwindcss-preset-revind")],
 };
