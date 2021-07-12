@@ -1,49 +1,33 @@
-export interface ButtonSchemes {
-    primary: string;
-    secondary: string;
-    red: string;
-    green: string;
-    yellow: string;
-}
+import { BaseStyleObj, Conditionals, SubComponents } from "./types";
 
-export interface ButtonStyleObject {
-    defaultStart: string;
-    defaultEnd: string;
-    margin: string;
-    fullWidth: string;
-    variants: {
-        filled: string;
-        outlined: string;
-        text: string;
-    };
-    variantSchemes: {
-        filled: ButtonSchemes;
-        outlined: ButtonSchemes;
-        text: ButtonSchemes;
-    };
-    sizes: {
-        sm: string;
-        md: string;
-        lg: string;
-        xl: string;
-        xxl: string;
-    };
-    startIcon: string;
-    endIcon: string;
-    rounded: string;
-}
-export const buttonStyleObj: ButtonStyleObject = {
-    defaultStart: "cursor-pointer transition-all",
-    rounded: "rounded",
-    defaultEnd:
-        "disabled:bg-gray-200 dark:disabled:bg-gray-500 disabled:cursor-not-allowed disabled:text-gray-400 focus:outline-none",
-    margin: "m-1",
-    fullWidth: "w-full block",
+export type ButtonStyleObj = BaseStyleObj &
+    Conditionals<"rounded" | "margin" | "fullWidth"> &
+    SubComponents<"startIcon" | "endIcon", Pick<BaseStyleObj, "default">>;
+
+export const buttonStyleObj: ButtonStyleObj = {
+    default: {
+        start: "cursor-pointer transition-all",
+        end: "disabled:bg-gray-200 dark:disabled:bg-gray-500 disabled:cursor-not-allowed disabled:text-gray-400 focus:outline-none",
+    },
+    conditionals: {
+        rounded: "rounded",
+        margin: "m-1",
+        fullWidth: "w-full block",
+    },
+    schemes: {},
     variants: {
         filled: "text-white filter hover:brightness-95 active:brightness-105",
         outlined:
             "border border-solid bg-opacity-0 dark:bg-opacity-0 hover:bg-opacity-20 active:bg-opacity-10 dark:hover:bg-opacity-20 dark:active:bg-opacity-10",
-        text: "bg-opacity-0 dark:bg-opacity-0 hover:bg-opacity-20 dark:hover:bg-opacity-20 active:bg-opacity-10 dark:active:bg-opacity-10",
+        minimal:
+            "bg-opacity-0 dark:bg-opacity-0 hover:bg-opacity-20 dark:hover:bg-opacity-20 active:bg-opacity-10 dark:active:bg-opacity-10",
+    },
+    sizes: {
+        sm: "p-1",
+        md: "p-2",
+        lg: "p-4",
+        xl: "p-6",
+        "2xl": "p-8",
     },
     variantSchemes: {
         filled: {
@@ -52,6 +36,14 @@ export const buttonStyleObj: ButtonStyleObject = {
             red: "bg-red dark:bg-red-dark",
             green: "bg-green dark:bg-green-dark",
             yellow: "bg-yellow dark:bg-yellow-dark",
+            blue: "",
+            gray: "",
+            orange: "",
+            teal: "",
+            cyan: "",
+            purple: "",
+            pink: "",
+            indigo: "",
         },
         outlined: {
             primary:
@@ -61,8 +53,16 @@ export const buttonStyleObj: ButtonStyleObject = {
             red: "border-red dark:border-red text-red dark:text-red-dark bg-red dark:bg-red-dark",
             green: "border-green dark:border-green text-green dark:text-green-dark bg-green dark:bg-green-dark",
             yellow: "border-yellow dark:border-yellow text-yellow dark:text-yellow-dark bg-yellow dark:bg-yellow-dark",
+            blue: "",
+            gray: "",
+            orange: "",
+            teal: "",
+            cyan: "",
+            purple: "",
+            pink: "",
+            indigo: "",
         },
-        text: {
+        minimal: {
             primary:
                 "text-primary dark:text-primary-dark bg-primary dark:bg-primary-dark",
             secondary:
@@ -70,15 +70,29 @@ export const buttonStyleObj: ButtonStyleObject = {
             red: "text-red dark:text-red-dark bg-red dark:bg-red-dark",
             green: "text-green dark:text-green-dark bg-green dark:bg-green-dark",
             yellow: "text-yellow dark:text-yellow-dark bg-yellow dark:bg-yellow-dark",
+            blue: "",
+            gray: "",
+            orange: "",
+            teal: "",
+            cyan: "",
+            purple: "",
+            pink: "",
+            indigo: "",
         },
     },
-    sizes: {
-        sm: "p-1",
-        md: "p-2",
-        lg: "p-4",
-        xl: "p-6",
-        xxl: "p-8",
+    variantSizes: {},
+    sub: {
+        startIcon: {
+            default: {
+                start: "mr-1 inline-block align-middle",
+                end: "",
+            },
+        },
+        endIcon: {
+            default: {
+                start: "ml-1 inline-block align-middle",
+                end: "",
+            },
+        },
     },
-    startIcon: "mr-1 inline-block align-middle",
-    endIcon: "ml-1 inline-block align-middle",
 };

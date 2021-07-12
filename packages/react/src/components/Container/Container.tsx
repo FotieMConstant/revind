@@ -10,7 +10,7 @@ export interface ContainerProps extends ComponentPropsWithoutRef<"div"> {
     gutters?: boolean;
     center?: boolean;
     "max-width"?: "sm" | "md" | "lg" | "xl" | false;
-    elevation?: "xs" | "sm" | "md" | "lg" | "xl" | "xxl";
+    elevation?: "xs" | "sm" | "md" | "lg" | "xl" | "2xl";
     border?: "sm" | "md" | "lg" | "xl";
     rounded?: boolean;
 }
@@ -79,7 +79,7 @@ Container.propTypes = {
     gutters: PropTypes.bool,
     center: PropTypes.bool,
     "max-width": PropTypes.oneOf(["sm", "md", "lg", "xl", false]),
-    elevation: PropTypes.oneOf(["xs", "sm", "md", "lg", "xl", "xxl"]),
+    elevation: PropTypes.oneOf(["xs", "sm", "md", "lg", "xl", "2xl"]),
     border: PropTypes.oneOf(["sm", "md", "lg", "xl"]),
     rounded: PropTypes.bool,
 };

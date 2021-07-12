@@ -23,7 +23,7 @@ export interface HiddenProps extends ComponentPropsWithoutRef<"div"> {
     /**
      * hides from 2xl & above
      */
-    xxl?: boolean;
+    "2xl"?: boolean;
     /**
      * hides while hovering over the component or its children
      */
@@ -54,7 +54,7 @@ export const Hidden = forwardRef<HTMLDivElement, HiddenProps>(function Hidden(
         md,
         lg,
         xl,
-        xxl,
+        "2xl": xxl,
         hover,
         active,
         focus,
@@ -87,7 +87,7 @@ export const Hidden = forwardRef<HTMLDivElement, HiddenProps>(function Hidden(
                 statesRaw[states.md],
                 statesRaw[states.lg],
                 statesRaw[states.xl],
-                statesRaw[states.xxl],
+                statesRaw[states["2xl"]],
                 statesRaw[states.hover],
                 statesRaw[states.active],
                 statesRaw[states.focus],
@@ -108,7 +108,7 @@ Hidden.propTypes = {
     md: PropTypes.bool,
     lg: PropTypes.bool,
     xl: PropTypes.bool,
-    xxl: PropTypes.bool,
+    "2xl": PropTypes.bool,
     hover: PropTypes.bool,
     active: PropTypes.bool,
     focus: PropTypes.bool,

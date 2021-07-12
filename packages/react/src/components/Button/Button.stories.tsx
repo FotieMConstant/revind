@@ -9,7 +9,7 @@ export default {
     component: Button,
     argTypes: {
         variant: {
-            options: ["filled", "outlined", "text"],
+            options: ["filled", "outlined", "minimal"],
             control: { type: "radio" },
         },
         scheme: {
@@ -17,7 +17,7 @@ export default {
             control: { type: "select" },
         },
         size: {
-            options: ["sm", "md", "lg", "xl", "xxl"],
+            options: ["sm", "md", "lg", "xl", "2xl"],
             control: { type: "radio" },
         },
     },

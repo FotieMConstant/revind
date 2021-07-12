@@ -1,43 +1,39 @@
-export interface TextStyleObj {
-    defaultStart: string;
-    variants: {
-        h1: string;
-        h2: string;
-        h3: string;
-        h4: string;
-        h5: string;
-        h6: string;
-        body1: string;
-        body2: string;
-        sub1: string;
-        sub2: string;
-        caption: string;
-        overline: string;
-    };
-    schemes: {
-        primary: string;
-        secondary: string;
-        red: string;
-        green: string;
-        yellow: string;
-        inverted: string;
-        regular: string;
-    };
-    alignments: {
-        left: string;
-        center: string;
-        right: string;
-        justify: string;
-    };
-    inline: string;
-    wrap: string;
-    noWrap: string;
-    bottomMargin: string;
-    defaultEnd: string;
+import { BaseStyleObj, Conditionals, Schemes } from "./types";
+
+export interface TextVariants {
+    readonly h1?: string;
+    readonly h2?: string;
+    readonly h3?: string;
+    readonly h4?: string;
+    readonly h5?: string;
+    readonly h6?: string;
+    readonly body1?: string;
+    readonly body2?: string;
+    readonly sub1?: string;
+    readonly sub2?: string;
+    readonly caption?: string;
+    readonly overline?: string;
+}
+
+export interface TextSchemes extends Schemes {
+    readonly inverted?: string;
+    readonly regular?: string;
+}
+
+interface TextAlignments {
+    left: string;
+    center: string;
+    right: string;
+    justify: string;
+}
+
+export interface TextStyleObj
+    extends Omit<BaseStyleObj<TextVariants, TextSchemes>, "sizes" | "variantSizes">,
+        Conditionals<"inline" | "wrap" | "noWrap" | "bottomMargin"> {
+    alignments: TextAlignments;
 }
 export const textStyleObj: TextStyleObj = {
-    defaultStart: "",
-    defaultEnd: "",
+    default: {},
     variants: {
         h1: "font-light text-8xl leading-tight",
         h2: "font-light text-6xl leading-tight",
@@ -61,14 +57,17 @@ export const textStyleObj: TextStyleObj = {
         inverted: "text-gray-100 dark:text-gray-800",
         regular: "text-gray-800 dark:text-gray-100",
     },
+    variantSchemes: {},
     alignments: {
         left: "text-left",
         center: "text-center",
         right: "text-right",
         justify: "text-justify",
     },
-    inline: "inline",
-    wrap: "overflow-clip",
-    noWrap: "overflow-ellipsis overflow-hidden whitespace-nowrap",
-    bottomMargin: "mb-1",
+    conditionals: {
+        inline: "inline",
+        wrap: "overflow-clip",
+        noWrap: "overflow-ellipsis overflow-hidden whitespace-nowrap",
+        bottomMargin: "mb-1",
+    },
 };

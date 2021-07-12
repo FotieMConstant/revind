@@ -1,23 +1,19 @@
 import React, {
-    DetailedHTMLProps,
     FormEvent,
     forwardRef,
-    TextareaHTMLAttributes,
     useCallback,
     useEffect,
     useRef,
     useState,
 } from "react";
 import PropTypes from "prop-types";
-import { TextField, TextFieldProps } from "../TextField/TextField";
+import { Input, InputProps } from "../Input/Input";
+import { HTMLRevindProps } from "../../utils/forward-ref";
 
 export interface TextareaProps
-    extends DetailedHTMLProps<
-            TextareaHTMLAttributes<HTMLTextAreaElement>,
-            HTMLTextAreaElement
-        >,
+    extends HTMLRevindProps<"textarea">,
         Pick<
-            TextFieldProps,
+            InputProps,
             | "variant"
             | "scheme"
             | "size"
@@ -37,7 +33,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(function 
     ref,
 ) {
     const [defaultHeight, setDefaultHeight] = useState(0);
-    const inputRef = useRef<HTMLInputElement>(null);
+    const inputRef = useRef<HTMLTextAreaElement>(null);
 
     function handleInput(e: FormEvent<HTMLTextAreaElement>) {
         const { target } = e;
@@ -91,13 +87,13 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(function 
 
     return (
         <>
-            <TextField
-                ref={inputRef as any}
+            {/* <Input
+                ref={inputRef}
                 onInput={rows ? onInput : handleInput}
-                component="textarea"
+                as="textarea"
                 rows={rows ?? 1}
                 {...props}
-            />
+            /> */}
         </>
     );
 });

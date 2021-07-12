@@ -1,18 +1,10 @@
+import clsx from "clsx";
 import PropTypes from "prop-types";
-import React, {
-    ChangeEvent,
-    FocusEvent,
-    ElementType,
-    forwardRef,
-    HTMLProps,
-    ReactHTML,
-    Ref,
-    useState,
-} from "react";
+import React, { ChangeEvent, FocusEvent, Ref, useState } from "react";
+import { useTheme } from "../../hooks/useTheme";
+import { forwardRef, HTMLRevindProps } from "../../utils/forward-ref";
 
-export interface TextFieldProps
-    extends Omit<HTMLProps<HTMLInputElement>, "size" | "type">,
-        Record<string, any> {
+export interface InputProps extends Omit<HTMLRevindProps<"input">, "size"> {
     type?:
         | "text"
         | "email"
@@ -31,16 +23,15 @@ export interface TextFieldProps
     "label-variant"?: "static" | "floating";
     "wrapper-ref"?: Ref<HTMLLabelElement>;
     "label-ref"?: Ref<HTMLSpanElement>;
-    component?: ElementType | keyof ReactHTML;
 }
 
-export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(function TextField(
+export const Input = forwardRef<InputProps, "input">(function TextField(
     {
         variant = "regular",
         scheme = "primary",
         size = "md",
-        margin = true,
-        "full-width": fullWidth = false,
+        margin: isMargin = true,
+        "full-width": isFullWidth = false,
         label,
         "label-ref": labelRef,
         "wrapper-ref": wrapperRef,
@@ -50,7 +41,7 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(function T
         onFocus,
         onChange,
         onBlur,
-        component: Component = "input",
+        as: Component = "input",
         ...props
     },
     ref,
@@ -58,6 +49,30 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(function T
     const [inputFocused, setInputFocused] = useState(false);
     const [containsText, setContainsText] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
+
+    const {
+        styleObjects: {
+            Input: {
+                defaultStart,
+                defaultEnd,
+                floatingPlaceholder,
+                fullWidth,
+                margin,
+                schemes,
+                sizes,
+                textSchemes,
+                variants,
+                wrapperDefault,
+                wrapperFullWidth,
+            },
+            InputLabel: {
+                defaultStart: labelStart,
+                defaultEnd: labelEnd,
+                nonFocusedText,
+                variants: labelVariants,
+            },
+        },
+    } = useTheme();
 
     function handleInputFocus(e: FocusEvent<HTMLInputElement>) {
         setInputFocused(true);
@@ -73,50 +88,6 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(function T
         onChange && onChange(e);
         setContainsText(!!e.target.value);
     }
-    const inputSchemes = {
-        primary: "focus:border-primary dark:focus:border-primary-dark",
-        secondary: "focus:border-secondary dark:focus:border-secondary-dark",
-        red: "focus:border-red dark:focus:border-red-dark",
-        green: "focus:border-green dark:focus:border-green-dark",
-        yellow: "focus:border-yellow dark:focus:border-yellow-dark",
-    };
-
-    const variants = {
-        regular: "border border-solid rounded bg-inherit",
-        filled: "border-0 bg-gray-100 dark:bg-gray-800",
-        underlined: "border-b border-solid bg-inherit",
-    };
-
-    const spanVariants = {
-        regular: {
-            focused:
-                "-top-2 text-xs bg-container-primary dark:bg-container-primary-dark left-2",
-            default: "left-2 top-1/2 -translate-y-1/2 text-gray-500",
-        },
-        filled: {
-            focused: "-top-2 text-xs left-2",
-            default: "left-2 top-1/2 -translate-y-1/2 text-gray-500",
-        },
-        underlined: {
-            focused: "-top-2 text-xs",
-            default: "top-1/2 -translate-y-1/2 text-gray-500",
-        },
-    };
-
-    const textSchemes = {
-        primary: "focus-within:text-primary",
-        secondary: "focus-within:text-secondary",
-        red: "focus-within:text-red",
-        green: "focus-within:text-green",
-        yellow: "focus-within:text-yellow",
-    };
-
-    const sizes = {
-        sm: "p-1",
-        md: "py-2 px-1 text-md",
-        lg: "py-4 px-1 text-xl",
-        xl: "py-6 px-1 text-2xl",
-    };
 
     const spanKey =
         inputFocused || labelVariant !== "floating" || containsText
@@ -125,20 +96,21 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(function T
 
     return (
         <label
-            className={`${
-                fullWidth ? "flex" : "inline-block"
-            } transition-colors relative text-gray-500 ${textSchemes[scheme]} ${
-                margin ? "mx-1 mb-2" : ""
-            }`}
+            className={clsx(
+                wrapperDefault,
+                { [wrapperFullWidth]: isFullWidth, [margin]: isMargin },
+                textSchemes[scheme],
+            )}
             ref={wrapperRef}
         >
             {label && (
                 <span
-                    className={`overflow-ellipsis whitespace-nowrap appearance-none transition-all transform select-none absolute ${
-                        spanVariants[variant][spanKey]
-                    } ${
-                        labelVariant === "static" && !inputFocused ? "text-gray-500" : ""
-                    }`}
+                    className={clsx(
+                        labelStart,
+                        labelVariants[variant][spanKey],
+                        { [nonFocusedText]: labelVariant === "static" && !inputFocused },
+                        labelEnd,
+                    )}
                     ref={labelRef}
                 >
                     {label}
@@ -146,15 +118,18 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(function T
             )}
 
             <Component
-                className={`${
-                    fullWidth ? "w-full" : ""
-                } dark:border-gray-600 outline-none text-black dark:text-white  placeholder-gray-500 border-gray-300 ${
-                    sizes[size]
-                } ${inputSchemes[scheme]} ${variants[variant]} ${
-                    labelVariant === "floating"
-                        ? "placeholder-opacity-0 focus:placeholder-opacity-100"
-                        : ""
-                } ${className}`}
+                className={clsx(
+                    defaultStart,
+                    {
+                        [fullWidth]: isFullWidth,
+                        [floatingPlaceholder]: labelVariant === "floating",
+                    },
+                    sizes[size],
+                    schemes[scheme],
+                    variants[variant],
+                    defaultEnd,
+                    className,
+                )}
                 {...props}
                 onFocus={handleInputFocus}
                 onBlur={handleBlur}
@@ -232,10 +207,10 @@ ShowHidePasswordButton.propTypes = {
     active: PropTypes.bool,
 };
 
-TextField.propTypes = {
-    ...TextField.propTypes,
+Input.propTypes = {
+    ...Input.propTypes,
     type: PropTypes.oneOf([
-        "text",
+        "minimal",
         "email",
         "password",
         "hidden",
@@ -253,5 +228,4 @@ TextField.propTypes = {
     "wrapper-ref": PropTypes.oneOfType<any>([PropTypes.func, PropTypes.object]),
     "label-ref": PropTypes.oneOfType<any>([PropTypes.func, PropTypes.object]),
     "label-variant": PropTypes.oneOf(["static", "floating"]),
-    component: PropTypes.elementType as any,
 };

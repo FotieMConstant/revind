@@ -10,8 +10,8 @@ export default {
     component: ButtonGroup,
     argTypes: {
         direction: { control: { type: "radio" }, options: ["row", "column"] },
-        size: { control: { type: "radio" }, options: ["sm", "md", "lg", "xl", "xxl"] },
-        variant: { control: { type: "select" }, options: ["filled", "outlined", "text"] },
+        size: { control: { type: "radio" }, options: ["sm", "md", "lg", "xl", "2xl"] },
+        variant: { control: { type: "select" }, options: ["filled", "outlined", "minimal"] },
         scheme: {
             control: { type: "select" },
             options: ["primary", "secondary", "red", "green", "yellow"],

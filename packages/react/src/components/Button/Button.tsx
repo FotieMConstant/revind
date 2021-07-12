@@ -1,14 +1,15 @@
 import * as PropTypes from "prop-types";
-import React, { ComponentPropsWithoutRef, forwardRef, ReactNode } from "react";
+import React, { ReactNode } from "react";
 import clsx from "clsx";
 import { useTheme } from "../../hooks/useTheme";
+import { forwardRef, HTMLRevindProps } from "../../utils/forward-ref";
 
-export interface ButtonProps extends ComponentPropsWithoutRef<"button"> {
+export interface ButtonProps extends HTMLRevindProps<"button"> {
     /**
      * the variant/category of button to use
      * @default filled
      */
-    variant?: "filled" | "outlined" | "text";
+    variant?: "filled" | "outlined" | "minimal";
     /**
      * the bg & accent colors to use
      * @default primary
@@ -18,7 +19,7 @@ export interface ButtonProps extends ComponentPropsWithoutRef<"button"> {
      * the size to use (based on padding)
      * @default md
      */
-    size?: "sm" | "md" | "lg" | "xl" | "xxl";
+    size?: "sm" | "md" | "lg" | "xl" | "2xl";
     /**
      * gives a bit margin around the button for separation
      * its turned off in `ButtonGroup`
@@ -48,16 +49,17 @@ export interface ButtonProps extends ComponentPropsWithoutRef<"button"> {
 /**
  * Higher level Button component
  */
-export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
+export const Button = forwardRef<ButtonProps, "button">(function Button(
     {
         scheme = "primary",
         size = "md",
-        margin = true,
+        margin: isMargin = true,
         variant = "filled",
         "start-icon": startIcon,
         "end-icon": endIcon,
-        "full-width": fullWidth = false,
-        rounded = true,
+        "full-width": isFullWidth = false,
+        rounded: isRounded = true,
+        as: Component = "button",
         className,
         children,
         ...props
@@ -70,45 +72,53 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
                 sizes,
                 variantSchemes,
                 variants,
-                defaultEnd,
-                defaultStart,
-                startIcon: startIconStyle,
-                endIcon: endIconStyle,
-                ...styleObj
+                default: { start, end },
+                sub: { startIcon: startIconStyle, endIcon: endIconStyle },
+                schemes,
+                conditionals: { fullWidth, margin, rounded },
+                variantSizes,
             },
         },
     } = useTheme();
 
     return (
-        <button
+        <Component
             ref={ref}
             className={clsx(
-                defaultStart,
+                start,
                 variants[variant],
                 sizes[size],
-                variantSchemes[variant][scheme],
+                schemes[scheme],
+                variantSizes?.[variant]?.[size],
+                variantSchemes?.[variant]?.[scheme],
                 {
-                    [styleObj.margin]: margin,
-                    [styleObj.fullWidth]: fullWidth,
-                    [styleObj.rounded]: rounded,
+                    [margin]: isMargin,
+                    [fullWidth]: isFullWidth,
+                    [rounded]: isRounded,
                 },
-                defaultEnd,
+                end,
                 className,
             )}
             {...props}
         >
-            <span className={startIconStyle}>{startIcon}</span>
+            <span
+                className={clsx(startIconStyle.default.start, startIconStyle.default.end)}
+            >
+                {startIcon}
+            </span>
             {children}
-            <span className={endIconStyle}>{endIcon}</span>
-        </button>
+            <span className={clsx(endIconStyle.default.start, endIconStyle.default.end)}>
+                {endIcon}
+            </span>
+        </Component>
     );
 });
 
 Button.propTypes = {
     ...Button.propTypes,
-    variant: PropTypes.oneOf<ButtonProps["variant"]>(["filled", "outlined", "text"]),
+    variant: PropTypes.oneOf<ButtonProps["variant"]>(["filled", "outlined", "minimal"]),
     scheme: PropTypes.oneOf(["primary", "secondary", "red", "green", "yellow"]),
-    size: PropTypes.oneOf(["sm", "md", "lg", "xl", "xxl"]),
+    size: PropTypes.oneOf(["sm", "md", "lg", "xl", "2xl"]),
     margin: PropTypes.bool,
     "start-icon": PropTypes.node,
     "end-icon": PropTypes.node,

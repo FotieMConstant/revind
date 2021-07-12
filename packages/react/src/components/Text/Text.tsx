@@ -37,10 +37,10 @@ export const Text = forwardRef<TextElement, TextProps>(function Text(
     {
         scheme = "regular",
         variant = "body1",
-        inline = false,
+        inline: isInline = false,
         align = "left",
-        wrap = true,
-        "bottom-margin": bottomMargin = true,
+        wrap: isWrap = true,
+        "bottom-margin": isBottomMargin = true,
         className = "",
         children,
         ...props
@@ -50,8 +50,9 @@ export const Text = forwardRef<TextElement, TextProps>(function Text(
     const {
         styleObjects: {
             Text: {
-                defaultStart,
-                defaultEnd,
+                default: { start, end },
+                conditionals: { bottomMargin, inline, noWrap, wrap },
+                variantSchemes,
                 variants,
                 schemes,
                 alignments,
@@ -78,16 +79,18 @@ export const Text = forwardRef<TextElement, TextProps>(function Text(
         <Component
             ref={ref}
             className={clsx(
-                defaultStart,
+                start,
                 variants[variant],
                 schemes[scheme],
+                variantSchemes?.[variant]?.[scheme],
                 alignments[align],
                 {
-                    [styleObj.inline]: inline,
-                    [styleObj.bottomMargin]: bottomMargin,
+                    [inline]: isInline,
+                    [bottomMargin]: isBottomMargin,
                 },
-                wrap ? styleObj.wrap : styleObj.noWrap,
-                defaultEnd,
+                wrap ? wrap : noWrap,
+                end,
+                className,
             )}
             {...props}
         >

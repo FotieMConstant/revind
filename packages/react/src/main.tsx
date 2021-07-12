@@ -6,3 +6,4 @@ export * from "./components/Flex/Flex";
 export * from "./components/Grid/Grid";
 export * from "./components/Hidden/Hidden";
 export * from "./components/Text/Text";
+export * from "./components/Input/Input"

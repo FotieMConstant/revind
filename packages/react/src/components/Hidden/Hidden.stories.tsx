@@ -34,7 +34,7 @@ export const Default = Template.bind({});
     md: false,
     lg: false,
     xl: false,
-    xxl: false,
+    "2xl": false,
     hover: false,
     active: false,
     focus: false,

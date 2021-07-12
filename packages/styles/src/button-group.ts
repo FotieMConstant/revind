@@ -1,35 +1,37 @@
-interface Directions {
+import { BaseStyleObj, Schemes, VariantJunctions } from "./types";
+
+export interface Directions {
     row: string;
     column: string;
 }
 
-export interface ButtonGroupStyleObj {
-    defaultStart: string;
-    defaultEnd: string;
+export type VariantDirections = VariantJunctions<Directions>;
+
+export interface ButtonGroupStyleObj extends Pick<BaseStyleObj, "default"> {
     directions: Directions;
-    variantDirections: {
-        filled: Directions;
-        text: Directions;
-        outlined: Directions;
-    };
-    borderColors: {
-        primary: string;
-        secondary: string;
-        red: string;
-        green: string;
-        yellow: string;
-    };
+    variantDirections: VariantDirections;
+    borderColors: Schemes;
 }
 
 export const buttonGroupStyleObj: ButtonGroupStyleObj = {
-    defaultStart: "",
-    defaultEnd: "",
+    default: {
+        start: "",
+        end: "",
+    },
     borderColors: {
         primary: "border-primary dark:border-primary-dark",
         secondary: "border-secondary dark:border-secondary-dark",
         red: "border-red dark:border-red-dark",
         green: "border-green dark:border-green-dark",
         yellow: "border-yellow dark:border-yellow-dark",
+        blue: "",
+        cyan: "",
+        gray: "",
+        indigo: "",
+        orange: "",
+        pink: "",
+        purple: "",
+        teal: "",
     },
     directions: {
         row: "first:rounded-l last:rounded-r",
@@ -44,7 +46,7 @@ export const buttonGroupStyleObj: ButtonGroupStyleObj = {
             row: "first:border-r-0 last:border-l-0",
             column: "first:border-b-0 last:border-t-0",
         },
-        text: {
+        minimal: {
             row: "border-l border-r first:border-none last:border-none",
             column: "border-t border-b first:border-none last:border-none",
         },

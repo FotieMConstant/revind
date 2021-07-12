@@ -15,7 +15,7 @@ export interface ContainerStyleObj {
         "elevated-md": string;
         "elevated-lg": string;
         "elevated-xl": string;
-        "elevated-xxl": string;
+        "elevated-2xl": string;
         "bordered-sm": string;
         "bordered-md": string;
         "bordered-lg": string;
@@ -50,7 +50,7 @@ export const containerStyleObj: ContainerStyleObj = {
         "elevated-md": "shadow-md",
         "elevated-lg": "shadow-lg",
         "elevated-xl": "shadow-xl",
-        "elevated-xxl": "shadow-2xl",
+        "elevated-2xl": "shadow-2xl",
         "bordered-sm": "border",
         "bordered-md": "border-2",
         "bordered-lg": "border-4",

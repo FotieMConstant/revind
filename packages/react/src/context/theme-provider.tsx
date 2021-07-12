@@ -1,7 +1,7 @@
 import React, { createContext, FC } from "react";
 import {
+    ButtonStyleObj,
     buttonStyleObj,
-    ButtonStyleObject,
     flexStyleObj,
     FlexStyleObj,
     ContainerStyleObj,
@@ -12,20 +12,26 @@ import {
     TextStyleObj,
     ButtonGroupStyleObj,
     buttonGroupStyleObj,
+    InputStyleObj,
+    inputStyleObj,
+    inputLabelStyleObj,
+    InputLabelStyleObj,
 } from "@revind/styles";
 
 export interface ThemeContext {
     styleObjects: {
-        Button: ButtonStyleObject;
+        Button: ButtonStyleObj;
         ButtonGroup: ButtonGroupStyleObj;
         Flex: FlexStyleObj;
         Container: ContainerStyleObj;
         Hidden: HiddenStyleObj;
         Text: TextStyleObj;
+        Input: InputStyleObj;
+        InputLabel: InputLabelStyleObj;
     };
 }
 
-export const defaultTheme = {
+export const defaultTheme: ThemeContext = {
     styleObjects: {
         Button: buttonStyleObj,
         Flex: flexStyleObj,
@@ -33,6 +39,8 @@ export const defaultTheme = {
         Hidden: hiddenStyleObj,
         Text: textStyleObj,
         ButtonGroup: buttonGroupStyleObj,
+        Input: inputStyleObj,
+        InputLabel: inputLabelStyleObj,
     },
 };
 export const themeCtx = createContext<ThemeContext>(defaultTheme);

@@ -20,7 +20,7 @@ export interface CheckboxProps
         HTMLLabelElement
     >;
     "wrapper-ref"?: ForwardedRef<HTMLLabelElement>;
-    size?: "sm" | "md" | "lg" | "xl" | "xxl";
+    size?: "sm" | "md" | "lg" | "xl" | "2xl";
     value?: "on" | "off" | string;
     label?: string | ReactElement;
     "label-direction"?: "top" | "left" | "right" | "bottom";
@@ -101,7 +101,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(function Che
         md: "h-5 w-5",
         lg: "h-6 w-6",
         xl: "h-10 w-10",
-        xxl: "h-14 w-14",
+        "2xl": "h-14 w-14",
     };
 
     const scheme2dKeys = checked ? "checked" : "notChecked";
@@ -161,7 +161,7 @@ Checkbox.propTypes = {
     scheme: PropTypes.oneOf(["primary", "secondary", "red", "green", "yellow"]),
     "wrapper-props": PropTypes.object,
     "wrapper-ref": PropTypes.oneOfType<any>([PropTypes.func, PropTypes.object]),
-    size: PropTypes.oneOf(["sm", "md", "lg", "xl", "xxl"]),
+    size: PropTypes.oneOf(["sm", "md", "lg", "xl", "2xl"]),
     value: PropTypes.any,
     label: PropTypes.string,
     "label-direction": PropTypes.oneOf(["top", "left", "right", "bottom"]),

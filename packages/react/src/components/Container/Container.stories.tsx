@@ -19,7 +19,7 @@ export default {
         },
         elevation: {
             control: { type: "radio" },
-            options: ["xs", "sm", "md", "lg", "xl", "xxl"],
+            options: ["xs", "sm", "md", "lg", "xl", "2xl"],
         },
         border: { control: { type: "radio" }, options: ["sm", "md", "lg", "xl"] },
     },
