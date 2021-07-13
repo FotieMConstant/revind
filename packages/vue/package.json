@@ -6,17 +6,19 @@
         "build": "build-storybook"
     },
     "peerDependencies": {
-        "vue": "^3.0.5",
+        "@revind/tailwindcss-preset-revind": "^0.0.1",
         "@revind/styles": "^0.0.1",
-        "tailwindcss": "^2.2.4",
-        "@revind/tailwindcss-preset-revind": "^0.0.1"
+        "vue": "^3.0.5",
+        "tailwindcss": "^2.2.4"
     },
     "peerDependenciesMeta": {
         "@revind/styles": {
             "optional": true
         }
     },
-    "dependencies": {},
+    "dependencies": {
+        "@revind/types": "^0.0.1"
+    },
     "devDependencies": {
         "autoprefixer": "^10.2.6",
         "@babel/core": "^7.14.6",

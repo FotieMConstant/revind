@@ -5,8 +5,8 @@
     "types": "dist/index.d.ts",
     "main": "dist/index",
     "exports": {
-      "import": "./dist/index.js",
-      "default": "./dist/index.js"
+        "import": "./dist/index.js",
+        "default": "./dist/index.js"
     },
     "description": "revind's default style-objects (default theme like)",
     "keywords": [
@@ -28,6 +28,7 @@
     },
     "license": "MIT",
     "devDependencies": {
+        "@revind/types": "^0.0.1",
         "typescript": "^4.3.2"
     }
 }

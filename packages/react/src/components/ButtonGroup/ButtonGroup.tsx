@@ -1,18 +1,13 @@
+import { ButtonGroupOptions } from "@revind/types";
 import clsx from "clsx";
 import PropTypes from "prop-types";
-import React from "react";
+import React, { ReactNode } from "react";
 import { isFragment } from "react-is";
 import { Flex } from "../../components/Flex/Flex";
 import { useTheme } from "../../hooks/useTheme";
 import { forwardRef, HTMLRevindProps } from "../../utils/forward-ref";
 
-export interface ButtonGroupProps extends HTMLRevindProps<"div"> {
-    direction?: "column" | "row";
-    variant?: "filled" | "outlined" | "minimal";
-    scheme?: "primary" | "secondary" | "red" | "green" | "yellow";
-    size?: "sm" | "md" | "lg" | "xl" | "2xl";
-    "full-width"?: boolean;
-}
+export type ButtonGroupProps = HTMLRevindProps<"div"> & ButtonGroupOptions<ReactNode>;
 
 export const ButtonGroup = forwardRef<ButtonGroupProps, "div">(function ButtonGroup(
     {
@@ -63,8 +58,8 @@ export const ButtonGroup = forwardRef<ButtonGroupProps, "div">(function ButtonGr
                     className: clsx(
                         start,
                         directions[direction],
-                        variantDirections?.[variant]?.[direction],
-                        borderColors[scheme],
+                        variantDirections[variant]?.[direction],
+                        borderColors?.[scheme],
                         end,
                     ),
                     scheme,

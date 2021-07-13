@@ -1,8 +1,4 @@
-import { BaseStyleObj, Conditionals, SubComponents } from "./types";
-
-export type ButtonStyleObj = BaseStyleObj &
-    Conditionals<"rounded" | "margin" | "fullWidth"> &
-    SubComponents<"startIcon" | "endIcon", Pick<BaseStyleObj, "default">>;
+import { ButtonStyleObj } from "@revind/types";
 
 export const buttonStyleObj: ButtonStyleObj = {
     default: {

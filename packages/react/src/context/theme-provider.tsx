@@ -1,6 +1,5 @@
 import React, { createContext, FC } from "react";
 import {
-    ButtonStyleObj,
     buttonStyleObj,
     flexStyleObj,
     FlexStyleObj,
@@ -9,14 +8,13 @@ import {
     HiddenStyleObj,
     hiddenStyleObj,
     textStyleObj,
-    TextStyleObj,
-    ButtonGroupStyleObj,
     buttonGroupStyleObj,
     InputStyleObj,
     inputStyleObj,
     inputLabelStyleObj,
     InputLabelStyleObj,
 } from "@revind/styles";
+import { ButtonGroupStyleObj, ButtonStyleObj, TextStyleObj } from "@revind/types";
 
 export interface ThemeContext {
     styleObjects: {

@@ -19,6 +19,7 @@
         }
     },
     "dependencies": {
+        "@revind/types": "^0.0.1",
         "clsx": "^1.1.1",
         "react-is": "^16.13.1",
         "uuid": "^8.3.2"

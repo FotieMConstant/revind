@@ -7,11 +7,13 @@ Revind is [tailwindcss](https://tailwindcss.com/) based. It gives the full power
 
 ## Project structure
 
-| name                                                                                                                     | description           |
-| ------------------------------------------------------------------------------------------------------------------------ | --------------------- |
-| [@revind/react](https://github.com/FotieMConstant/revind/tree/migration-to-new-philosophy-architecture/packages/react)   | react components      |
-| [@revind/vue](https://github.com/FotieMConstant/revind/tree/migration-to-new-philosophy-architecture/packages/vue)       | vue components        |
-| [@revind/styles](https://github.com/FotieMConstant/revind/tree/migration-to-new-philosophy-architecture/packages/styles) | default style objects |
+| name                                                                                                                         | description                                                               |
+| ---------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| [@revind/react](https://github.com/FotieMConstant/revind/tree/master/packages/react)                                         | react components                                                          |
+| [@revind/vue](https://github.com/FotieMConstant/revind/tree/master/packages/vue)                                             | vue components                                                            |
+| [@revind/styles](https://github.com/FotieMConstant/revind/tree/master/packages/styles)                                       | default style objects                                                     |
+| [@revind/tailwindcss-preset-revind](https://github.com/FotieMConstant/revind/tree/master/packages/tailwindcss-preset-revind) | framework specific tailwindcss configuration                              |
+| [@revind/types](https://github.com/FotieMConstant/revind/tree/master/packages/types)                                         | cross framework component specific props & style-object type declarations |
 
 ## Installation
 

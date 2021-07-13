@@ -1,17 +1,4 @@
-import { BaseStyleObj, Schemes, VariantJunctions } from "./types";
-
-export interface Directions {
-    row: string;
-    column: string;
-}
-
-export type VariantDirections = VariantJunctions<Directions>;
-
-export interface ButtonGroupStyleObj extends Pick<BaseStyleObj, "default"> {
-    directions: Directions;
-    variantDirections: VariantDirections;
-    borderColors: Schemes;
-}
+import { ButtonGroupStyleObj } from "@revind/types";
 
 export const buttonGroupStyleObj: ButtonGroupStyleObj = {
     default: {
