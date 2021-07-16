@@ -40,13 +40,13 @@ const content = (
     </div>
 );
 
-const Template = (props: ContainerProps) => <Container {...props}>{content}</Container>;
+const Template = (props: ContainerProps) => <Container {...props} border="xl">{content}</Container>;
 
 export const Default = Template.bind({});
 
 (Default as any).args = {
     fixed: false,
-    gutters: false,
+    gutters: true,
     center: false,
     rounded: false,
 } as ContainerProps;

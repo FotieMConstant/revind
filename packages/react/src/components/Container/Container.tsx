@@ -1,67 +1,70 @@
 import clsx from "clsx";
 import PropTypes from "prop-types";
-import React, { ComponentPropsWithoutRef, forwardRef } from "react";
+import React from "react";
+import { ContainerOptions } from "@revind/types";
 import { useTheme } from "../../hooks/useTheme";
+import { forwardRef, HTMLRevindProps } from "../../utils/forward-ref";
 
-export interface ContainerProps extends ComponentPropsWithoutRef<"div"> {
-    fixed?: boolean;
-    scheme?: "primary" | "secondary";
-    variant?: "elevated" | "regular" | "bordered";
-    gutters?: boolean;
-    center?: boolean;
-    "max-width"?: "sm" | "md" | "lg" | "xl" | false;
-    elevation?: "xs" | "sm" | "md" | "lg" | "xl" | "2xl";
-    border?: "sm" | "md" | "lg" | "xl";
-    rounded?: boolean;
-}
+export type ContainerProps = HTMLRevindProps<"div"> & ContainerOptions;
 
-export const Container = forwardRef<HTMLDivElement, ContainerProps>(function Container(
+export const Container = forwardRef<ContainerProps, "div">(function Container(
     {
-        center = false,
-        gutters = false,
-        fixed = false,
+        center: isCenter = false,
+        gutters: isGutters = false,
+        fixed: isFixed = false,
         scheme = "primary",
         variant = "regular",
         "max-width": maxWidth = "lg",
         elevation = "md",
         border = "sm",
-        rounded,
+        rounded: isRounded,
         className = "",
         children,
         ...props
     },
     ref,
 ) {
-    if (scheme === "secondary" && rounded === undefined) {
-        rounded = true;
+    if (scheme === "secondary" && isRounded === undefined) {
+        isRounded = true;
     }
 
     const {
-        styleObjects: { Container: styleObj },
+        styleObjects: {
+            Container: {
+                default: { start, end },
+                "max-widths": maxWidths,
+                conditionals: { center, fixed, gutters, rounded },
+                elevations,
+                schemes,
+                variantBorders,
+                variantElevations,
+                variantSchemes,
+                variants,
+                borders,
+            },
+        },
     } = useTheme();
-
-    const variantKey = (
-        variant === "elevated"
-            ? `elevated-${elevation}`
-            : variant === "bordered"
-            ? `bordered-${border}`
-            : "regular"
-    ) as keyof typeof styleObj.variants;
 
     return (
         <div
             ref={ref}
             className={clsx(
-                styleObj.defaultStart,
-                maxWidth && styleObj.breakpoints[maxWidth],
+                start,
                 {
-                    [styleObj.center]: center,
-                    [styleObj.gutters]: gutters,
-                    [styleObj.rounded]: rounded,
+                    [fixed]: fixed,
+                    [center]: isCenter,
+                    [gutters]: isGutters,
+                    [rounded]: isRounded,
                 },
-                styleObj.variants[variant],
-                styleObj.variants[variantKey],
-                styleObj.schemes[scheme],
+                maxWidth && maxWidths[maxWidth],
+                variants[variant],
+                schemes[scheme],
+                borders[border],
+                elevations[elevation],
+                variantSchemes[variant][scheme],
+                variantBorders[variant][border],
+                variantElevations[variant][elevation],
+                end,
                 className,
             )}
             {...props}

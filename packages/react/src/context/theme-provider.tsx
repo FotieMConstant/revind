@@ -3,7 +3,6 @@ import {
     buttonStyleObj,
     flexStyleObj,
     FlexStyleObj,
-    ContainerStyleObj,
     containerStyleObj,
     HiddenStyleObj,
     hiddenStyleObj,
@@ -14,7 +13,7 @@ import {
     inputLabelStyleObj,
     InputLabelStyleObj,
 } from "@revind/styles";
-import { ButtonGroupStyleObj, ButtonStyleObj, TextStyleObj } from "@revind/types";
+import { ButtonGroupStyleObj, ButtonStyleObj, TextStyleObj, ContainerStyleObj } from "@revind/types";
 
 export interface ThemeContext {
     styleObjects: {
