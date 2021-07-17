@@ -1,9 +1,12 @@
 node_modules
-lib
-build
-dist
 *.log
 *.env
 .DS_Store
 dist-ssr
 *.local
+
+#yarn stuff
+.yarn/*
+!.yarn/releases
+!.yarn/plugins
+.pnp.*

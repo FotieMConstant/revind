@@ -1,0 +1,55 @@
+{
+    "name": "@revind/vue",
+    "version": "0.0.1",
+    "scripts": {
+        "start": "BROWSER=none start-storybook -p 6006",
+        "build": "build-storybook"
+    },
+    "peerDependencies": {
+        "@revind/tailwindcss-preset-revind": "^0.0.1",
+        "@revind/styles": "^0.0.1",
+        "vue": "^3.0.5",
+        "tailwindcss": "^2.2.4"
+    },
+    "peerDependenciesMeta": {
+        "@revind/styles": {
+            "optional": true
+        }
+    },
+    "dependencies": {
+        "@revind/types": "^0.0.1"
+    },
+    "devDependencies": {
+        "autoprefixer": "^10.2.6",
+        "@babel/core": "^7.14.6",
+        "@storybook/addon-actions": "^6.3.4",
+        "@storybook/addon-essentials": "^6.3.4",
+        "@storybook/addon-links": "^6.3.4",
+        "@storybook/addon-postcss": "^2.0.0",
+        "@storybook/vue3": "^6.3.4",
+        "@vitejs/plugin-vue": "^1.2.4",
+        "@vue/compiler-sfc": "^3.0.5",
+        "babel-loader": "^8.2.2",
+        "storybook-builder-vite": "^0.0.12",
+        "postcss": "^8.3.5",
+        "typescript": "^4.3.2",
+        "vite-plugin-ts-checker": "^0.1.3",
+        "vue-loader": "^16.3.0",
+        "vue-tsc": "^0.0.24"
+    },
+    "description": "highly configurable vuejs (vue3) component library based on tailwindcss",
+    "keywords": [
+        "tailwindcss",
+        "revind",
+        "react"
+    ],
+    "homepage": "https://github.com/FotieMConstant/revind/tree/main/packages/vue#readme",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/FotieMConstant/revind.git"
+    },
+    "bugs": {
+        "url": "https://github.com/FotieMConstant/revind/issues"
+    },
+    "license": "MIT"
+}

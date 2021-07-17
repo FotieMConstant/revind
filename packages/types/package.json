@@ -1,0 +1,25 @@
+{
+    "name": "@revind/types",
+    "version": "0.0.1",
+    "description": "Associated types for all packages of revind",
+    "types": "index",
+    "keywords": [
+        "typescript",
+        "revind",
+        "tailwindcss",
+        "react",
+        "vue"
+    ],
+    "homepage": "https://github.com/FotieMConstant/revind/tree/main/packages/types#readme",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/FotieMConstant/revind.git"
+    },
+    "scripts": {
+        "test": "echo \"Error: run tests from root\" && exit 1"
+    },
+    "bugs": {
+        "url": "https://github.com/FotieMConstant/revind/issues"
+    }
+}

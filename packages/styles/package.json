@@ -1,0 +1,34 @@
+{
+    "name": "@revind/styles",
+    "version": "0.0.1",
+    "type": "module",
+    "types": "dist/index.d.ts",
+    "main": "dist/index",
+    "exports": {
+        "import": "./dist/index.js",
+        "default": "./dist/index.js"
+    },
+    "description": "revind's default style-objects (default theme like)",
+    "keywords": [
+        "tailwindcss",
+        "revind",
+        "style-objects"
+    ],
+    "homepage": "https://github.com/FotieMConstant/revind/tree/main/packages/styles#readme",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/FotieMConstant/revind.git"
+    },
+    "bugs": {
+        "url": "https://github.com/FotieMConstant/revind/issues"
+    },
+    "scripts": {
+        "start": "tsc -w",
+        "build": "tsc"
+    },
+    "license": "MIT",
+    "devDependencies": {
+        "@revind/types": "^0.0.1",
+        "typescript": "^4.3.2"
+    }
+}
