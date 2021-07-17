@@ -10,7 +10,7 @@ export default {
     argTypes: {
         type: {
             options: [
-                "minimal",
+                "text",
                 "email",
                 "password",
                 "hidden",
@@ -22,7 +22,7 @@ export default {
             control: { type: "select" },
         },
         variant: {
-            options: ["filled", "regular", "underlined"],
+            options: ["filled", "outlined", "minimal"],
             control: { type: "radio" },
         },
         scheme: {

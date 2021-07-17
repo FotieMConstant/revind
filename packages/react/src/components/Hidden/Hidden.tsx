@@ -1,43 +1,11 @@
 import clsx from "clsx";
 import PropTypes from "prop-types";
-import React, { ComponentPropsWithoutRef, forwardRef, HTMLProps } from "react";
+import React from "react";
+import { HiddenOptions } from "@revind/types";
 import { useTheme } from "../../hooks/useTheme";
+import { forwardRef, HTMLRevindProps } from "../../utils/forward-ref";
 
-export interface HiddenProps extends ComponentPropsWithoutRef<"div"> {
-    /**
-     * hides from sm & above
-     */
-    sm?: boolean;
-    /**
-     * hides from md & above
-     */
-    md?: boolean;
-    /**
-     * hides from lg & above
-     */
-    lg?: boolean;
-    /**
-     * hides from xl & above
-     */
-    xl?: boolean;
-    /**
-     * hides from 2xl & above
-     */
-    "2xl"?: boolean;
-    /**
-     * hides while hovering over the component or its children
-     */
-    hover?: boolean;
-    /**
-     * hides while clicking over the component or its children
-     */
-    active?: boolean;
-    /**
-     * hides while focusing over the component or its children
-     */
-    focus?: boolean;
-    all?: boolean;
-}
+export type HiddenProps = HTMLRevindProps<"div"> & HiddenOptions
 
 /**
  * Hides any component passed as children inside of it.
@@ -48,7 +16,7 @@ export interface HiddenProps extends ComponentPropsWithoutRef<"div"> {
  * Using multiple breakpoints isn't supported
  */
 
-export const Hidden = forwardRef<HTMLDivElement, HiddenProps>(function Hidden(
+export const Hidden = forwardRef<HiddenProps, "div">(function Hidden(
     {
         sm,
         md,

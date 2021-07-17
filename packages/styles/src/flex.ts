@@ -1,39 +1,4 @@
-export interface FlexboxDirection {
-    row: string;
-    column: string;
-    "row-reverse": string;
-    "column-reverse": string;
-}
-export interface FlexboxWrap {
-    wrap: string;
-    "no-wrap": string;
-    "wrap-reverse": string;
-}
-
-interface FlexboxJustifyAlign {
-    center: string;
-    start: string;
-    end: string;
-    between: string;
-    around: string;
-    evenly: string;
-    stretch: string;
-    baseline: string;
-}
-
-export type FlexboxAlign = Omit<FlexboxJustifyAlign, "around" | "between" | "evenly">;
-
-export type FlexboxJustify = Omit<FlexboxJustifyAlign, "stretch" | "baseline">;
-
-export interface FlexStyleObj {
-    default: string;
-    direction: FlexboxDirection;
-    wrap: FlexboxWrap;
-    alignItems: FlexboxAlign;
-    justifyContent: FlexboxJustify;
-    alignContent: FlexboxJustify;
-    inline: string;
-}
+import { FlexStyleObj } from "@revind/types";
 
 export const flexStyleObj: FlexStyleObj = {
     default: "flex",

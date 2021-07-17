@@ -1,33 +1,17 @@
 import clsx from "clsx";
 import PropTypes from "prop-types";
 import React, { ChangeEvent, FocusEvent, Ref, useState } from "react";
+import { InputOptions } from "@revind/types";
 import { useTheme } from "../../hooks/useTheme";
 import { forwardRef, HTMLRevindProps } from "../../utils/forward-ref";
 
-export interface InputProps extends Omit<HTMLRevindProps<"input">, "size"> {
-    type?:
-        | "text"
-        | "email"
-        | "password"
-        | "hidden"
-        | "number"
-        | "tel"
-        | "url"
-        | "datetime";
-    variant?: "filled" | "regular" | "underlined";
-    scheme?: "primary" | "secondary" | "red" | "green" | "yellow";
-    size?: "sm" | "md" | "lg" | "xl";
-    margin?: boolean;
-    "full-width"?: boolean;
-    label?: string;
-    "label-variant"?: "static" | "floating";
-    "wrapper-ref"?: Ref<HTMLLabelElement>;
-    "label-ref"?: Ref<HTMLSpanElement>;
-}
+type ReactRevindInputOptions = InputOptions<Ref<HTMLLabelElement>, Ref<HTMLSpanElement>>;
+
+export type InputProps = Omit<HTMLRevindProps<"input">, "size"> & ReactRevindInputOptions;
 
 export const Input = forwardRef<InputProps, "input">(function TextField(
     {
-        variant = "regular",
+        variant = "outlined",
         scheme = "primary",
         size = "md",
         margin: isMargin = true,
@@ -53,39 +37,35 @@ export const Input = forwardRef<InputProps, "input">(function TextField(
     const {
         styleObjects: {
             Input: {
-                defaultStart,
-                defaultEnd,
-                floatingPlaceholder,
-                fullWidth,
-                margin,
+                default: { start, end },
+                conditionals: { "full-width": fullWidth, floatingPlaceholder, margin },
+                logical: { variantStates: labelVariants },
                 schemes,
                 sizes,
-                textSchemes,
                 variants,
-                wrapperDefault,
-                wrapperFullWidth,
-            },
-            InputLabel: {
-                defaultStart: labelStart,
-                defaultEnd: labelEnd,
-                nonFocusedText,
-                variants: labelVariants,
+                sub: {
+                    wrapper,
+                    label: {
+                        conditionals: { nonFocusedText },
+                        default: labelDefault,
+                    },
+                },
             },
         },
     } = useTheme();
 
     function handleInputFocus(e: FocusEvent<HTMLInputElement>) {
         setInputFocused(true);
-        onFocus && onFocus(e);
+        onFocus?.(e);
     }
 
     function handleBlur(e: FocusEvent<HTMLInputElement>) {
         setInputFocused(false);
-        onBlur && onBlur(e);
+        onBlur?.(e);
     }
 
     function handleChange(e: ChangeEvent<HTMLInputElement>) {
-        onChange && onChange(e);
+        onChange?.(e);
         setContainsText(!!e.target.value);
     }
 
@@ -97,19 +77,19 @@ export const Input = forwardRef<InputProps, "input">(function TextField(
     return (
         <label
             className={clsx(
-                wrapperDefault,
-                { [wrapperFullWidth]: isFullWidth, [margin]: isMargin },
-                textSchemes[scheme],
+                wrapper.default.start,
+                { [wrapper.conditionals["full-width"]]: isFullWidth, [margin]: isMargin },
+                wrapper.schemes[scheme],
             )}
             ref={wrapperRef}
         >
             {label && (
                 <span
                     className={clsx(
-                        labelStart,
+                        labelDefault.start,
                         labelVariants[variant][spanKey],
                         { [nonFocusedText]: labelVariant === "static" && !inputFocused },
-                        labelEnd,
+                        labelDefault.end,
                     )}
                     ref={labelRef}
                 >
@@ -119,7 +99,7 @@ export const Input = forwardRef<InputProps, "input">(function TextField(
 
             <Component
                 className={clsx(
-                    defaultStart,
+                    start,
                     {
                         [fullWidth]: isFullWidth,
                         [floatingPlaceholder]: labelVariant === "floating",
@@ -127,7 +107,7 @@ export const Input = forwardRef<InputProps, "input">(function TextField(
                     sizes[size],
                     schemes[scheme],
                     variants[variant],
-                    defaultEnd,
+                    end,
                     className,
                 )}
                 {...props}
@@ -209,8 +189,8 @@ ShowHidePasswordButton.propTypes = {
 
 Input.propTypes = {
     ...Input.propTypes,
-    type: PropTypes.oneOf([
-        "minimal",
+    type: PropTypes.oneOf<ReactRevindInputOptions["type"]>([
+        "text",
         "email",
         "password",
         "hidden",
@@ -219,13 +199,13 @@ Input.propTypes = {
         "url",
         "datetime",
     ]),
-    variant: PropTypes.oneOf(["filled", "regular", "underlined"]),
-    scheme: PropTypes.oneOf(["primary", "secondary", "red", "green", "yellow"]),
-    size: PropTypes.oneOf(["sm", "md", "lg", "xl"]),
+    variant: PropTypes.oneOf<ReactRevindInputOptions["variant"]>(["filled", "outlined", "minimal"]),
+    scheme: PropTypes.oneOf<ReactRevindInputOptions["scheme"]>(["primary", "secondary", "red", "green", "yellow"]),
+    size: PropTypes.oneOf<ReactRevindInputOptions["size"]>(["sm", "md", "lg", "xl"]),
     margin: PropTypes.bool,
     "full-width": PropTypes.bool,
     label: PropTypes.string,
     "wrapper-ref": PropTypes.oneOfType<any>([PropTypes.func, PropTypes.object]),
     "label-ref": PropTypes.oneOfType<any>([PropTypes.func, PropTypes.object]),
-    "label-variant": PropTypes.oneOf(["static", "floating"]),
+    "label-variant": PropTypes.oneOf<ReactRevindInputOptions["label-variant"]>(["static", "floating"]),
 };

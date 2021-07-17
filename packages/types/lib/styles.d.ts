@@ -29,27 +29,28 @@ export interface Sizes {
     readonly "2xl"?: string;
 }
 
-/**
- * Joins Variants with Other types...can be used to junction/join any thing
- */
-export type VariantJunctions<T, V extends object = Variants> = {
-    [key in keyof V]: T;
+export type Junction<T, V> = {
+    [key in V]: T;
 };
+
+/**
+ * Joins Variants with Other types
+ *
+ * can be used to junction/join any thing
+ */
+export type VariantJunctions<T, V extends object = Variants> = Junction<T, keyof V>;
 
 export type VariantSchemes<
     V extends object = Variants,
     S extends object = Schemes,
-> = VariantJunctions<S, V>;
+> = Partial<VariantJunctions<S, V>>;
 
-export type VariantSizes<V extends object = Variants> = VariantJunctions<Sizes, V>;
+export type VariantSizes<V extends object = Variants> = Partial<VariantJunctions<Sizes, V>>;
 
 export interface DefaultStyles {
     start?: string;
     end?: string;
 }
-
-export type Conditionals<T extends string> = { conditionals: Record<T, string> };
-export type SubComponents<T extends string, Props = {}> = { sub: Record<T, Props> };
 
 export interface BaseStyleObj<V extends object = Variants, Sh extends object = Schemes> {
     default: DefaultStyles;
@@ -59,3 +60,8 @@ export interface BaseStyleObj<V extends object = Variants, Sh extends object = S
     variantSchemes: VariantSchemes<V, Sh>;
     variantSizes: VariantSizes<V>;
 }
+
+// StyleObj Addon
+export type Conditionals<T extends string> = { conditionals: Record<T, string> };
+export type Logical<P extends object = {}> = { logical: P };
+export type SubComponents<T extends object = {}> = { sub: T };

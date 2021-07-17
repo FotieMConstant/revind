@@ -2,7 +2,7 @@ import { ButtonStyleObj } from "@revind/types";
 
 export const buttonStyleObj: ButtonStyleObj = {
     default: {
-        start: "cursor-pointer transition-all",
+        start: "cursor-pointer transition-all select-none",
         end: "disabled:bg-gray-200 dark:disabled:bg-gray-500 disabled:cursor-not-allowed disabled:text-gray-400 focus:outline-none",
     },
     conditionals: {

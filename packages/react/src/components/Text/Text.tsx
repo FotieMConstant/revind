@@ -75,7 +75,7 @@ export const Text = forwardRef<TextProps, TextElement>(function Text(
 
 Text.propTypes = {
     ...Text.propTypes,
-    variant: PropTypes.oneOf([
+    variant: PropTypes.oneOf<TextOptions["variant"]>([
         "h1",
         "h2",
         "h3",
@@ -89,8 +89,8 @@ Text.propTypes = {
         "caption",
         "overline",
     ]),
-    align: PropTypes.oneOf(["left", "center", "right", "justify"]),
-    scheme: PropTypes.oneOf([
+    align: PropTypes.oneOf<TextOptions["align"]>(["left", "center", "right", "justify"]),
+    scheme: PropTypes.oneOf<TextOptions["scheme"]>([
         "primary",
         "secondary",
         "red",

@@ -5,7 +5,9 @@ import { useTheme } from "../../hooks/useTheme";
 import { forwardRef, HTMLRevindProps } from "../../utils/forward-ref";
 import { ButtonOptions } from "@revind/types";
 
-export type ButtonProps = HTMLRevindProps<"button"> & ButtonOptions<ReactNode>;
+type ReactRevindButtonOptions = ButtonOptions<ReactNode>;
+
+export type ButtonProps = HTMLRevindProps<"button"> & ReactRevindButtonOptions;
 
 /**
  * Higher level Button component
@@ -78,8 +80,20 @@ export const Button = forwardRef<ButtonProps, "button">(function Button(
 Button.propTypes = {
     ...Button.propTypes,
     variant: PropTypes.oneOf<ButtonProps["variant"]>(["filled", "outlined", "minimal"]),
-    scheme: PropTypes.oneOf(["primary", "secondary", "red", "green", "yellow"]),
-    size: PropTypes.oneOf(["sm", "md", "lg", "xl", "2xl"]),
+    scheme: PropTypes.oneOf<ReactRevindButtonOptions["scheme"]>([
+        "primary",
+        "secondary",
+        "red",
+        "green",
+        "yellow",
+    ]),
+    size: PropTypes.oneOf<ReactRevindButtonOptions["size"]>([
+        "sm",
+        "md",
+        "lg",
+        "xl",
+        "2xl",
+    ]),
     margin: PropTypes.bool,
     "start-icon": PropTypes.node,
     "end-icon": PropTypes.node,

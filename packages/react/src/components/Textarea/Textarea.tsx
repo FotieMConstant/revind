@@ -7,7 +7,7 @@ import React, {
     useState,
 } from "react";
 import PropTypes from "prop-types";
-import { Input, InputProps } from "../Input/Input";
+import { InputProps } from "../Input/Input";
 import { HTMLRevindProps } from "../../utils/forward-ref";
 
 export interface TextareaProps
@@ -102,7 +102,7 @@ Textarea.propTypes = {
     ...Textarea.propTypes,
     "min-rows": PropTypes.number,
     "max-rows": PropTypes.number,
-    variant: PropTypes.oneOf(["filled", "regular", "underlined"]),
+    variant: PropTypes.oneOf(["filled", "outlined", "minimal"]),
     scheme: PropTypes.oneOf(["primary", "secondary", "red", "green", "yellow"]),
     margin: PropTypes.bool,
     "full-width": PropTypes.bool,

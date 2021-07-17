@@ -2,18 +2,23 @@ import React, { createContext, FC } from "react";
 import {
     buttonStyleObj,
     flexStyleObj,
-    FlexStyleObj,
     containerStyleObj,
-    HiddenStyleObj,
     hiddenStyleObj,
     textStyleObj,
     buttonGroupStyleObj,
-    InputStyleObj,
     inputStyleObj,
     inputLabelStyleObj,
     InputLabelStyleObj,
 } from "@revind/styles";
-import { ButtonGroupStyleObj, ButtonStyleObj, TextStyleObj, ContainerStyleObj } from "@revind/types";
+import {
+    ButtonGroupStyleObj,
+    ButtonStyleObj,
+    TextStyleObj,
+    ContainerStyleObj,
+    FlexStyleObj,
+    HiddenStyleObj,
+    InputStyleObj,
+} from "@revind/types";
 
 export interface ThemeContext {
     styleObjects: {

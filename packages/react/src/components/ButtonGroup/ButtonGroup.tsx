@@ -7,7 +7,9 @@ import { Flex } from "../../components/Flex/Flex";
 import { useTheme } from "../../hooks/useTheme";
 import { forwardRef, HTMLRevindProps } from "../../utils/forward-ref";
 
-export type ButtonGroupProps = HTMLRevindProps<"div"> & ButtonGroupOptions<ReactNode>;
+type ReactRevindButtonGroupOptions = ButtonGroupOptions<ReactNode>;
+
+export type ButtonGroupProps = HTMLRevindProps<"div"> & ReactRevindButtonGroupOptions;
 
 export const ButtonGroup = forwardRef<ButtonGroupProps, "div">(function ButtonGroup(
     {
@@ -75,8 +77,27 @@ export const ButtonGroup = forwardRef<ButtonGroupProps, "div">(function ButtonGr
 
 ButtonGroup.propTypes = {
     "full-width": PropTypes.bool,
-    direction: PropTypes.oneOf(["row", "column"]),
-    size: PropTypes.oneOf(["sm", "md", "lg", "xl", "2xl"]),
-    variant: PropTypes.oneOf(["filled", "outlined", "minimal"]),
-    scheme: PropTypes.oneOf(["primary", "secondary", "red", "green", "yellow"]),
+    direction: PropTypes.oneOf<ReactRevindButtonGroupOptions["direction"]>([
+        "row",
+        "column",
+    ]),
+    size: PropTypes.oneOf<ReactRevindButtonGroupOptions["size"]>([
+        "sm",
+        "md",
+        "lg",
+        "xl",
+        "2xl",
+    ]),
+    variant: PropTypes.oneOf<ReactRevindButtonGroupOptions["variant"]>([
+        "filled",
+        "outlined",
+        "minimal",
+    ]),
+    scheme: PropTypes.oneOf<ReactRevindButtonGroupOptions["scheme"]>([
+        "primary",
+        "secondary",
+        "red",
+        "green",
+        "yellow",
+    ]),
 };

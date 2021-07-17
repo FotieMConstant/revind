@@ -1,6 +1,7 @@
 import {
     BaseStyleObj,
     Conditionals,
+    Junction,
     Schemes,
     Sizes,
     SubComponents,
@@ -49,6 +50,11 @@ export interface ButtonOptions<I> {
     rounded?: boolean;
 }
 
+export type ButtonSubComponents = Junction<
+    Pick<BaseStyleObj, "default">,
+    "startIcon" | "endIcon"
+>;
+
 export type ButtonStyleObj = BaseStyleObj &
     Conditionals<"rounded" | "margin" | "fullWidth"> &
-    SubComponents<"startIcon" | "endIcon", Pick<BaseStyleObj, "default">>;
+    SubComponents<ButtonSubComponents>;

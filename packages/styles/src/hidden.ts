@@ -1,16 +1,5 @@
-export interface HiddenStyleObj {
-    states: {
-        all: string;
-        sm: string;
-        md: string;
-        lg: string;
-        xl: string;
-        "2xl": string;
-        hover: string;
-        active: string;
-        focus: string;
-    };
-}
+import { HiddenStyleObj } from "@revind/types";
+
 export const hiddenStyleObj: HiddenStyleObj = {
     states: {
         all: "hidden invisible opacity-0",

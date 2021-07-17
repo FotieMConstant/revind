@@ -1,38 +1,11 @@
 import PropTypes from "prop-types";
-import React, { ComponentPropsWithoutRef, forwardRef } from "react";
+import React from "react";
 import clsx from "clsx";
 import { useTheme } from "../../hooks/useTheme";
+import { forwardRef, HTMLRevindProps } from "../../utils/forward-ref";
+import { FlexOptions } from "@revind/types";
 
-export interface FlexProps extends ComponentPropsWithoutRef<"div"> {
-    /**
-     * set the direction of the `Flex` container
-     * @default row
-     */
-    direction?: "column" | "row" | "row-reverse" | "column-reverse";
-    /**
-     * wraps the content to new line if set to wrap='wrap' or vice versa
-     * if not. wrap-reverse will wrap the content from the opposite site
-     * @default no-wrap
-     */
-    wrap?: "wrap" | "no-wrap" | "wrap-reverse";
-    /**
-     * css `justify-content`
-     */
-    justifyContent?: "center" | "start" | "end" | "between" | "around" | "evenly";
-    /**
-     * css `align-content`
-     */
-    alignContent?: "center" | "start" | "end" | "between" | "around" | "evenly";
-    /**
-     * css `align-items`
-     */
-    alignItems?: "center" | "start" | "end" | "stretch" | "baseline";
-    /**
-     * uses `inline-flex` instead of `flex` as display for `Flex`
-     * @default false
-     */
-    inline?: boolean;
-}
+export type FlexProps = HTMLRevindProps<"div"> & FlexOptions;
 
 /**
  * Flex is a css flexbox wrapper. Its a core level component & shared
@@ -47,7 +20,7 @@ export interface FlexProps extends ComponentPropsWithoutRef<"div"> {
  * </Flex>
  * ```
  */
-export const Flex = forwardRef<HTMLDivElement, FlexProps>(function Flex(
+export const Flex = forwardRef<FlexProps, "div">(function Flex(
     {
         direction = "row",
         wrap = "no-wrap",
