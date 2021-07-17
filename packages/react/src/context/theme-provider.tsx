@@ -7,8 +7,6 @@ import {
     textStyleObj,
     buttonGroupStyleObj,
     inputStyleObj,
-    inputLabelStyleObj,
-    InputLabelStyleObj,
 } from "@revind/styles";
 import {
     ButtonGroupStyleObj,
@@ -29,7 +27,6 @@ export interface ThemeContext {
         Hidden: HiddenStyleObj;
         Text: TextStyleObj;
         Input: InputStyleObj;
-        InputLabel: InputLabelStyleObj;
     };
 }
 
@@ -42,7 +39,6 @@ export const defaultTheme: ThemeContext = {
         Text: textStyleObj,
         ButtonGroup: buttonGroupStyleObj,
         Input: inputStyleObj,
-        InputLabel: inputLabelStyleObj,
     },
 };
 export const themeCtx = createContext<ThemeContext>(defaultTheme);
