@@ -65,7 +65,7 @@ To run the React project:
 $ cd ./packages/react/ && npm start 
 ```
 
-To run the Veact project:
+To run the Vue project:
 
 ```bash
 $ cd ./packages/vue/ && npm start 
