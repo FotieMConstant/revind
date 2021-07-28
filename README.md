@@ -54,9 +54,9 @@ Any kind contribution related to this project & following all the instructions/r
 Currently this projects needs your support. We need some **reactjs, vuejs, sveltejs** developers who can willingly contribute to this Open-Source project
 
 ## Running locally
-Git clone the repository & in the project root directory run:
+Make sure you have `nodejs@^12` & `npm@^7` installed. Then git clone the repository & in the project root directory run:
 ```bash
-$ npm i -g lerna && npm run bootstrap -- --hoist -- -f
+$ npm install
 ```
 
 To run the React project:

@@ -39,6 +39,7 @@
         "storybook-dark-mode": "^1.0.8",
         "typescript": "^4.3.2",
         "postcss": "^8.3.5",
+        "vite": "^2.4.4",
         "vite-plugin-ts-checker": "^0.1.3"
     },
     "description": "highly configurable tailwindcss based component library for react",
