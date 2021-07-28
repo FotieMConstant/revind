@@ -9,6 +9,7 @@ import React, {
 import PropTypes from "prop-types";
 import { InputProps } from "../Input/Input";
 import { HTMLRevindProps } from "../../utils/forward-ref";
+import { InputLabelProps } from "../Input/InputLabel";
 
 export interface TextareaProps
     extends HTMLRevindProps<"textarea">,
@@ -20,9 +21,8 @@ export interface TextareaProps
             | "margin"
             | "full-width"
             | "label"
-            | "label-variant"
+            | "label-props"
             | "wrapper-ref"
-            | "label-ref"
         > {
     "min-rows"?: number;
     "max-rows"?: number;
@@ -108,6 +108,5 @@ Textarea.propTypes = {
     "full-width": PropTypes.bool,
     label: PropTypes.string,
     "wrapper-ref": PropTypes.oneOfType<any>([PropTypes.func, PropTypes.object]),
-    "label-ref": PropTypes.oneOfType<any>([PropTypes.func, PropTypes.object]),
-    "label-variant": PropTypes.oneOf(["static", "floating"]),
+    "label-props": PropTypes.object as any
 };

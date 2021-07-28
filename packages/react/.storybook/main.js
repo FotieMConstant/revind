@@ -8,7 +8,7 @@ module.exports = {
     addons: [
         "@storybook/addon-links",
         "@storybook/addon-essentials",
-        'storybook-dark-mode/register',
+        "storybook-dark-mode/register",
         {
             name: "@storybook/addon-postcss",
             options: {
@@ -23,7 +23,9 @@ module.exports = {
     },
     async viteFinal(config) {
         config.plugins.push(TsChecker({ checker: "tsc" }));
-        config.server = { ...config.server, fs: { strict: false } };
+        config.server.fs.strict = false;
+        config.server.hmr.port = 443;
+        config.server.hmr.host = "6006-emerald-beaver-vrw27llg.ws-us11.gitpod.io";
         return config;
     },
 };

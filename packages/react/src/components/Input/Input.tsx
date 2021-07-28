@@ -1,11 +1,13 @@
 import clsx from "clsx";
 import PropTypes from "prop-types";
-import React, { ChangeEvent, FocusEvent, Ref, useState } from "react";
+import React, { ChangeEvent, FocusEvent, Ref, useMemo, useState } from "react";
 import { InputOptions } from "@revind/types";
 import { useTheme } from "../../hooks/useTheme";
 import { forwardRef, HTMLRevindProps } from "../../utils/forward-ref";
+import { uid } from "../../utils/uid";
+import { InputLabel, InputLabelProps } from "./InputLabel";
 
-type ReactRevindInputOptions = InputOptions<Ref<HTMLLabelElement>, Ref<HTMLSpanElement>>;
+type ReactRevindInputOptions = InputOptions<Ref<HTMLDivElement>, InputLabelProps>;
 
 export type InputProps = Omit<HTMLRevindProps<"input">, "size"> & ReactRevindInputOptions;
 
@@ -17,11 +19,11 @@ export const Input = forwardRef<InputProps, "input">(function TextField(
         margin: isMargin = true,
         "full-width": isFullWidth = false,
         label,
-        "label-ref": labelRef,
+        "label-props": labelProps,
         "wrapper-ref": wrapperRef,
-        "label-variant": labelVariant = "floating",
         type = "text",
         className = "",
+        id,
         onFocus,
         onChange,
         onBlur,
@@ -34,22 +36,20 @@ export const Input = forwardRef<InputProps, "input">(function TextField(
     const [containsText, setContainsText] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
 
+    const gid = useMemo(() => id ?? uid(), [id]);
+
     const {
         styleObjects: {
             Input: {
                 default: { start, end },
-                conditionals: { "full-width": fullWidth, floatingPlaceholder, margin },
-                logical: { variantStates: labelVariants },
+                conditionals: { "full-width": fullWidth, margin },
                 schemes,
                 sizes,
                 variants,
-                sub: {
-                    wrapper,
-                    label: {
-                        conditionals: { nonFocusedText },
-                        default: labelDefault,
-                    },
-                },
+                variantInputLabelVariant,
+                variantSchemes,
+                variantSizes,
+                sub: { wrapper },
             },
         },
     } = useTheme();
@@ -69,14 +69,10 @@ export const Input = forwardRef<InputProps, "input">(function TextField(
         setContainsText(!!e.target.value);
     }
 
-    const spanKey =
-        inputFocused || labelVariant !== "floating" || containsText
-            ? "focused"
-            : "default";
-
     return (
-        <label
+        <div
             className={clsx(
+                "group",
                 wrapper.default.start,
                 { [wrapper.conditionals["full-width"]]: isFullWidth, [margin]: isMargin },
                 wrapper.schemes[scheme],
@@ -84,29 +80,32 @@ export const Input = forwardRef<InputProps, "input">(function TextField(
             ref={wrapperRef}
         >
             {label && (
-                <span
-                    className={clsx(
-                        labelDefault.start,
-                        labelVariants[variant][spanKey],
-                        { [nonFocusedText]: labelVariant === "static" && !inputFocused },
-                        labelDefault.end,
-                    )}
-                    ref={labelRef}
+                <InputLabel
+                    inputVariant={variant}
+                    isInputFocused={inputFocused}
+                    inputContainsText={containsText}
+                    htmlFor={gid}
+                    {...labelProps}
                 >
                     {label}
-                </span>
+                </InputLabel>
             )}
 
             <Component
+                id={gid}
                 className={clsx(
                     start,
                     {
                         [fullWidth]: isFullWidth,
-                        [floatingPlaceholder]: labelVariant === "floating",
                     },
                     sizes[size],
                     schemes[scheme],
                     variants[variant],
+                    variantSchemes[variant]?.[scheme],
+                    variantSizes[variant]?.[size],
+                    variantInputLabelVariant[variant][
+                        labelProps?.variant ?? "material-floating"
+                    ],
                     end,
                     className,
                 )}
@@ -123,7 +122,7 @@ export const Input = forwardRef<InputProps, "input">(function TextField(
                     active={showPassword}
                 />
             )}
-        </label>
+        </div>
     );
 });
 
@@ -199,13 +198,22 @@ Input.propTypes = {
         "url",
         "datetime",
     ]),
-    variant: PropTypes.oneOf<ReactRevindInputOptions["variant"]>(["filled", "outlined", "minimal"]),
-    scheme: PropTypes.oneOf<ReactRevindInputOptions["scheme"]>(["primary", "secondary", "red", "green", "yellow"]),
+    variant: PropTypes.oneOf<ReactRevindInputOptions["variant"]>([
+        "filled",
+        "outlined",
+        "minimal",
+    ]),
+    scheme: PropTypes.oneOf<ReactRevindInputOptions["scheme"]>([
+        "primary",
+        "secondary",
+        "red",
+        "green",
+        "yellow",
+    ]),
     size: PropTypes.oneOf<ReactRevindInputOptions["size"]>(["sm", "md", "lg", "xl"]),
     margin: PropTypes.bool,
     "full-width": PropTypes.bool,
     label: PropTypes.string,
     "wrapper-ref": PropTypes.oneOfType<any>([PropTypes.func, PropTypes.object]),
-    "label-ref": PropTypes.oneOfType<any>([PropTypes.func, PropTypes.object]),
-    "label-variant": PropTypes.oneOf<ReactRevindInputOptions["label-variant"]>(["static", "floating"]),
+    "label-props": PropTypes.object,
 };

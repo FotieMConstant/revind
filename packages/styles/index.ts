@@ -5,3 +5,4 @@ export * from "./src/container";
 export * from "./src/hidden";
 export * from "./src/text";
 export * from "./src/input";
+export * from "./src/input-label";

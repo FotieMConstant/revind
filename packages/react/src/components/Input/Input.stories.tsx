@@ -31,14 +31,33 @@ export default {
         },
         size: { options: ["sm", "md", "lg", "xl"], control: { type: "radio" } },
     },
-} as Meta;
+} as Meta<InputProps>;
 
 const Template = (props: InputProps) => <Input {...props} />;
 
-export const Default = Template.bind({});
-
-(Default as any).args = {
+const defaultArgs = {
     margin: true,
     "full-width": false,
     label: "Input",
+    placeholder: "placeholder",
+};
+
+export const Default = Template.bind({});
+
+(Default as any).args = defaultArgs as InputProps;
+
+export const MaterialStaticLabelled = Template.bind({});
+(MaterialStaticLabelled as any).args = {
+    ...defaultArgs,
+    "label-props": {
+        variant: "material-static",
+    },
+} as InputProps;
+
+export const LeftLabelled = Template.bind({});
+(LeftLabelled as any).args = {
+    ...defaultArgs,
+    "label-props": {
+        variant: "left",
+    },
 } as InputProps;

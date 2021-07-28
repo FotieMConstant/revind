@@ -2,7 +2,7 @@ import { InputStyleObj } from "@revind/types";
 
 export const inputStyleObj: InputStyleObj = {
     default: {
-        start: "dark:border-gray-600 outline-none text-black dark:text-white  placeholder-gray-500 border-gray-300",
+        start: "dark:border-gray-600 outline-none text-black dark:text-white  placeholder-gray-500 border-gray-300 inline-flex",
     },
     variants: {
         outlined: "border border-solid rounded bg-inherit",
@@ -22,12 +22,23 @@ export const inputStyleObj: InputStyleObj = {
         lg: "py-4 px-1 text-xl",
         xl: "py-6 px-1 text-2xl",
     },
+    variantInputLabelVariant: {
+        filled: {
+            "material-floating": "placeholder-opacity-0 focus:placeholder-opacity-100",
+        },
+        minimal: {
+            "material-floating": "placeholder-opacity-0 focus:placeholder-opacity-100",
+        },
+        outlined: {
+            "material-floating": "placeholder-opacity-0 focus:placeholder-opacity-100",
+        },
+    },
     variantSchemes: {},
     variantSizes: {},
     sub: {
         wrapper: {
             default: {
-                start: "transition-colors relative text-gray-500",
+                start: "transition-colors relative text-gray-500 bg-inherit",
             },
             conditionals: {
                 "full-width": "flex",
@@ -40,35 +51,9 @@ export const inputStyleObj: InputStyleObj = {
                 yellow: "focus-within:text-yellow",
             },
         },
-        label: {
-            default: {
-                start: "overflow-ellipsis whitespace-nowrap appearance-none transition-all transform select-none absolute",
-            },
-            conditionals: {
-                nonFocusedText: "text-gray-500",
-            },
-        },
-    },
-    logical: {
-        variantStates: {
-            outlined: {
-                focused:
-                    "-top-2 text-xs bg-container-primary dark:bg-container-primary-dark left-2",
-                default: "left-2 top-1/2 -translate-y-1/2 text-gray-500",
-            },
-            filled: {
-                focused: "-top-2 text-xs left-2",
-                default: "left-2 top-1/2 -translate-y-1/2 text-gray-500",
-            },
-            minimal: {
-                focused: "-top-2 text-xs",
-                default: "top-1/2 -translate-y-1/2 text-gray-500",
-            },
-        },
     },
     conditionals: {
         "full-width": "w-full",
         margin: "mx-1 mb-2",
-        floatingPlaceholder: "placeholder-opacity-0 focus:placeholder-opacity-100",
     },
 };

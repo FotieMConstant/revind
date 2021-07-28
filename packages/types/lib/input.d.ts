@@ -1,4 +1,5 @@
 import { ContainerSizes } from "./container";
+import { InputLabelVariants } from "./input-label";
 import {
     BaseStyleObj,
     Conditionals,
@@ -12,9 +13,7 @@ import {
 
 type InputSizes = ContainerSizes;
 
-type InputLabelVariants = "static" | "floating";
-
-export interface InputOptions<W, L> {
+export interface InputOptions<W, LabelProps> {
     type?:
         | "text"
         | "email"
@@ -30,21 +29,15 @@ export interface InputOptions<W, L> {
     "full-width"?: boolean;
     margin?: boolean;
     label?: string;
-    "label-variant"?: InputLabelVariants;
+    "label-props"?: LabelProps;
     "wrapper-ref"?: W;
-    "label-ref"?: L;
 }
-
-export type InputLogicalStyles = {
-    variantStates: VariantJunctions<{ focused: string; default: string }>;
-};
 
 export interface InputSubComponents {
     wrapper: Pick<BaseStyleObj, "default" | "schemes"> & Conditionals<"full-width">;
-    label: Pick<BaseStyleObj, "default"> & Conditionals<"nonFocusedText">;
 }
 
-export type InputStyleObj = BaseStyleObj &
-    Conditionals<"full-width" | "margin" | "floatingPlaceholder"> &
-    SubComponents<InputSubComponents> &
-    Logical<InputLogicalStyles>;
+export type InputStyleObj = BaseStyleObj & {
+    variantInputLabelVariant: VariantJunctions<InputLabelVariants>;
+} & Conditionals<"full-width" | "margin"> &
+    SubComponents<InputSubComponents>;

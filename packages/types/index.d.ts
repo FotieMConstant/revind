@@ -5,3 +5,4 @@ export * from "./lib/text";
 export * from "./lib/flex"
 export * from "./lib/hidden"
 export * from "./lib/input"
+export * from "./lib/input-label"

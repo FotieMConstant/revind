@@ -7,3 +7,4 @@ export * from "./components/Grid/Grid";
 export * from "./components/Hidden/Hidden";
 export * from "./components/Text/Text";
 export * from "./components/Input/Input"
+export * from "./components/Input/InputLabel"
