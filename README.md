@@ -52,3 +52,23 @@ Docs are located in [revind.vercel.app](http://revind.vercel.app/). Visit it to 
 Any kind contribution related to this project & following all the instructions/rules defined in [CONTRIBUTION.md](/CONTRIBUTION.md) are warmly accepted
 
 Currently this projects needs your support. We need some **reactjs, vuejs, sveltejs** developers who can willingly contribute to this Open-Source project
+
+## Running locally
+Git clone the repository & in the project root directory run:
+```bash
+$ npm i -g lerna && npm run bootstrap -- --hoist -- -f
+```
+
+To run the React project:
+
+```bash
+$ cd ./packages/react/ && npm start 
+```
+
+To run the Veact project:
+
+```bash
+$ cd ./packages/vue/ && npm start 
+```
+
+This will start the storybook dev-server & will show the link where it got served
