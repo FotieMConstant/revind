@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import PropTypes from "prop-types";
-import React, { ChangeEvent, FocusEvent, Ref, useMemo, useState } from "react";
+import React, { ChangeEvent, Ref, useMemo, useState } from "react";
 import { InputOptions } from "@revind/types";
 import { useTheme } from "../../hooks/useTheme";
 import { forwardRef, HTMLRevindProps } from "../../utils/forward-ref";
@@ -23,16 +23,14 @@ export const Input = forwardRef<InputProps, "input">(function TextField(
         "wrapper-ref": wrapperRef,
         type = "text",
         className = "",
+        placeholder = " ",
         id,
-        onFocus,
         onChange,
-        onBlur,
         as: Component = "input",
         ...props
     },
     ref,
 ) {
-    const [inputFocused, setInputFocused] = useState(false);
     const [containsText, setContainsText] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
 
@@ -54,16 +52,6 @@ export const Input = forwardRef<InputProps, "input">(function TextField(
         },
     } = useTheme();
 
-    function handleInputFocus(e: FocusEvent<HTMLInputElement>) {
-        setInputFocused(true);
-        onFocus?.(e);
-    }
-
-    function handleBlur(e: FocusEvent<HTMLInputElement>) {
-        setInputFocused(false);
-        onBlur?.(e);
-    }
-
     function handleChange(e: ChangeEvent<HTMLInputElement>) {
         onChange?.(e);
         setContainsText(!!e.target.value);
@@ -72,25 +60,16 @@ export const Input = forwardRef<InputProps, "input">(function TextField(
     return (
         <div
             className={clsx(
-                "group",
                 wrapper.default.start,
+                wrapper.wrapperInputVariant[variant],
+                wrapper.wrapperInputLabelVariant[
+                    labelProps?.variant ?? "material-floating"
+                ],
                 { [wrapper.conditionals["full-width"]]: isFullWidth, [margin]: isMargin },
                 wrapper.schemes[scheme],
             )}
             ref={wrapperRef}
         >
-            {label && (
-                <InputLabel
-                    inputVariant={variant}
-                    isInputFocused={inputFocused}
-                    inputContainsText={containsText}
-                    htmlFor={gid}
-                    {...labelProps}
-                >
-                    {label}
-                </InputLabel>
-            )}
-
             <Component
                 id={gid}
                 className={clsx(
@@ -110,12 +89,21 @@ export const Input = forwardRef<InputProps, "input">(function TextField(
                     className,
                 )}
                 {...props}
-                onFocus={handleInputFocus}
-                onBlur={handleBlur}
+                placeholder={placeholder}
                 ref={ref}
                 onChange={handleChange}
                 type={!showPassword ? type : "text"}
             />
+            {label && (
+                <InputLabel
+                    aria-required={props.required}
+                    inputVariant={variant}
+                    htmlFor={gid}
+                    {...labelProps}
+                >
+                    {label}
+                </InputLabel>
+            )}
             {type === "password" && containsText && (
                 <ShowHidePasswordButton
                     toggle={() => setShowPassword(!showPassword)}

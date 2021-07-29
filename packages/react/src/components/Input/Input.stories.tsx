@@ -40,6 +40,7 @@ const defaultArgs = {
     "full-width": false,
     label: "Input",
     placeholder: "placeholder",
+    required: true,
 };
 
 export const Default = Template.bind({});
@@ -59,5 +60,13 @@ export const LeftLabelled = Template.bind({});
     ...defaultArgs,
     "label-props": {
         variant: "left",
+    },
+} as InputProps;
+
+export const TopLabelled = Template.bind({});
+(TopLabelled as any).args = {
+    ...defaultArgs,
+    "label-props": {
+        variant: "top",
     },
 } as InputProps;

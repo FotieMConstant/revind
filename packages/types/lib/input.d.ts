@@ -34,7 +34,11 @@ export interface InputOptions<W, LabelProps> {
 }
 
 export interface InputSubComponents {
-    wrapper: Pick<BaseStyleObj, "default" | "schemes"> & Conditionals<"full-width">;
+    wrapper: Pick<BaseStyleObj, "default" | "schemes"> &
+        Conditionals<"full-width"> & {
+            wrapperInputLabelVariant: InputLabelVariants;
+            wrapperInputVariant: Variants;
+        };
 }
 
 export type InputStyleObj = BaseStyleObj & {

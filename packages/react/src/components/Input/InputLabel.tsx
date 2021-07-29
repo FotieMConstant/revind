@@ -9,9 +9,10 @@ export type InputLabelProps = HTMLRevindProps<"label"> & InputLabelOptions;
 const InputLabel = forwardRef<InputLabelProps, "label">(function InputLabel(
     {
         variant = "material-floating",
-        scheme = "primary",
+        scheme = "secondary",
         size = "md",
         inputVariant,
+        children,
         ...props
     },
     ref,
@@ -44,7 +45,12 @@ const InputLabel = forwardRef<InputLabelProps, "label">(function InputLabel(
             )}
             ref={ref}
             {...props}
-        />
+        >
+            {children}
+            {props["aria-required"] && (
+                <span className="text-red dark:text-red-dark">*</span>
+            )}
+        </label>
     );
 });
 
@@ -53,7 +59,6 @@ InputLabel.propTypes = {
         "material-floating",
         "material-static",
         "top",
-        "right",
         "left",
     ]),
     scheme: PropTypes.oneOf<InputLabelProps["scheme"]>([

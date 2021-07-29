@@ -18,7 +18,6 @@ export interface InputLabelVariants {
     readonly "material-floating"?: string;
     readonly "material-static"?: string;
     readonly top?: string;
-    readonly right?: string;
     readonly left?: string;
 }
 

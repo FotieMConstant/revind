@@ -2,7 +2,7 @@ import { InputStyleObj } from "@revind/types";
 
 export const inputStyleObj: InputStyleObj = {
     default: {
-        start: "dark:border-gray-600 outline-none text-black dark:text-white  placeholder-gray-500 border-gray-300 inline-flex",
+        start: "peer dark:border-gray-600 outline-none text-black dark:text-white  placeholder-gray-500 border-gray-300",
     },
     variants: {
         outlined: "border border-solid rounded bg-inherit",
@@ -38,7 +38,7 @@ export const inputStyleObj: InputStyleObj = {
     sub: {
         wrapper: {
             default: {
-                start: "transition-colors relative text-gray-500 bg-inherit",
+                start: "transition-colors relative bg-inherit",
             },
             conditionals: {
                 "full-width": "flex",
@@ -50,6 +50,11 @@ export const inputStyleObj: InputStyleObj = {
                 green: "focus-within:text-green",
                 yellow: "focus-within:text-yellow",
             },
+            wrapperInputLabelVariant: {
+                top: "inline-flex flex-col-reverse",
+                left: "inline-flex items-center flex-row-reverse",
+            },
+            wrapperInputVariant: {},
         },
     },
     conditionals: {
