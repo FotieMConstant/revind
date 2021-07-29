@@ -67,6 +67,7 @@ export const Input = forwardRef<InputProps, "input">(function TextField(
                 ],
                 { [wrapper.conditionals["full-width"]]: isFullWidth, [margin]: isMargin },
                 wrapper.schemes[scheme],
+                wrapper.default.end,
             )}
             ref={wrapperRef}
         >

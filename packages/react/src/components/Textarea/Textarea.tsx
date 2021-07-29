@@ -7,9 +7,15 @@ import React, {
     useState,
 } from "react";
 import PropTypes from "prop-types";
-import { InputProps } from "../Input/Input";
+import { Input, InputProps } from "../Input/Input";
 import { HTMLRevindProps } from "../../utils/forward-ref";
-import { InputLabelProps } from "../Input/InputLabel";
+
+/**
+ * This component is heavily under development. It has many bugs
+ * There's a high chance of major logic change. Don't impletment this
+ * for frameworks other than React. Currently typescript's typesafety
+ * is turned off too for this component's props & hooks
+ */
 
 export interface TextareaProps
     extends HTMLRevindProps<"textarea">,
@@ -29,7 +35,7 @@ export interface TextareaProps
 }
 
 export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(function Textarea(
-    { "min-rows": minRows, "max-rows": maxRows, onInput, rows, ...props },
+    { "min-rows": minRows, "max-rows": maxRows, onInput, rows, size, ...props },
     ref,
 ) {
     const [defaultHeight, setDefaultHeight] = useState(0);
@@ -37,7 +43,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(function 
 
     function handleInput(e: FormEvent<HTMLTextAreaElement>) {
         const { target } = e;
-        onInput && onInput(e);
+        onInput?.(e);
         const el = target as HTMLTextAreaElement;
         el.style.height = minRows ? `${(minRows - 1) * defaultHeight}px` : "auto";
         let height = el.scrollHeight;
@@ -57,7 +63,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(function 
     }
 
     const getOffset = useCallback(function getOffset() {
-        switch (props.size) {
+        switch (size) {
             case "sm":
                 return 12;
             case "lg":
@@ -86,15 +92,13 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(function 
     }, []);
 
     return (
-        <>
-            {/* <Input
-                ref={inputRef}
-                onInput={rows ? onInput : handleInput}
-                as="textarea"
-                rows={rows ?? 1}
-                {...props}
-            /> */}
-        </>
+        <Input
+            as="textarea"
+            ref={inputRef as any}
+            onInput={(rows ? onInput : handleInput) as any}
+            rows={rows ?? 1}
+            {...(props as any)}
+        />
     );
 });
 
@@ -108,5 +112,5 @@ Textarea.propTypes = {
     "full-width": PropTypes.bool,
     label: PropTypes.string,
     "wrapper-ref": PropTypes.oneOfType<any>([PropTypes.func, PropTypes.object]),
-    "label-props": PropTypes.object as any
+    "label-props": PropTypes.object as any,
 };
