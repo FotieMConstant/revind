@@ -33,6 +33,15 @@ const brandBgColors = {
         dark: colors.gray[700],
     },
 };
+
+// text
+const brandTextColors = {
+    regular: {
+        DEFAULT: colors.gray[800],
+        dark: colors.gray[100],
+    },
+};
+
 /**
  * @type {import("@types/tailwindcss/tailwind-config").TailwindConfig}
  */
@@ -45,6 +54,9 @@ const config = {
                 ...brandColors,
             },
             backgroundColor: brandBgColors,
+            textColor: {
+                ...brandTextColors,
+            },
         },
     },
     variants: {

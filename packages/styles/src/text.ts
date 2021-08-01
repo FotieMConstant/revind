@@ -22,8 +22,8 @@ export const textStyleObj: TextStyleObj = {
         red: "text-red dark:text-red-dark",
         green: "text-green dark:text-green-dark",
         yellow: "text-yellow dark:text-yellow-dark",
-        inverted: "text-gray-100 dark:text-gray-800",
-        regular: "text-gray-800 dark:text-gray-100",
+        inverted: "text-regular-dark dark:text-regular",
+        regular: "text-regular dark:text-regular-dark",
     },
     variantSchemes: {},
     alignments: {

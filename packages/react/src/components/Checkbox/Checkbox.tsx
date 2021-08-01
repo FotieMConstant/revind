@@ -1,121 +1,69 @@
+import clsx from "clsx";
 import PropTypes from "prop-types";
-import React, {
-    DetailedHTMLProps,
-    ForwardedRef,
-    forwardRef,
-    InputHTMLAttributes,
-    ReactElement,
-    SVGProps,
-} from "react";
+import React, { ReactElement, SVGProps, useEffect } from "react";
+import { CheckboxOptions } from "../../../../types";
+import { useTheme } from "../../hooks/useTheme";
+import { forwardRef, HTMLRevindProps } from "../../utils/forward-ref";
+import { uid } from "../../utils/uid";
+import { InputLabel as CheckboxLabel, InputLabelProps } from "../Input/InputLabel";
 
-export interface CheckboxProps
-    extends DetailedHTMLProps<
-        Omit<InputHTMLAttributes<HTMLInputElement>, "size">,
-        HTMLInputElement
-    > {
-    checked?: boolean;
-    scheme?: "primary" | "secondary" | "red" | "green" | "yellow";
-    "wrapper-props"?: React.DetailedHTMLProps<
-        React.InputHTMLAttributes<HTMLLabelElement>,
-        HTMLLabelElement
-    >;
-    "wrapper-ref"?: ForwardedRef<HTMLLabelElement>;
-    size?: "sm" | "md" | "lg" | "xl" | "2xl";
-    value?: "on" | "off" | string;
-    label?: string | ReactElement;
-    "label-direction"?: "top" | "left" | "right" | "bottom";
-    "label-spacing"?: boolean;
-}
+export type CheckboxLabelProps = Omit<InputLabelProps, "variant" | "inputVariant"> & {
+    variant: "top" | "left";
+};
 
-export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(function Checkbox(
+export type CheckboxProps = Omit<HTMLRevindProps<"input">, "size"> &
+    CheckboxOptions<HTMLRevindProps<"div">, CheckboxLabelProps, CheckedIconProps>;
+
+export const Checkbox = forwardRef<CheckboxProps, "input">(function Checkbox(
     {
         checked = false,
         scheme = "primary",
-        "wrapper-ref": wrapperProps,
         size = "md",
         label,
-        "label-direction": labelDirection = "right",
-        "label-spacing": labelSpacing = true,
         value,
-        "wrapper-ref": wrapperRef,
+        "label-props": labelProps = { variant: "left" },
+        "wrapper-props": wrapperProps,
+        "icon-props": iconProps,
         className = "",
+        id,
         ...props
     },
     ref,
 ) {
-    const schemes = {
-        primary: {
-            checked: "bg-primary dark:bg-primary-dark text-white",
-            notChecked:
-                "border-primary dark:border-primary-dark text-primary dark:text-primary-dark",
+    const {
+        styleObjects: {
+            Checkbox: {
+                default: { start, end },
+                sub: { wrapper, icon, label: labelStyle },
+            },
         },
-        secondary: {
-            checked: "bg-secondary dark:bg-secondary-dark text-white",
-            notChecked:
-                "border-secondary dark:border-secondary-dark text-secondary dark:text-secondary-dark",
-        },
-        red: {
-            checked: "bg-red dark:bg-red-dark text-white",
-            notChecked: " border-red dark:border-red-dark text-red dark:text-red-dark",
-        },
-        green: {
-            checked: "bg-green dark:bg-green-dark text-white",
-            notChecked:
-                " border-green dark:border-green-dark text-green dark:text-green-dark",
-        },
-        yellow: {
-            checked: "bg-yellow dark:bg-yellow-dark text-white",
-            notChecked:
-                " border-yellow dark:border-yellow-dark text-yellow dark:text-yellow-dark",
-        },
-    };
+    } = useTheme();
 
-    const labelDirections = {
-        top: "flex-column-reverse",
-        bottom: "flex-column",
-        left: "flex-row-reverse",
-        right: "flex-row",
-    };
+    const stateKeys = checked ? "checked" : "default";
 
-    const labelSpacings = {
-        top: {
-            spacing: "space-y-2",
-            nonSpacing: "",
-        },
-        bottom: {
-            spacing: "space-y-2",
-            nonSpacing: "",
-        },
-        left: {
-            spacing: "space-x-2",
-            nonSpacing: "",
-        },
-        right: {
-            spacing: "space-x-2",
-            nonSpacing: "",
-        },
-    };
+    useEffect(() => {
+        if (["material-static", "material-floating"].includes(labelProps.variant)) {
+            throw new TypeError(
+                "[revind]: can't use `material-floating`/`material-static` for `CheckboxLabel`",
+            );
+        }
+    }, [labelProps.variant]);
 
-    const sizes = {
-        sm: "h-4 w-4",
-        md: "h-5 w-5",
-        lg: "h-6 w-6",
-        xl: "h-10 w-10",
-        "2xl": "h-14 w-14",
-    };
-
-    const scheme2dKeys = checked ? "checked" : "notChecked";
-    const labelSpacingKey = labelSpacing ? "spacing" : "nonSpacing";
+    const gid = id ?? uid();
 
     return (
-        <label
-            className={`inline-flex items-center ${labelDirections[labelDirection]} ${labelSpacings[labelDirection][labelSpacingKey]} ${className}`}
-            ref={wrapperRef}
+        <div
+            className={clsx(
+                wrapper.default.start,
+                wrapper.wrapperInputLabelVariant[labelProps.variant],
+                wrapper.default.end,
+            )}
             {...wrapperProps}
         >
             <input
+                id={gid}
                 checked={checked}
-                className="absolute opacity-0 h-0 w-0"
+                className={clsx(start, end, className)}
                 type="checkbox"
                 ref={ref}
                 value={value}
@@ -123,12 +71,27 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(function Che
             />
             <CheckIcon
                 checked={checked}
-                className={`transition ${sizes[size]} rounded ${
-                    checked ? "border-0" : "border-2 border-solid"
-                } ${schemes[scheme][scheme2dKeys]}`}
+                className={clsx(
+                    icon.default.start,
+                    icon.schemes[scheme],
+                    icon.sizes[size],
+                    icon.logical.states[stateKeys],
+                    icon.schemeState[scheme][stateKeys],
+                    icon.default.end,
+                )}
+                {...iconProps}
             />
-            {label && <span>{label}</span>}
-        </label>
+            {label && (
+                <CheckboxLabel
+                    htmlFor={gid}
+                    className={clsx(labelStyle.default.start, labelStyle.default.end)}
+                    {...labelProps}
+                    inputVariant="filled"
+                >
+                    {label}
+                </CheckboxLabel>
+            )}
+        </div>
     );
 });
 
@@ -160,10 +123,8 @@ Checkbox.propTypes = {
     checked: PropTypes.bool,
     scheme: PropTypes.oneOf(["primary", "secondary", "red", "green", "yellow"]),
     "wrapper-props": PropTypes.object,
-    "wrapper-ref": PropTypes.oneOfType<any>([PropTypes.func, PropTypes.object]),
     size: PropTypes.oneOf(["sm", "md", "lg", "xl", "2xl"]),
     value: PropTypes.any,
     label: PropTypes.string,
-    "label-direction": PropTypes.oneOf(["top", "left", "right", "bottom"]),
-    "label-spacing": PropTypes.bool,
+    "label-props": PropTypes.object,
 };

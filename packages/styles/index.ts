@@ -1,5 +1,6 @@
 export * from "./src/button";
 export * from "./src/button-group";
+export * from "./src/checkbox";
 export * from "./src/flex";
 export * from "./src/container";
 export * from "./src/hidden";

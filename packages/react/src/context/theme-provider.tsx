@@ -3,6 +3,7 @@ import {
     buttonStyleObj,
     flexStyleObj,
     containerStyleObj,
+    checkboxStyleObj,
     hiddenStyleObj,
     textStyleObj,
     buttonGroupStyleObj,
@@ -18,6 +19,7 @@ import {
     HiddenStyleObj,
     InputStyleObj,
     InputLabelStyleObj,
+    CheckboxStyleObj,
 } from "@revind/types";
 
 export interface ThemeContext {
@@ -30,6 +32,7 @@ export interface ThemeContext {
         Text: TextStyleObj;
         Input: InputStyleObj;
         InputLabel: InputLabelStyleObj;
+        Checkbox: CheckboxStyleObj;
     };
 }
 
@@ -43,6 +46,7 @@ export const defaultTheme: ThemeContext = {
         ButtonGroup: buttonGroupStyleObj,
         Input: inputStyleObj,
         InputLabel: inputLabelStyleObj,
+        Checkbox: checkboxStyleObj
     },
 };
 export const themeCtx = createContext<ThemeContext>(defaultTheme);
