@@ -4,6 +4,7 @@ import { BaseStyleObj, Schemes, VariantJunctions } from "./styles";
 export interface ButtonGroupOptions<I>
     extends Pick<ButtonOptions<I>, "variant" | "scheme" | "size" | "full-width"> {
     direction?: "column" | "row";
+    styleObj?: ButtonGroupStyleObj;
 }
 
 export interface Directions {

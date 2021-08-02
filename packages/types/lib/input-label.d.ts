@@ -12,6 +12,7 @@ export interface InputLabelOptions {
     scheme?: keyof Schemes;
     size?: keyof Sizes;
     inputVariant: keyof Variants;
+    styleObj?: Partial<InputLabelStyleObj>;
 }
 
 export interface InputLabelVariants {

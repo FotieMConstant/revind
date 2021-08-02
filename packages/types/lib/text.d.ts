@@ -7,6 +7,7 @@ export interface TextOptions {
     inline?: boolean;
     wrap?: boolean;
     "bottom-margin"?: boolean;
+    styleObj?: TextStyleObj
 }
 
 export interface TextVariants {

@@ -32,6 +32,8 @@ export interface HiddenOptions {
      */
     focus?: boolean;
     all?: boolean;
+
+    styleObj?: HiddenStyleObj;
 }
 
 export interface HiddenStyleObj {

@@ -7,7 +7,7 @@ import React, {
     useState,
 } from "react";
 import PropTypes from "prop-types";
-import { Input, InputProps } from "../Input/Input";
+import { Input, ReactRevindInputOptions } from "../Input/Input";
 import { HTMLRevindProps } from "../../utils/forward-ref";
 
 /**
@@ -20,7 +20,7 @@ import { HTMLRevindProps } from "../../utils/forward-ref";
 export interface TextareaProps
     extends HTMLRevindProps<"textarea">,
         Pick<
-            InputProps,
+            ReactRevindInputOptions,
             | "variant"
             | "scheme"
             | "size"
@@ -28,7 +28,7 @@ export interface TextareaProps
             | "full-width"
             | "label"
             | "label-props"
-            | "wrapper-ref"
+            | "wrapper-props"
         > {
     "min-rows"?: number;
     "max-rows"?: number;
@@ -111,6 +111,6 @@ Textarea.propTypes = {
     margin: PropTypes.bool,
     "full-width": PropTypes.bool,
     label: PropTypes.string,
-    "wrapper-ref": PropTypes.oneOfType<any>([PropTypes.func, PropTypes.object]),
+    "wrapper-props": PropTypes.object,
     "label-props": PropTypes.object as any,
 };

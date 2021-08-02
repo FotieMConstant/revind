@@ -1,9 +1,9 @@
 import * as PropTypes from "prop-types";
 import React, { ReactNode } from "react";
 import clsx from "clsx";
-import { useTheme } from "../../hooks/useTheme";
 import { forwardRef, HTMLRevindProps } from "../../utils/forward-ref";
 import { ButtonOptions } from "@revind/types";
+import { useStyleConfig } from "../../hooks/useStyleConfig";
 
 type ReactRevindButtonOptions = ButtonOptions<ReactNode>;
 
@@ -23,6 +23,7 @@ export const Button = forwardRef<ButtonProps, "button">(function Button(
         "full-width": isFullWidth = false,
         rounded: isRounded = true,
         as: Component = "button",
+        styleObj,
         className,
         children,
         ...props
@@ -30,19 +31,15 @@ export const Button = forwardRef<ButtonProps, "button">(function Button(
     ref,
 ) {
     const {
-        styleObjects: {
-            Button: {
-                sizes,
-                variantSchemes,
-                variants,
-                default: { start, end },
-                sub: { startIcon: startIconStyle, endIcon: endIconStyle },
-                schemes,
-                conditionals: { fullWidth, margin, rounded },
-                variantSizes,
-            },
-        },
-    } = useTheme();
+        sizes,
+        variantSchemes,
+        variants,
+        default: { start, end },
+        sub: { startIcon: startIconStyle, endIcon: endIconStyle },
+        schemes,
+        conditionals: { fullWidth, margin, rounded },
+        variantSizes,
+    } = useStyleConfig("Button", styleObj);
 
     return (
         <Component

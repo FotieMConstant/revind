@@ -4,6 +4,7 @@ import React from "react";
 import { ContainerOptions } from "@revind/types";
 import { useTheme } from "../../hooks/useTheme";
 import { forwardRef, HTMLRevindProps } from "../../utils/forward-ref";
+import { useStyleConfig } from "../../hooks/useStyleConfig";
 
 export type ContainerProps = HTMLRevindProps<"div"> & ContainerOptions;
 
@@ -20,6 +21,7 @@ export const Container = forwardRef<ContainerProps, "div">(function Container(
         rounded: isRounded,
         className = "",
         children,
+        styleObj,
         ...props
     },
     ref,
@@ -29,21 +31,17 @@ export const Container = forwardRef<ContainerProps, "div">(function Container(
     }
 
     const {
-        styleObjects: {
-            Container: {
-                default: { start, end },
-                "max-widths": maxWidths,
-                conditionals: { center, fixed, gutters, rounded },
-                elevations,
-                schemes,
-                variantBorders,
-                variantElevations,
-                variantSchemes,
-                variants,
-                borders,
-            },
-        },
-    } = useTheme();
+        default: { start, end },
+        "max-widths": maxWidths,
+        conditionals: { center, fixed, gutters, rounded },
+        elevations,
+        schemes,
+        variantBorders,
+        variantElevations,
+        variantSchemes,
+        variants,
+        borders,
+    } = useStyleConfig("Container", styleObj);
 
     return (
         <div

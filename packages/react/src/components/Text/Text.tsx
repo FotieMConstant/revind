@@ -4,6 +4,7 @@ import React from "react";
 import { forwardRef, HTMLRevindProps } from "../../utils/forward-ref";
 import { useTheme } from "../../hooks/useTheme";
 import { TextOptions } from "@revind/types";
+import { useStyleConfig } from "../../hooks/useStyleConfig";
 
 export type TextElement = "p" | "span" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
 export type TextProps = HTMLRevindProps<TextElement> & TextOptions;
@@ -17,23 +18,20 @@ export const Text = forwardRef<TextProps, TextElement>(function Text(
         wrap: isWrap = true,
         "bottom-margin": isBottomMargin = true,
         className = "",
+        styleObj,
         children,
         ...props
     },
     ref,
 ) {
     const {
-        styleObjects: {
-            Text: {
-                default: { start, end },
-                conditionals: { bottomMargin, inline, noWrap, wrap },
-                variantSchemes,
-                variants,
-                schemes,
-                alignments,
-            },
-        },
-    } = useTheme();
+        default: { start, end },
+        conditionals: { bottomMargin, inline, noWrap, wrap },
+        variantSchemes,
+        variants,
+        schemes,
+        alignments,
+    } = useStyleConfig("Text", styleObj);
     const Component = {
         h1: "h1",
         h2: "h2",

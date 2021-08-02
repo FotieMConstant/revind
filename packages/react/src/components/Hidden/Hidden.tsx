@@ -4,8 +4,9 @@ import React from "react";
 import { HiddenOptions } from "@revind/types";
 import { useTheme } from "../../hooks/useTheme";
 import { forwardRef, HTMLRevindProps } from "../../utils/forward-ref";
+import { useStyleConfig } from "../../hooks/useStyleConfig";
 
-export type HiddenProps = HTMLRevindProps<"div"> & HiddenOptions
+export type HiddenProps = HTMLRevindProps<"div"> & HiddenOptions;
 
 /**
  * Hides any component passed as children inside of it.
@@ -29,15 +30,12 @@ export const Hidden = forwardRef<HiddenProps, "div">(function Hidden(
         all = true,
         className,
         children,
+        styleObj,
         ...props
     },
     ref,
 ) {
-    const {
-        styleObjects: {
-            Hidden: { states: statesRaw },
-        },
-    } = useTheme();
+    const { states: statesRaw } = useStyleConfig("Hidden", styleObj);
 
     const states = Object.entries({ all, sm, md, lg, xl, xxl, hover, active, focus })
         .map(([key, value]) => {

@@ -21,6 +21,7 @@
     "dependencies": {
         "@revind/types": "^0.0.1",
         "clsx": "^1.1.1",
+        "lodash.mergewith": "^4.6.2",
         "react-is": "^16.13.1",
         "uuid": "^8.3.2"
     },
@@ -30,6 +31,7 @@
         "@storybook/addon-essentials": "^6.3.4",
         "@storybook/addon-links": "^6.3.4",
         "@storybook/addon-postcss": "^2.0.0",
+        "@types/lodash.mergewith": "^4.6.6",
         "@storybook/react": "^6.3.4",
         "@types/react": "^17.0.2",
         "@types/react-dom": "^17.0.2",

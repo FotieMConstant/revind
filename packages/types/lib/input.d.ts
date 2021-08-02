@@ -13,7 +13,7 @@ import {
 
 type InputSizes = ContainerSizes;
 
-export interface InputOptions<W, LabelProps> {
+export interface InputOptions<W, L> {
     type?:
         | "text"
         | "email"
@@ -29,8 +29,9 @@ export interface InputOptions<W, LabelProps> {
     "full-width"?: boolean;
     margin?: boolean;
     label?: string;
-    "label-props"?: LabelProps;
-    "wrapper-ref"?: W;
+    "label-props"?: L;
+    "wrapper-props"?: W;
+    styleObj?: InputStyleObj;
 }
 
 export interface InputSubComponents {

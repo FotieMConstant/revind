@@ -13,7 +13,7 @@ export const checkboxStyleObj: CheckboxStyleObj = {
             wrapperInputLabelVariant: {
                 top: "inline-flex flex-col-reverse",
                 left: "inline-flex items-center flex-row-reverse",
-                right: "inline-flex items-center"
+                right: "inline-flex items-center",
             },
         },
         icon: {
@@ -75,7 +75,7 @@ export const checkboxStyleObj: CheckboxStyleObj = {
         },
         label: {
             default: {
-                start: "text-regular dark:text-regular-dark peer-focus:text-regular dark:peer-focus:text-regular-dark",
+                end: "text-regular dark:text-regular-dark peer-focus:text-regular dark:peer-focus:text-regular-dark",
             },
         },
     },

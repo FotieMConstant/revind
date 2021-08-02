@@ -11,6 +11,7 @@ export interface CheckboxOptions<W, L, I> {
     label?: string;
     "label-props"?: L;
     "icon-props"?: I;
+    styleObj?: Partial<CheckboxStyleObj>;
 }
 
 export interface CheckboxIconLogicalStyles {

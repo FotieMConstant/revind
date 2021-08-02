@@ -4,6 +4,7 @@ import clsx from "clsx";
 import { useTheme } from "../../hooks/useTheme";
 import { forwardRef, HTMLRevindProps } from "../../utils/forward-ref";
 import { FlexOptions } from "@revind/types";
+import { useStyleConfig } from "../../hooks/useStyleConfig";
 
 export type FlexProps = HTMLRevindProps<"div"> & FlexOptions;
 
@@ -30,13 +31,12 @@ export const Flex = forwardRef<FlexProps, "div">(function Flex(
         inline = false,
         children,
         className,
+        styleObj,
         ...props
     },
     ref,
 ) {
-    const {
-        styleObjects: { Flex: flexStyleObj },
-    } = useTheme();
+    const flexStyleObj = useStyleConfig("Flex", styleObj);
 
     return (
         <div

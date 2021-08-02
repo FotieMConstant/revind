@@ -1,13 +1,13 @@
 import clsx from "clsx";
 import PropTypes from "prop-types";
-import React, { ChangeEvent, Ref, useMemo, useState } from "react";
+import React, { ChangeEvent, useMemo, useState } from "react";
 import { InputOptions } from "@revind/types";
 import { useTheme } from "../../hooks/useTheme";
 import { forwardRef, HTMLRevindProps } from "../../utils/forward-ref";
 import { uid } from "../../utils/uid";
 import { InputLabel, InputLabelProps } from "./InputLabel";
 
-type ReactRevindInputOptions = InputOptions<Ref<HTMLDivElement>, InputLabelProps>;
+export type ReactRevindInputOptions = InputOptions<HTMLRevindProps<"div">, InputLabelProps>;
 
 export type InputProps = Omit<HTMLRevindProps<"input">, "size"> & ReactRevindInputOptions;
 
@@ -20,7 +20,7 @@ export const Input = forwardRef<InputProps, "input">(function TextField(
         "full-width": isFullWidth = false,
         label,
         "label-props": labelProps,
-        "wrapper-ref": wrapperRef,
+        "wrapper-props": wrapperProps,
         type = "text",
         className = "",
         placeholder = " ",
@@ -69,7 +69,7 @@ export const Input = forwardRef<InputProps, "input">(function TextField(
                 wrapper.schemes[scheme],
                 wrapper.default.end,
             )}
-            ref={wrapperRef}
+            {...wrapperProps}
         >
             <Component
                 id={gid}

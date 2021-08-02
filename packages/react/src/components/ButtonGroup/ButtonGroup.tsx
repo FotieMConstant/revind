@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import React, { ReactNode } from "react";
 import { isFragment } from "react-is";
 import { Flex } from "../../components/Flex/Flex";
-import { useTheme } from "../../hooks/useTheme";
+import { useStyleConfig } from "../../hooks/useStyleConfig";
 import { forwardRef, HTMLRevindProps } from "../../utils/forward-ref";
 
 type ReactRevindButtonGroupOptions = ButtonGroupOptions<ReactNode>;
@@ -18,6 +18,7 @@ export const ButtonGroup = forwardRef<ButtonGroupProps, "div">(function ButtonGr
         variant = "filled",
         "full-width": fullWidth = false,
         direction = "row",
+        styleObj,
         className,
         children,
         ...props
@@ -25,15 +26,11 @@ export const ButtonGroup = forwardRef<ButtonGroupProps, "div">(function ButtonGr
     ref,
 ) {
     const {
-        styleObjects: {
-            ButtonGroup: {
-                borderColors,
-                directions,
-                variantDirections,
-                default: { start, end },
-            },
-        },
-    } = useTheme();
+        borderColors,
+        directions,
+        variantDirections,
+        default: { start, end },
+    } = useStyleConfig("ButtonGroup", styleObj);
     return (
         <Flex
             ref={ref as any}

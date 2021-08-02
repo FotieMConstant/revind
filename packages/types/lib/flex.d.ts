@@ -27,6 +27,8 @@ export interface FlexOptions {
      * @default false
      */
     inline?: boolean;
+
+    styleObj?: FlexStyleObj
 }
 
 export interface FlexboxDirection {

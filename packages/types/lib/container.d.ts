@@ -20,6 +20,7 @@ export interface ContainerOptions {
     elevation?: keyof Sizes;
     border?: keyof ContainerSizes;
     rounded?: boolean;
+    styleObj?: ContainerStyleObj
 }
 
 export interface ContainerStyleObj

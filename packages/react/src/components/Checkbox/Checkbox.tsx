@@ -2,7 +2,7 @@ import clsx from "clsx";
 import PropTypes from "prop-types";
 import React, { ReactElement, SVGProps, useEffect } from "react";
 import { CheckboxOptions } from "../../../../types";
-import { useTheme } from "../../hooks/useTheme";
+import { useStyleConfig } from "../../hooks/useStyleConfig";
 import { forwardRef, HTMLRevindProps } from "../../utils/forward-ref";
 import { uid } from "../../utils/uid";
 import { InputLabel as CheckboxLabel, InputLabelProps } from "../Input/InputLabel";
@@ -25,19 +25,16 @@ export const Checkbox = forwardRef<CheckboxProps, "input">(function Checkbox(
         "wrapper-props": wrapperProps,
         "icon-props": iconProps,
         className = "",
+        styleObj,
         id,
         ...props
     },
     ref,
 ) {
     const {
-        styleObjects: {
-            Checkbox: {
-                default: { start, end },
-                sub: { wrapper, icon, label: labelStyle },
-            },
-        },
-    } = useTheme();
+        default: { start, end },
+        sub: { wrapper, icon, label: labelStyle },
+    } = useStyleConfig("Checkbox", styleObj);
 
     const stateKeys = checked ? "checked" : "default";
 
@@ -84,8 +81,11 @@ export const Checkbox = forwardRef<CheckboxProps, "input">(function Checkbox(
             {label && (
                 <CheckboxLabel
                     htmlFor={gid}
-                    className={clsx(labelStyle.default.start, labelStyle.default.end)}
                     {...labelProps}
+                    styleObj={{
+                        ...labelStyle,
+                        ...labelProps.styleObj,
+                    }}
                     inputVariant="filled"
                 >
                     {label}

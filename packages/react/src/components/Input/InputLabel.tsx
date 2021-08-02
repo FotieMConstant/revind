@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { HTMLRevindProps, forwardRef } from "../../utils/forward-ref";
 import clsx from "clsx";
 import { InputLabelOptions } from "@revind/types";
-import { useTheme } from "../../hooks/useTheme";
+import { useStyleConfig } from "../../hooks/useStyleConfig";
 export type InputLabelProps = HTMLRevindProps<"label"> & InputLabelOptions;
 
 const InputLabel = forwardRef<InputLabelProps, "label">(function InputLabel(
@@ -13,23 +13,20 @@ const InputLabel = forwardRef<InputLabelProps, "label">(function InputLabel(
         size = "md",
         inputVariant,
         children,
+        styleObj,
         ...props
     },
     ref,
 ) {
     const {
-        styleObjects: {
-            InputLabel: {
-                default: { start, end },
-                variantInputVariant,
-                schemes,
-                sizes,
-                variantSchemes,
-                variantSizes,
-                variants,
-            },
-        },
-    } = useTheme();
+        default: { start, end },
+        variantInputVariant,
+        schemes,
+        sizes,
+        variantSchemes,
+        variantSizes,
+        variants,
+    } = useStyleConfig("InputLabel", styleObj);
 
     return (
         <label
