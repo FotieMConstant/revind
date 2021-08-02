@@ -25,7 +25,7 @@ module.exports = {
         config.plugins.push(TsChecker({ checker: "tsc" }));
         config.server.fs.strict = false;
         /* gitpod.io configurations */
-        config.server.hmr.port = 443;
+        // config.server.hmr.port = 443;
         return config;
     },
 };
