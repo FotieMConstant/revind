@@ -9,6 +9,7 @@ import {
     buttonGroupStyleObj,
     inputStyleObj,
     inputLabelStyleObj,
+    inputAddonStyleObj,
 } from "@revind/styles";
 import {
     ButtonGroupStyleObj,
@@ -20,34 +21,62 @@ import {
     InputStyleObj,
     InputLabelStyleObj,
     CheckboxStyleObj,
+    ContainerOptions,
+    FlexOptions,
+    HiddenOptions,
+    InputLabelOptions,
+    TextOptions,
+    InputAddonStyleObj,
+    InputAddonOptions,
 } from "@revind/types";
+import { ReactRevindButtonOptions } from "../components/Button/Button";
+import {
+    ReactRevindButtonGroupOptions,
+    ReactRevindInputOptions,
+    ReactRevindCheckboxOptions,
+} from "../main";
 
 export interface ThemeContext {
     styleObjects: {
         Button: ButtonStyleObj;
         ButtonGroup: ButtonGroupStyleObj;
-        Flex: FlexStyleObj;
-        Container: ContainerStyleObj;
-        Hidden: HiddenStyleObj;
-        Text: TextStyleObj;
-        Input: InputStyleObj;
-        InputLabel: InputLabelStyleObj;
         Checkbox: CheckboxStyleObj;
+        Container: ContainerStyleObj;
+        Flex: FlexStyleObj;
+        Hidden: HiddenStyleObj;
+        Input: InputStyleObj;
+        InputAddon: InputAddonStyleObj;
+        InputLabel: InputLabelStyleObj;
+        Text: TextStyleObj;
+    };
+    props: {
+        Button?: ReactRevindButtonOptions;
+        ButtonGroup?: ReactRevindButtonGroupOptions;
+        Checkbox?: ReactRevindCheckboxOptions;
+        Container?: ContainerOptions;
+        Flex?: FlexOptions;
+        Hidden?: HiddenOptions;
+        Input?: ReactRevindInputOptions;
+        InputAddon?: InputAddonOptions;
+        InputLabel?: InputLabelOptions;
+        Text?: TextOptions;
     };
 }
 
 export const defaultTheme: ThemeContext = {
     styleObjects: {
         Button: buttonStyleObj,
-        Flex: flexStyleObj,
-        Container: containerStyleObj,
-        Hidden: hiddenStyleObj,
-        Text: textStyleObj,
         ButtonGroup: buttonGroupStyleObj,
+        Checkbox: checkboxStyleObj,
+        Container: containerStyleObj,
+        Flex: flexStyleObj,
+        Hidden: hiddenStyleObj,
         Input: inputStyleObj,
+        InputAddon: inputAddonStyleObj,
         InputLabel: inputLabelStyleObj,
-        Checkbox: checkboxStyleObj
+        Text: textStyleObj,
     },
+    props: {},
 };
 export const themeCtx = createContext<ThemeContext>(defaultTheme);
 

@@ -5,7 +5,7 @@ import { forwardRef, HTMLRevindProps } from "../../utils/forward-ref";
 import { ButtonOptions } from "@revind/types";
 import { useStyleConfig } from "../../hooks/useStyleConfig";
 
-type ReactRevindButtonOptions = ButtonOptions<ReactNode>;
+export type ReactRevindButtonOptions = ButtonOptions<ReactNode>;
 
 export type ButtonProps = HTMLRevindProps<"button"> & ReactRevindButtonOptions;
 

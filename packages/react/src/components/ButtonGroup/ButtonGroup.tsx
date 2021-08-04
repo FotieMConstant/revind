@@ -7,7 +7,7 @@ import { Flex } from "../../components/Flex/Flex";
 import { useStyleConfig } from "../../hooks/useStyleConfig";
 import { forwardRef, HTMLRevindProps } from "../../utils/forward-ref";
 
-type ReactRevindButtonGroupOptions = ButtonGroupOptions<ReactNode>;
+export type ReactRevindButtonGroupOptions = ButtonGroupOptions<ReactNode>;
 
 export type ButtonGroupProps = HTMLRevindProps<"div"> & ReactRevindButtonGroupOptions;
 

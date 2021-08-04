@@ -11,8 +11,10 @@ export type CheckboxLabelProps = Omit<InputLabelProps, "variant" | "inputVariant
     variant: "top" | "left";
 };
 
+export type ReactRevindCheckboxOptions = CheckboxOptions<HTMLRevindProps<"div">, CheckboxLabelProps, CheckedIconProps>;
+
 export type CheckboxProps = Omit<HTMLRevindProps<"input">, "size"> &
-    CheckboxOptions<HTMLRevindProps<"div">, CheckboxLabelProps, CheckedIconProps>;
+    ReactRevindCheckboxOptions;
 
 export const Checkbox = forwardRef<CheckboxProps, "input">(function Checkbox(
     {

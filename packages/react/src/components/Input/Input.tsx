@@ -6,8 +6,12 @@ import { useTheme } from "../../hooks/useTheme";
 import { forwardRef, HTMLRevindProps } from "../../utils/forward-ref";
 import { uid } from "../../utils/uid";
 import { InputLabel, InputLabelProps } from "./InputLabel";
+import { ComponentIds } from "../../utils/component-ids";
 
-export type ReactRevindInputOptions = InputOptions<HTMLRevindProps<"div">, InputLabelProps>;
+export type ReactRevindInputOptions = InputOptions<
+    HTMLRevindProps<"div">,
+    InputLabelProps
+>;
 
 export type InputProps = Omit<HTMLRevindProps<"input">, "size"> & ReactRevindInputOptions;
 
@@ -114,6 +118,8 @@ export const Input = forwardRef<InputProps, "input">(function TextField(
         </div>
     );
 });
+
+Input.id = ComponentIds.Input;
 
 interface ShowHidePasswordButtonProps {
     toggle: VoidFunction;
