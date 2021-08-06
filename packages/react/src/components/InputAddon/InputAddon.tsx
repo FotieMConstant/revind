@@ -2,18 +2,19 @@ import clsx from "clsx";
 import React, { useEffect } from "react";
 import { InputAddonOptions } from "../../../../types";
 import { useStyleConfig } from "../../hooks/useStyleConfig";
+import { ComponentIds } from "../../utils/component-ids";
 import { forwardRef, HTMLRevindProps } from "../../utils/forward-ref";
 
 export type InputAddonProps = HTMLRevindProps<"div"> & InputAddonOptions;
 
-const InputAddon = forwardRef<InputAddonProps, "div">(function InputAddon(
+export const InputAddon = forwardRef<InputAddonProps, "div">(function InputAddon(
     {
         variant = "outlined",
         scheme = "primary",
         size = "md",
         styleObj,
-        left = true,
-        right = false,
+        left,
+        right,
         ...props
     },
     ref,
@@ -57,4 +58,4 @@ const InputAddon = forwardRef<InputAddonProps, "div">(function InputAddon(
     );
 });
 
-export default InputAddon;
+InputAddon.id = ComponentIds.InputAddon;

@@ -2,11 +2,11 @@ import { InputStyleObj } from "@revind/types";
 
 export const inputStyleObj: InputStyleObj = {
     default: {
-        start: "peer dark:border-gray-600 outline-none text-black dark:text-white  placeholder-gray-500 border-gray-300",
+        start: "peer border-gray-300 dark:border-gray-600 outline-none text-black dark:text-white  placeholder-gray-500",
     },
     variants: {
         outlined: "border border-solid rounded bg-inherit",
-        filled: "border-0 bg-gray-100 dark:bg-gray-800",
+        filled: "border-0 bg-gray-100 dark:bg-gray-800 focus:ring focus:ring-opacity-50",
         minimal: "border-b border-solid bg-inherit",
     },
     schemes: {
@@ -33,7 +33,23 @@ export const inputStyleObj: InputStyleObj = {
             "material-floating": "placeholder-opacity-0 focus:placeholder-opacity-100",
         },
     },
-    variantSchemes: {},
+    variantSchemes: {
+        filled: {
+            primary: "focus:ring-primary",
+            secondary: "focus:ring-secondary",
+            red: "focus:ring-red",
+            green: "focus:ring-green",
+            yellow: "focus:ring-yellow",
+            blue: "focus:ring-blue",
+            gray: "focus:ring-gray",
+            orange: "focus:ring-orange",
+            teal: "focus:ring-teal",
+            cyan: "focus:ring-cyan",
+            purple: "focus:ring-purple",
+            pink: "focus:ring-pink",
+            indigo: "focus:ring-indigo",
+        },
+    },
     variantSizes: {},
     sub: {
         wrapper: {
@@ -41,7 +57,7 @@ export const inputStyleObj: InputStyleObj = {
                 start: "transition-colors relative bg-inherit",
             },
             conditionals: {
-                "full-width": "flex",
+                "full-width": "flex w-full",
             },
             schemes: {
                 primary: "focus-within:text-primary",

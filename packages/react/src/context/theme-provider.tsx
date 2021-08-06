@@ -10,6 +10,7 @@ import {
     inputStyleObj,
     inputLabelStyleObj,
     inputAddonStyleObj,
+    inputGroupStyleObj,
 } from "@revind/styles";
 import {
     ButtonGroupStyleObj,
@@ -28,6 +29,8 @@ import {
     TextOptions,
     InputAddonStyleObj,
     InputAddonOptions,
+    InputGroupStyleObj,
+    InputGroupOptions,
 } from "@revind/types";
 import { ReactRevindButtonOptions } from "../components/Button/Button";
 import {
@@ -46,6 +49,7 @@ export interface ThemeContext {
         Hidden: HiddenStyleObj;
         Input: InputStyleObj;
         InputAddon: InputAddonStyleObj;
+        InputGroup: InputGroupStyleObj;
         InputLabel: InputLabelStyleObj;
         Text: TextStyleObj;
     };
@@ -58,6 +62,7 @@ export interface ThemeContext {
         Hidden?: HiddenOptions;
         Input?: ReactRevindInputOptions;
         InputAddon?: InputAddonOptions;
+        InputGroup?: InputGroupOptions;
         InputLabel?: InputLabelOptions;
         Text?: TextOptions;
     };
@@ -74,6 +79,7 @@ export const defaultTheme: ThemeContext = {
         Input: inputStyleObj,
         InputAddon: inputAddonStyleObj,
         InputLabel: inputLabelStyleObj,
+        InputGroup: inputGroupStyleObj,
         Text: textStyleObj,
     },
     props: {},

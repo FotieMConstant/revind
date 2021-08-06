@@ -8,3 +8,4 @@ export * from "./src/text";
 export * from "./src/input";
 export * from "./src/input-label";
 export * from "./src/input-addon";
+export * from "./src/input-group";

@@ -24,8 +24,10 @@ module.exports = {
     async viteFinal(config) {
         config.plugins.push(TsChecker({ checker: "tsc" }));
         config.server.fs.strict = false;
-        /* gitpod.io configurations */
-        // config.server.hmr.port = 443;
+        if ("GITPOD_REPO_ROOT" in process.env) {
+            /* gitpod.io configurations */
+            config.server.hmr.port = 443;
+        }
         return config;
     },
 };

@@ -1,14 +1,22 @@
-import { InputSizes } from "./input";
-import { BaseStyleObj, Logical, Schemes, VariantJunctions, Variants } from "./styles";
+import { InputOptions, InputSizes } from "./input";
+import { PropStyleObj } from "./props";
+import {
+    BaseStyleObj,
+    Conditionals,
+    Logical,
+    Schemes,
+    VariantJunctions,
+    Variants,
+} from "./styles";
 
-export type InputAddonOptions = {
-    variant?: keyof Variants;
-    scheme?: keyof Schemes;
-    size?: keyof InputSizes;
-    left?: boolean;
-    right?: boolean;
-    styleObj?: InputAddonStyleObj;
-};
+export type InputAddonOptions = Pick<
+    InputOptions<unknown, unknown>,
+    "variant" | "scheme" | "size"
+> &
+    PropStyleObj<InputAddonStyleObj> & {
+        left?: boolean;
+        right?: boolean;
+    };
 
 interface InputAddonPlacements {
     readonly left?: string;

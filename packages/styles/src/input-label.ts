@@ -31,6 +31,7 @@ export const inputLabelStyleObj: InputLabelStyleObj = {
         "material-floating": {
             outlined:
                 "bg-container-primary dark:bg-container-secondary-dark peer-focus:bg-container-primary dark:peer-focus:bg-container-secondary-dark peer-placeholder-shown:bg-transparent dark:peer-placeholder-shown:bg-transparent",
+            filled: "-top-1 peer-focus:-top-1",
         },
         "material-static": {
             outlined: "bg-container-primary dark:bg-container-secondary-dark",
