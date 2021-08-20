@@ -3,6 +3,7 @@ import React from "react";
 import { Meta } from "@storybook/react";
 
 import { Input, InputProps } from "./Input";
+import { InputAddon } from "./InputAddon";
 
 export default {
     title: "Components/Input",
@@ -69,4 +70,33 @@ export const TopLabelled = Template.bind({});
     "label-props": {
         variant: "top",
     },
+} as InputProps;
+
+export const WithoutLabel = Template.bind({});
+
+(TopLabelled as any).args = {
+    ...defaultArgs,
+    label: undefined,
+};
+
+export const WithAddon = Template.bind({});
+
+(WithAddon as any).args = {
+    ...defaultArgs,
+    "left-addons": <InputAddon variant="static">Email</InputAddon>,
+} as InputProps;
+
+export const WithRightAddon = Template.bind({});
+
+(WithRightAddon as any).args = {
+    ...defaultArgs,
+    "right-addons": <InputAddon variant="static">Add</InputAddon>,
+} as InputProps;
+
+export const WithBothAddon = Template.bind({});
+
+(WithBothAddon as any).args = {
+    ...defaultArgs,
+    "left-addons": <InputAddon variant="static">Email</InputAddon>,
+    "right-addons": <InputAddon variant="static">Add</InputAddon>,
 } as InputProps;

@@ -54,7 +54,7 @@ export const inputStyleObj: InputStyleObj = {
     sub: {
         wrapper: {
             default: {
-                start: "transition-colors relative bg-inherit",
+                start: "peer transition-colors relative bg-inherit flex flex-row",
             },
             conditionals: {
                 "full-width": "flex w-full",

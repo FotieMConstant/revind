@@ -20,14 +20,22 @@ export const inputGroupStyleObj: InputGroupStyleObj = {
             schemes: {},
             sizes: {},
             variantSizes: {},
+            inputAddonVariants: {
+                floating: "focus:ring-0",
+            },
             logical: {
                 placement: {
-                    addon: {
-                        left: "rounded-l-none",
-                        right: "rounded-r-none",
-                        both: "rounded-l-none rounded-r-none",
+                    left: "rounded-l-none",
+                    right: "rounded-r-none",
+                    both: "rounded-l-none rounded-r-none",
+                },
+                placementInputAddonVariant: {
+                    static: {},
+                    floating: {
+                        left: "border-l-0",
+                        right: "border-r-0",
+                        both: "border-l-0 border-r-0",
                     },
-                    element: {},
                 },
             },
         },

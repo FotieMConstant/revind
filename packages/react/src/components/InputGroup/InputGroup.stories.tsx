@@ -2,7 +2,7 @@ import React from "react";
 import { Meta } from "@storybook/react";
 import { InputGroupProps, InputGroup } from "./InputGroup";
 import { Input } from "../Input/Input";
-import { InputAddon } from "../InputAddon/InputAddon";
+import { InputAddon } from "../Input/InputAddon";
 
 export default {
     title: "Components/InputGroup",
@@ -27,8 +27,8 @@ export default {
 
 const Template = (props: InputGroupProps) => (
     <InputGroup {...props}>
-        <InputAddon left>Addon</InputAddon>
-        <Input label="Input" placeholder="placeholder" />
+        <InputAddon>Addon</InputAddon>
+        <Input placeholder="placeholder" />
     </InputGroup>
 );
 
@@ -36,8 +36,8 @@ export const Default = Template.bind({});
 
 const RightAddonTemplate = (props: InputGroupProps) => (
     <InputGroup {...props}>
-        <Input label="Input" placeholder="placeholder" />
-        <InputAddon right>Right Side Addon</InputAddon>
+        <Input placeholder="placeholder" />
+        <InputAddon>Right Side Addon</InputAddon>
     </InputGroup>
 );
 
@@ -45,10 +45,21 @@ export const RightAddon = RightAddonTemplate.bind({});
 
 const BothSideAddonTemplate = (props: InputGroupProps) => (
     <InputGroup {...props}>
-        <InputAddon left>Left</InputAddon>
-        <Input label="Input" placeholder="placeholder" />
-        <InputAddon right>Right</InputAddon>
+        <InputAddon>Left</InputAddon>
+        <Input placeholder="placeholder" />
+        <InputAddon>Right</InputAddon>
     </InputGroup>
 );
 
 export const BothAddon = BothSideAddonTemplate.bind({});
+
+const ElementTemplate = (props: InputGroupProps) => (
+    <InputGroup {...props}>
+        <InputAddon left variant="floating">
+            &times;
+        </InputAddon>
+        <Input placeholder="placeholder" />
+    </InputGroup>
+);
+
+export const LeftElement = ElementTemplate.bind({});

@@ -111,6 +111,6 @@ Textarea.propTypes = {
     margin: PropTypes.bool,
     "full-width": PropTypes.bool,
     label: PropTypes.string,
-    "wrapper-props": PropTypes.object,
+    "wrapper-props": PropTypes.object as any,
     "label-props": PropTypes.object as any,
 };

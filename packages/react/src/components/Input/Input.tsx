@@ -1,16 +1,18 @@
 import clsx from "clsx";
 import PropTypes from "prop-types";
-import React, { ChangeEvent, useMemo, useState } from "react";
+import React, { ChangeEvent, ReactElement, useMemo, useState } from "react";
 import { InputOptions } from "@revind/types";
 import { useTheme } from "../../hooks/useTheme";
 import { forwardRef, HTMLRevindProps } from "../../utils/forward-ref";
 import { uid } from "../../utils/uid";
 import { InputLabel, InputLabelProps } from "./InputLabel";
 import { ComponentIds } from "../../utils/component-ids";
+import { InputAddonProps } from "./InputAddon";
 
 export type ReactRevindInputOptions = InputOptions<
     HTMLRevindProps<"div">,
-    InputLabelProps
+    Partial<InputLabelProps>,
+    ReactElement<InputAddonProps>
 >;
 
 export type InputProps = Omit<HTMLRevindProps<"input">, "size"> & ReactRevindInputOptions;
@@ -28,6 +30,8 @@ export const Input = forwardRef<InputProps, "input">(function TextField(
         type = "text",
         className = "",
         placeholder = " ",
+        "left-addons": leftAddons,
+        "right-addons": rightAddons,
         id,
         onChange,
         as: Component = "input",
@@ -75,21 +79,23 @@ export const Input = forwardRef<InputProps, "input">(function TextField(
             )}
             {...wrapperProps}
         >
+            {leftAddons}
             <Component
                 id={gid}
                 className={clsx(
                     start,
                     {
                         [fullWidth]: isFullWidth,
+                        [variantInputLabelVariant[variant][
+                            labelProps?.variant ?? "material-floating"
+                        ] ?? ""]: !!label,
                     },
                     sizes[size],
                     schemes[scheme],
                     variants[variant],
                     variantSchemes[variant]?.[scheme],
                     variantSizes[variant]?.[size],
-                    variantInputLabelVariant[variant][
-                        labelProps?.variant ?? "material-floating"
-                    ],
+
                     end,
                     className,
                 )}
@@ -99,6 +105,7 @@ export const Input = forwardRef<InputProps, "input">(function TextField(
                 onChange={handleChange}
                 type={!showPassword ? type : "text"}
             />
+            {rightAddons}
             {label && (
                 <InputLabel
                     aria-required={props.required}

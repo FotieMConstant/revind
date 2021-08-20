@@ -9,28 +9,20 @@ import {
     Variants,
 } from "./styles";
 
-export type InputAddonOptions = Pick<
-    InputOptions<unknown, unknown>,
-    "variant" | "scheme" | "size"
-> &
-    PropStyleObj<InputAddonStyleObj> & {
-        left?: boolean;
-        right?: boolean;
-    };
-
-interface InputAddonPlacements {
-    readonly left?: string;
-    readonly right?: string;
+export interface InputAddonVariants {
+    readonly floating?: string;
+    readonly static?: string;
 }
 
-export interface InputAddonLogicalStyles {
-    readonly placement: InputAddonPlacements;
+export interface InputAddonOptions
+    extends Pick<InputOptions<unknown, unknown, unknown>, "scheme" | "size">,
+        PropStyleObj<InputAddonStyleObj> {
+    inputVariant?: keyof Variants;
+    variant?: keyof InputAddonVariants;
+    styleObj?: Partial<InputAddonStyleObj>;
 }
 
-export type VariantPlacements = {
-    variantPlacements: VariantJunctions<InputAddonPlacements>;
-};
-
-export type InputAddonStyleObj = BaseStyleObj &
-    VariantPlacements &
-    Logical<InputAddonLogicalStyles>;
+export interface InputAddonStyleObj extends BaseStyleObj<InputAddonVariants> {
+    inputVariants: Variants;
+    variantInputVariants: VariantJunctions<Variants, InputAddonVariants>;
+}

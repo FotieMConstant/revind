@@ -13,7 +13,7 @@ import {
 
 type InputSizes = ContainerSizes;
 
-export interface InputOptions<W, L> {
+export interface InputOptions<W, L, A> {
     type?:
         | "text"
         | "email"
@@ -26,6 +26,8 @@ export interface InputOptions<W, L> {
     variant?: keyof Variants;
     scheme?: keyof Schemes;
     size?: keyof InputSizes;
+    "left-addons"?: A;
+    "right-addons"?: A;
     "full-width"?: boolean;
     margin?: boolean;
     label?: string;

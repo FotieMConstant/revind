@@ -1,5 +1,5 @@
 import { InputOptions } from "./input";
-import { InputAddonPlacements } from "./input-addon";
+import { InputAddonPlacements, InputAddonVariants } from "./input-addon";
 import { PropStyleObj } from "./props";
 import { BaseStyleObj, Conditionals, Junction, Logical, SubComponents } from "./styles";
 
@@ -14,12 +14,13 @@ export interface InputGroupPlacements extends InputAddonPlacements {
 }
 
 export type InputGroupLogicalStyles = {
-    placement: Junction<InputGroupPlacements, "addon" | "element">;
+    placement: InputGroupPlacements;
+    placementInputAddonVariant: Junction<InputGroupPlacements, keyof InputAddonVariants>;
 };
 
 export type InputGroupSubComponentStyles = {
     input: Omit<BaseStyleObj, "scheme" | "variantSchemes"> &
-        Logical<InputGroupLogicalStyles>;
+        Logical<InputGroupLogicalStyles> & { inputAddonVariants: InputAddonVariants };
 };
 
 export type InputGroupStyleObj = Pick<BaseStyleObj, "default"> &
